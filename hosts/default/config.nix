@@ -21,8 +21,7 @@
     ../../modules/local-hardware-clock.nix
   ];
 
-  # BOOT related stuff
-    boot = {
+boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_latest;
 
@@ -46,32 +45,8 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     
-  #  loader.efi.efiSysMountPoint = "/efi"; # if you have a separate /efi partition
-  
-  # bootloader grub
-  #boot.loader = {
-  #  efi = {
-	#	  efiSysMountPoint = "/efi"; # MAKE SURE to comment this out if you did not set a /efi partition
-	#	  canTouchEfiVariables = true;
-  #		};
-  # grub = {
-	#	  enable = true;
-	#	  devices = [ "nodev" ];
-	#	  efiSupport = true;
-  #	  gfxmodeBios = "auto";
-	#	  memtest86.enable = true;
-	#	  extraGrubInstallArgs = [ "--bootloader-id=NixOS" ];
-	#	  configurationName = "Desktop";
-  #		};
-	
-  
-     # bootloader grub theme
-    #loader.grub = rec {
-    #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
-    #  splashImage = "${theme}/splash_image.jpg";
-    #};
+    #loader.efi.efiSysMountPoint = "/efi"; # if you have a separate /efi partition
 
-  timeout = 1;
     # Make /tmp a tmpfs
     tmp = {
       useTmpfs = false;
@@ -88,19 +63,8 @@
     };
     plymouth.enable = true;
   };
-
-  # Extra Module Options
-  drivers.amdgpu.enable = true;
-  drivers.nvidia.enable = false;
-  drivers.nvidia-prime = {
-    enable = false;
-    intelBusID = "";
-    nvidiaBusID = "";
-  };
-  drivers.intel.enable = false;
-  vm.guest-services.enable = false;
-  local.hardware-clock.enable = false;
-
+  
+  	 
   # NOTE SET KERNEL BOOTLOADER OPTIONS and Hostname ON INDIVIDUAL MODULE NIX  
   networking.networkmanager.enable = true; 
 
@@ -130,7 +94,6 @@
     baobab
     btrfs-progs
     cpufrequtils
-    discord
 	duf
     ffmpeg   
     glib #for gsettings to work
