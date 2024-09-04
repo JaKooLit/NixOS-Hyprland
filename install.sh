@@ -88,12 +88,12 @@ sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware-c
 echo "-----"
 
 echo "Setting Required Nix Settings Then Going To Install"
-NIX_CONFIG="experimental-features = nix-command flakes"
+#NIX_FEATURES="nix-command flakes"
 
-echo "-----"
+#echo "-----"
+NIX_FEATURES="nix-command flakes" sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
-sudo nix flake update 
-sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
+#sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 sleep 1
 
