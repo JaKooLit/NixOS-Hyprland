@@ -29,43 +29,17 @@
     #kernelPackages = pkgs.linuxPackages_latest;
   };
   
-  networking.hostName = "NixOS-MiniPC";
   
-  # User account
-  users = {
-	  users."${username}" = {
-    isNormalUser = true;
-    extraGroups = [ 
-		  "wheel" 
-		  "video" 
-		  "input" 
-		  "audio"
-		]; 
-    packages = with pkgs; [		
-     	];
-  	};
-
-	defaultUserShell = pkgs.zsh;
-  };
-
-  environment.shells = with pkgs; [ zsh ];
 
   # for HP - Mini pc
   environment.systemPackages = with pkgs; [
     discord
-    fzf
-    glxinfo
     krabby
     vscodium
     nvtopPackages.intel # requires unstable channel
 
 	qbittorrent
   ];
-
-  # Additional fonts needed for office stuff
-  fonts.packages = with pkgs; [
-	  cascadia-code
- 	  ];
 	
   powerManagement = {
 	  enable = true;

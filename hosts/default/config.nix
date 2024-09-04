@@ -19,29 +19,29 @@
     ];
 
 	# bootloader GRUB
-  boot.loader = {
-    efi = {
-		  efiSysMountPoint = "/efi"; # MAKE SURE to comment this out if you did not set a /efi partition
-		  canTouchEfiVariables = true;
-  		};
-    grub = {
-		  enable = true;
-		  devices = [ "nodev" ];
-		  efiSupport = true;
-  	  gfxmodeBios = "auto";
-		  memtest86.enable = true;
-		  extraGrubInstallArgs = [ "--bootloader-id=NixOS" ];
-		  configurationName = "NixOS-MiniPC";
-  		};
-	  timeout = 1;
-  };
+  #boot.loader = {
+  #  efi = {
+	  #efiSysMountPoint = "/efi"; # MAKE SURE to comment this out if you did not set a /efi partition
+		#  canTouchEfiVariables = true;
+  #		};
+  #  grub = {
+		#  enable = true;
+		#  devices = [ "nodev" ];
+		#  efiSupport = true;
+  	#  gfxmodeBios = "auto";
+		#  memtest86.enable = true;
+  #		};
+	#  timeout = 1;
+  #};
 
   # default systemd-boot (make sure to comment out above if wanted to use systemd-boot)
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   
-  # NOTE SET KERNEL BOOTLOADER OPTIONS and Hostname ON INDIVIDUAL MODULE NIX  
+  
   networking.networkmanager.enable = true; 
+
+  networking.hostName = "${host}";
 
   # Set your time zone.
   time.timeZone = "Asia/Seoul";
@@ -212,6 +212,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     fira-code
+    cascadia-code
     noto-fonts-cjk
     jetbrains-mono
     font-awesome
