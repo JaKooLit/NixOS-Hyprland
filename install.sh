@@ -77,15 +77,6 @@ git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
 
-read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
-if [ -z "$keyboardLayout" ]; then
-  keyboardLayout="us"
-fi
-
-sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
-
-echo "-----"
-
 installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
@@ -105,6 +96,8 @@ sudo nix flake update
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 sleep 1
+
+printf "\n%.0s" {1..2}
 
 # GTK Themes and Icons installation
 printf "Installing GTK-Themes and Icons..\n"
@@ -129,6 +122,8 @@ tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons
 echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 
 
 sleep 1
+
+printf "\n%.0s" {1..2}
 
 # KooL's Dots installation
 printf "$NOTE Downloading Hyprland dots from main..\n"

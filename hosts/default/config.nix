@@ -1,141 +1,112 @@
-{
-  config, pkgs, host, username, host, options, inputs, ...}: let
-    inherit (import ./variables.nix) keyboardLayout;
-	  
-    python-packages = pkgs.python3.withPackages (
+# Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running `nixos-help`).
+
+{ config, pkgs, hosts, username, options, inputs, ... }: let
+  python-packages = pkgs.python3.withPackages (
     ps:
       with ps; [
         requests
         pyquery # needed for hyprland-dots Weather script
       ]
   	);
+
   in {
-  imports = [
+  imports =
+    [ # Include the results of the hardware scan.
     ./hardware.nix
+    ./default.nix
     ./users.nix
-    ../../modules/amd-drivers.nix
-    ../../modules/nvidia-drivers.nix
-    ../../modules/nvidia-prime-drivers.nix
-    ../../modules/intel-drivers.nix
-    ../../modules/vm-guest-services.nix
-    ../../modules/local-hardware-clock.nix
-  ];
+    ];
 
-boot = {
-    # Kernel
-    kernelPackages = pkgs.linuxPackages_latest;
-
-    kernelParams = [
-    	"systemd.mask=systemd-vconsole-setup.service"
-    	"systemd.mask=dev-tpmrm0.device"
-      "nowatchdog"
-	   	"modprobe.blacklist=sp5100_tco"
-      "modprobe.blacklist=iTCO_wdt"
- 	  ];
-
-    # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" ];
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    # Needed For Some Steam Games
-    #kernel.sysctl = {
-    #  "vm.max_map_count" = 2147483642;
-    #};
-    
-    # Bootloader SystemD
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    
-    #loader.efi.efiSysMountPoint = "/efi"; # if you have a separate /efi partition
-
-    # Make /tmp a tmpfs
-    tmp = {
-      useTmpfs = false;
-      tmpfsSize = "30%";
-    };
-    # Appimage Support
-    #binfmt.registrations.appimage = {
-    #  wrapInterpreterInShell = false;
-    #  interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    #  recognitionType = "magic";
-    #  offset = 0;
-    #  mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    #  magicOrExtension = ''\x7fELF....AI\x02'';
-    };
-    plymouth.enable = true;
+	# bootloader GRUB
+  boot.loader = {
+    efi = {
+		  efiSysMountPoint = "/efi"; # MAKE SURE to comment this out if you did not set a /efi partition
+		  canTouchEfiVariables = true;
+  		};
+    grub = {
+		  enable = true;
+		  devices = [ "nodev" ];
+		  efiSupport = true;
+  	  gfxmodeBios = "auto";
+		  memtest86.enable = true;
+		  extraGrubInstallArgs = [ "--bootloader-id=NixOS" ];
+		  configurationName = "NixOS-MiniPC";
+  		};
+	  timeout = 1;
   };
+
+  # default systemd-boot (make sure to comment out above if wanted to use systemd-boot)
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
   
-  	 
   # NOTE SET KERNEL BOOTLOADER OPTIONS and Hostname ON INDIVIDUAL MODULE NIX  
   networking.networkmanager.enable = true; 
 
   # Set your time zone.
   time.timeZone = "Asia/Seoul";
 
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-  	 earlySetup = true;
-     font = "Lat2-Terminus16";
+     font = "${pkgs.terminus_font}/share/consolefonts/ter-128b.psf.gz";
      keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
   # NOTE: DEFINE USER ACCOUNT in different module
-  
+
+  nix.settings.experimental-features = [ "nix-command"  "flakes" ];
+ 
   # Unfree softwares
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command"  "flakes" ];
-  
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = (with pkgs; [
   # System Packages
     baobab
     btrfs-progs
     cpufrequtils
-	duf
+    duf
     ffmpeg   
     glib #for gsettings to work
-	killall  
+    hwdata # for fastfetch  
     libappindicator
-    libayatana-appindicator
-    libappindicator-gtk3
     libnotify
     openssl #required by Rainbow borders
     vim
     wget
     xdg-user-dirs
-	xdg-utils
 
     # I normally have and use
     audacious
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
-    qbittorrent
     ranger
+	yt-dlp
       
     # Hyprland Stuff | Laptop related stuff on a separate .nix
-	ags        
+    ags      
     btop
     cava
     cliphist
     eog
-    gnome-system-monitor
     file-roller
+    gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
     hyprcursor # requires unstable channel
     hypridle # requires unstable channel
+    imagemagick
     jq
     kitty
-	libsForQt5.qtstyleplugin-kvantum #kvantum
-	networkmanagerapplet
+    libsForQt5.qtstyleplugin-kvantum #kvantum
+    networkmanagerapplet
     nwg-look # requires unstable channel
     nvtopPackages.full
     pamixer
     pavucontrol
-	playerctl
+    playerctl
     polkit_gnome
     pyprland
     qt5ct
@@ -152,35 +123,30 @@ boot = {
     wl-clipboard
     wlogout
     yad
-
-    #waybar  # if wanted experimental next line
     #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
+
   ]) ++ [
-	python-packages
-	  #inputs.wallust.packages.${pkgs.system}.wallust
-	  #inputs.ags.packages.${pkgs.system}.ags
+	  #inputs.wallust.packages.${pkgs.system}.wallust # dev
+	  python-packages # needed for Weather.py
   ];
 
-  programs.nm-applet.indicator = true;
-  
-  
-  # Cachix for Hyprland (required on flakes)
+  # cachix for Hyprland
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
-  
-  programs = {
-	hyprland = {
-      enable = true;
-      # set the flake package
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  	  substituters = ["https://hyprland.cachix.org"];
+  	  trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   	};
+
+  programs = {
+	  hyprland = {
+      enable = true;
+		  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdph
+      xwayland.enable = true;
+  	  };
 
 	xwayland.enable = true;
 
+	waybar.enable = true;
 	hyprlock.enable = true;
 	firefox.enable = true;
 	git.enable = true;
@@ -192,11 +158,9 @@ boot = {
 		thunar-archive-plugin
 		thunar-volman
 		tumbler
-  		];
+  	];
 	
 	dconf.enable = true;
-	
-	waybar.enable = true;
 	
   };
 
@@ -230,37 +194,53 @@ boot = {
 
 	  upower.enable = true;	
 
-    # Services X11 
-  	#xserver = {
-  	#	enable = true;
-  	#	displayManager.gdm.enable = false;
-  	#	displayManager.lightdm.enable = false;
-  	#	displayManager.lightdm.greeters.gtk.enable = false;
-  	#	};
+  # Services X11 
+  #	xserver = {
+  #		enable = false;
+  #		displayManager.gdm.enable = false;
+  #		displayManager.lightdm.enable = false;
+  #		displayManager.lightdm.greeters.gtk.enable = false;
+  #		};
  	#  desktopManager = {
  	#	  plasma6.enable = false;
  	#	  };
  	#  displayManager.sddm.enable = false;	
+  
   };
 
- 	
-  # FONTS
+ 	# FONTS
   fonts.packages = with pkgs; [
     noto-fonts
     fira-code
     noto-fonts-cjk
     jetbrains-mono
     font-awesome
-	terminus_font
+	  terminus_font
     (nerdfonts.override {fonts = ["JetBrainsMono"];})
- 	];
+  ];
   
   security = {
-	pam.services.swaylock.text = "auth include login";
-	polkit.enable = true;
-	rtkit.enable = true;
+		pam.services.swaylock.text = "auth include login";
+		polkit.enable = true;
+		rtkit.enable = true;
   };
     
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  #networking.nftables.enable = true;
+  #networking.firewall = {
+	#enable = true;
+	#allowedTCPPorts = [ 80 443 ];
+	#allowedUDPPortRanges = [
+	    #{ from = 4000; to = 4007; }
+	    #{ from = 8000; to = 8010; }
+	    #];
+  #};
+  #sudo firewall-cmd --add-port=1025-65535/tcp --permanent
+  #sudo firewall-cmd --add-port=1025-65535/udp --permanent
+      
   # SYSTEMD
   systemd.services = {
 	  NetworkManager-wait-online.enable = false;
@@ -269,42 +249,47 @@ boot = {
 		  enable = true;
 		  wantedBy = [ "multi-user.target" ];
   		};
-  };
+  }; 
 
-  systemd.extraConfig = ''
-  	DefaultTimeoutStartSec=5s
-  	DefaultTimeoutStopSec=5s
-  	'';  
- 		
-  # Masking sleep, hibernate, suspend
+  # flatpak
+	#flatpak.enable = true;
+  #systemd.services.flatpak-repo = {
+  #  wantedBy = [ "multi-user.target" ];
+  #  path = [ pkgs.flatpak ];
+  #  script = ''
+  #    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  #  '';
+  #};
+
+  # Masking sleep, hibernate, suspend.. etc
   systemd = {
-	  targets = {
-	    sleep = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
-  		};
-	    suspend = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
+		targets = {
+		  sleep = {
+		  enable = false;
+		  unitConfig.DefaultDependencies = "no";
+  	  	};
+		  suspend = {
+		  enable = false;
+		  unitConfig.DefaultDependencies = "no";
 		  };
-	    hibernate = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
+		  hibernate = {
+		  enable = false;
+		  unitConfig.DefaultDependencies = "no";
 		  };
-	    "hybrid-sleep" = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
-		  };
-	  };
+		  "hybrid-sleep" = {
+		  enable = false;
+		  unitConfig.DefaultDependencies = "no";
+		    };
+	    };
   };
 
   # zram
   zramSwap = {
-	enable = true;
-	priority = 100;
-	memoryPercent = 30;
-	swapDevices = 1;
-    };
+	  enable = true;
+	  priority = 100;
+	  memoryPercent = 30;
+	  swapDevices = 1;
+  };
 
   # Automatic Garbage Collection
   nix.gc = {
@@ -336,7 +321,6 @@ boot = {
   #	    };
   #	};
   #};
-
    
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -368,3 +352,5 @@ boot = {
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
+
+

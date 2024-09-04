@@ -8,7 +8,7 @@
   	};
 
   outputs = 
-	inputs@{ self,nixpkgs, ... }:
+	inputs@{ self, nixpkgs, ... }:
     	let
       	system = "x86_64-linux";
       	host = "NixOS-Hyprland";
