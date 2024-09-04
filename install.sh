@@ -71,9 +71,9 @@ git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
 cd NixOS-Hyprland || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
-git add .
+#git config --global user.name "installer"
+#git config --global user.email "installer@gmail.com"
+#git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
 
