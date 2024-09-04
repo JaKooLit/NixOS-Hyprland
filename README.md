@@ -1,0 +1,2 @@
+# NixOS-Hyprland
+For NixOS
