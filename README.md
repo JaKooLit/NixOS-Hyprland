@@ -1,6 +1,3 @@
-# NixOS-Hyprland
-
-
 ITS A Work in Progress
 
 NO Home Manager
