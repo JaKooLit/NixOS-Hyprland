@@ -1,7 +1,0 @@
-{ ... }:
-
-{
-  imports = [
-    ./modules/default.nix
-  ];
-}
