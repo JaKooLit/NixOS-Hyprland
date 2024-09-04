@@ -316,41 +316,38 @@
     '';
   };
   
-  # Hardware stuff
+  # Hardware stuff  
   hardware = {
-  	bluetooth = {
-		enable = true;
-		powerOnBoot = true;
-		settings = {
-			General = {
-			Enable = "Source,Sink,Media,Socket";
-			Experimental = true;
-			};
-		};
-    };
-    #sane = {
-      #enable = true;
-      #extraBackends = [ pkgs.sane-airscan ];
-      #disabledDefaultBackends = [ "escl" ];
-      #};
+    bluetooth = {
+	    enable = true;
+	    powerOnBoot = true;
+	    settings = {
+		  General = {
+		    Enable = "Source,Sink,Media,Socket";
+		    Experimental = true;
+			  };
+		  };
+	  };
 
     # Extra Logitech Support
     logitech.wireless.enable = false;
     logitech.wireless.enableGraphical = false;
+	
+    cpu.intel.updateMicrocode = true;
+    #cpu.amd.updateMicrocode = true;
+	
+    #sane = {
+      #enable = true;
+      #extraBackends = [ pkgs.sane-airscan ];
+      #disabledDefaultBackends = [ "escl" ];
+    #};
 
-  
-    pulseaudio.enable = false; # Enable sound with pipewire.
-    
-    # CPU Microcodes update
-    cpu.amd.updateMicrocode = true;
-    
-	graphics = {
+    graphics = {
     	enable = true;
     	enable32Bit = true;
-  	  };
+  	};
+  }; 
 
-    };  
-  
   # Security / Polkit
   security = {
 	pam.services.swaylock.text = "auth include login";
