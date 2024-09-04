@@ -1,8 +1,15 @@
 {
   config, pkgs, host, username, host, options, inputs, ...}: let
-  inherit (import ./variables.nix) keyboardLayout;
-	in
-  {
+    inherit (import ./variables.nix) keyboardLayout;
+	  
+    python-packages = pkgs.python3.withPackages (
+    ps:
+      with ps; [
+        requests
+        pyquery # needed for hyprland-dots Weather script
+      ]
+  	);
+  in {
   imports = [
     ./hardware.nix
     ./users.nix
@@ -167,24 +174,24 @@
     baobab
     btrfs-progs
     cpufrequtils
-	duf
+    duf
     ffmpeg   
     glib #for gsettings to work
-	killall  
+    killall  
     libappindicator
     libnotify
     openssl #required by Rainbow borders
     vim
     wget
     xdg-user-dirs
-	xdg-utils
-	
+    xdg-utils
+
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
     ranger
       
     # Hyprland Stuff | Laptop related stuff on a separate .nix
-	ags        
+    ags        
     btop
     cava
     cliphist
@@ -198,13 +205,13 @@
     inxi
     jq
     kitty
-	libsForQt5.qtstyleplugin-kvantum #kvantum
-	networkmanagerapplet
+    libsForQt5.qtstyleplugin-kvantum #kvantum
+    networkmanagerapplet
     nwg-look # requires unstable channel
     nvtopPackages.full
     pamixer
     pavucontrol
-	playerctl
+    playerctl
     polkit_gnome
     pyprland
     qt5ct
@@ -225,7 +232,7 @@
     #waybar  # if wanted experimental next line
     #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
   ]) ++ [
-	python-packages
+	  python-packages
   ];
 
   # FONTS
@@ -269,6 +276,7 @@
     dbus.enable = true;
     openssh.enable = false;
     flatpak.enable = false;
+    gnome.gnome-keyring.enable = true;
     
     #printing = {
     #  enable = false;
@@ -276,7 +284,7 @@
         # pkgs.hplipWithPlugin
     #  ];
     #};
-    gnome.gnome-keyring.enable = true;
+    
     #avahi = {
     #  enable = true;
     #  nssmdns4 = true;
