@@ -1,2 +1,8 @@
 # NixOS-Hyprland
-For NixOS
+
+
+ITS A Work in Progress
+
+NO Home Manager
+
+Installer inspired from ZaneyOS
