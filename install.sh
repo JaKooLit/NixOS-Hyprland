@@ -71,11 +71,20 @@ git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
 cd NixOS-Hyprland || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-#git config --global user.name "installer"
-#git config --global user.email "installer@gmail.com"
-#git add .
+git config --global user.name "installer"
+git config --global user.email "installer@gmail.com"
+git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
+
+read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
+if [ -z "$keyboardLayout" ]; then
+  keyboardLayout="us"
+fi
+
+sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+
+echo "-----"
 
 installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
@@ -83,21 +92,18 @@ sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername
 echo "-----"
 
 echo "Generating The Hardware Configuration"
-sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
 
 echo "-----"
 
 echo "Setting Required Nix Settings Then Going To Install"
-#NIX_FEATURES="nix-command flakes"
+NIX_CONFIG="experimental-features = nix-command flakes"
 
-#echo "-----"
-NIX_FEATURES="nix-command flakes" sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
+echo "-----"
 
-#sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 sleep 1
-
-printf "\n%.0s" {1..2}
 
 # GTK Themes and Icons installation
 printf "Installing GTK-Themes and Icons..\n"
@@ -122,8 +128,6 @@ tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons
 echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 
 
 sleep 1
-
-printf "\n%.0s" {1..2}
 
 # KooL's Dots installation
 printf "$NOTE Downloading Hyprland dots from main..\n"
