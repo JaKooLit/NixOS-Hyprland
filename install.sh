@@ -101,6 +101,7 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
+sudo nix flake update 
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 sleep 1
