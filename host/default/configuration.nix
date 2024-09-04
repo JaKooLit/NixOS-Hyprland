@@ -14,7 +14,7 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./HP-Mini.nix
+    ./default.nix
     ];
 
 	# bootloader GRUB

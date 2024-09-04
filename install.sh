@@ -83,7 +83,7 @@ sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername
 echo "-----"
 
 echo "Generating The Hardware Configuration"
-sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
+sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware-configuration.nix
 
 echo "-----"
 
