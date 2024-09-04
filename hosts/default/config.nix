@@ -44,15 +44,15 @@
     #  "vm.max_map_count" = 2147483642;
     #};
     
-    # Bootloader SystemD
-    loader.systemd-boot.enable = true;
+  # Bootloader SystemD
+  loader.systemd-boot.enable = true;
 	loader.efi = {
 	  #efiSysMountPoint = "/efi"; #this is if you have separate /efi partition
 	  canTouchEfiVariables = true;
 	  timeout = 1;
   	  };
   			
-  	# Bootloader GRUB
+  # Bootloader GRUB
   #loader.grub = {
 	  #enable = true;
 	  #  devices = [ "nodev" ];
@@ -63,23 +63,29 @@
 	  #configurationName = "${host}";
   	#	};
 
+  # GRUB theme  
+  #loader.grub = rec {
+    #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
+    #  splashImage = "${theme}/splash_image.jpg";
+    #};
 	
-    # Make /tmp a tmpfs
-    tmp = {
-      useTmpfs = false;
-      tmpfsSize = "30%";
+  # Make /tmp a tmpfs
+  tmp = {
+    useTmpfs = false;
+    tmpfsSize = "30%";
     };
     
-    # Appimage Support
-    binfmt.registrations.appimage = {
-      wrapInterpreterInShell = false;
-      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-      recognitionType = "magic";
-      offset = 0;
-      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-      magicOrExtension = ''\x7fELF....AI\x02'';
+  # Appimage Support
+  binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
     };
-    plymouth.enable = true;
+  plymouth.enable = true;
+  
   };
 
   # Extra Module Options

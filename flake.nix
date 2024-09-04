@@ -31,7 +31,7 @@
 			inherit username;
 			inherit host;
 			};
-	   		modules = [ ./${host}/configuration.nix ];
+	   		modules = [ ./${host}/config.nix ];
 			};
 		};
 	};
