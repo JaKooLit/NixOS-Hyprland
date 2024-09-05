@@ -47,51 +47,51 @@
     #  "vm.max_map_count" = 2147483642;
     #};
 
-  ## BOOT LOADERS: NOT USE ONLY 1. either systemd or grub  
-  # Bootloader SystemD
-  loader.systemd-boot.enable = true;
+    ## BOOT LOADERS: NOT USE ONLY 1. either systemd or grub  
+    # Bootloader SystemD
+    loader.systemd-boot.enable = true;
   
-  loader.efi = {
-	  efiSysMountPoint = "/efi"; #this is if you have separate /efi partition
-	  canTouchEfiVariables = true;
+    loader.efi = {
+	    #efiSysMountPoint = "/efi"; #this is if you have separate /efi partition
+	    canTouchEfiVariables = true;
   	  };
 
-  loader.timeout = 1;    
+    loader.timeout = 1;    
   			
-  # Bootloader GRUB
-  #loader.grub = {
-	  #enable = true;
-	  #  devices = [ "nodev" ];
-	  #  efiSupport = true;
-    #  gfxmodeBios = "auto";
-	  #memtest86.enable = true;
-	  #extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
-	  #configurationName = "${host}";
-  	#	};
+    # Bootloader GRUB
+    #loader.grub = {
+	    #enable = true;
+	    #  devices = [ "nodev" ];
+	    #  efiSupport = true;
+      #  gfxmodeBios = "auto";
+	    #memtest86.enable = true;
+	    #extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
+	    #configurationName = "${host}";
+  	  #	};
 
-  # Bootloader GRUB theme  
-  #loader.grub = rec {
+    # Bootloader GRUB theme  
+    #loader.grub = rec {
     #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
     #  splashImage = "${theme}/splash_image.jpg";
-    #};
-  ## -end of BOOTLOADERS----- ##
+      #};
+    ## -end of BOOTLOADERS----- ##
   
-  # Make /tmp a tmpfs
-  tmp = {
-    useTmpfs = false;
-    tmpfsSize = "30%";
-    };
+    # Make /tmp a tmpfs
+    tmp = {
+      useTmpfs = false;
+      tmpfsSize = "30%";
+      };
     
-  # Appimage Support
-  binfmt.registrations.appimage = {
-    wrapInterpreterInShell = false;
-    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    recognitionType = "magic";
-    offset = 0;
-    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    magicOrExtension = ''\x7fELF....AI\x02'';
-    };
-  plymouth.enable = true;
+    # Appimage Support
+    binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+      magicOrExtension = ''\x7fELF....AI\x02'';
+      };
+    plymouth.enable = true;
   };
 
   # Extra Module Options

@@ -154,6 +154,9 @@ fi
 
 cd ..
 
+echo "-----"
+printf "\n%.0s" {1..3}
+
  # Check for existing configs and copy if does not exist
 for DIR1 in gtk-3.0 Thunar xfce4; do
   DIRPATH=~/.config/$DIR1
@@ -165,6 +168,8 @@ for DIR1 in gtk-3.0 Thunar xfce4; do
   fi
 done
 
+echo "-----"
+printf "\n%.0s" {1..3}
 
 # Clean up
 # GTK Themes and Icons
@@ -172,6 +177,9 @@ if [ -d "GTK-themes-icons" ]; then
     echo "$NOTE GTK themes and Icons folder exist..deleting..." 
     rm -rf "GTK-themes-icons" 
 fi
+
+echo "-----"
+printf "\n%.0s" {1..3}
 
 printf "\n${OK} Yey! Installation Completed.\n"
 sleep 2
