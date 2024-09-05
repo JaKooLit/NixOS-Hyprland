@@ -1,6 +1,7 @@
+# Main default config
+
 { config, pkgs, host, username, options, inputs, ...}: let
     inherit (import ./variables.nix) keyboardLayout;
-	  
     python-packages = pkgs.python3.withPackages (
       ps:
         with ps; [
@@ -13,8 +14,8 @@
     ./hardware.nix
     ./users.nix
     ../../modules/amd-drivers.nix
-    #../../modules/nvidia-drivers.nix
-    #../../modules/nvidia-prime-drivers.nix
+    ../../modules/nvidia-drivers.nix
+    ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
@@ -36,11 +37,17 @@
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     
+    initrd = { 
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+      kernelModules = [ ];
+    };
+
     # Needed For Some Steam Games
     #kernel.sysctl = {
     #  "vm.max_map_count" = 2147483642;
     #};
-    
+
+  ## BOOT LOADERS: NOT USE ONLY 1. either systemd or grub  
   # Bootloader SystemD
   loader.systemd-boot.enable = true;
   
@@ -67,7 +74,8 @@
     #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
     #  splashImage = "${theme}/splash_image.jpg";
     #};
-	
+  ## -end of BOOTLOADERS----- ##
+  
   # Make /tmp a tmpfs
   tmp = {
     useTmpfs = false;
@@ -84,24 +92,23 @@
     magicOrExtension = ''\x7fELF....AI\x02'';
     };
   plymouth.enable = true;
-  
   };
 
   # Extra Module Options
   drivers.amdgpu.enable = true;
-  #drivers.nvidia.enable = false;
-  #drivers.nvidia-prime = {
-  #  enable = false;
-  #  intelBusID = "";
-  #  nvidiaBusID = "";
-  #};
+  drivers.nvidia.enable = false;
+  drivers.nvidia-prime = {
+    enable = false;
+    intelBusID = "";
+    nvidiaBusID = "";
+  };
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-  # Enable networking
+  # networking
   networking.networkmanager.enable = true;
-  networking.hostName = host;
+  networking.hostName = "${host}";
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
@@ -189,7 +196,7 @@
 
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
-    ranger
+    #ranger
       
     # Hyprland Stuff | Laptop related stuff on a separate .nix
     ags        
@@ -229,6 +236,7 @@
     wl-clipboard
     wlogout
     yad
+    yt-dlp
 
     #waybar  # if wanted experimental next line
     #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
@@ -243,7 +251,7 @@
     noto-fonts-cjk
     jetbrains-mono
     font-awesome
-	terminus_font
+	  terminus_font
     (nerdfonts.override {fonts = ["JetBrainsMono"];})
  	];
 
@@ -270,6 +278,7 @@
         variant = "";
       };
     };
+    
     greetd = {
       enable = true;
       vt = 3;
@@ -284,23 +293,28 @@
         };
       };
     };
+    
     smartd = {
       enable = false;
       autodetect = true;
     };
+    
     envfs.enable = true;
     libinput.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
     flatpak.enable = false;
+    
     #printing = {
     #  enable = false;
     #  drivers = [
         # pkgs.hplipWithPlugin
     #  ];
     #};
+    
     gnome.gnome-keyring.enable = true;
+    
     #avahi = {
     #  enable = true;
     #  nssmdns4 = true;
@@ -308,12 +322,14 @@
     #};
     
     #ipp-usb.enable = true;
+    
     #syncthing = {
     #  enable = false;
     #  user = "${username}";
     #  dataDir = "/home/${username}";
     #  configDir = "/home/${username}/.config/syncthing";
     #};
+    
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -323,12 +339,14 @@
     rpcbind.enable = false;
     nfs.server.enable = false;
   };
+  
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
+  
   #hardware.sane = {
   #  enable = true;
   #  extraBackends = [ pkgs.sane-airscan ];
@@ -372,7 +390,7 @@
     '';
   };
 
-  # Optimization settings and garbage collection automation
+  # Cachix, Optimization settings and garbage collection automation
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -417,5 +435,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
