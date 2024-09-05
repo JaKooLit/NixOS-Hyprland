@@ -11,6 +11,10 @@
 > [!NOTE]
 > This is not purely written in Nix-Language. You should check ZaneyOS. Link below
 
+
+> [!NOTE]
+> hyprland to be installed will be from development branch or known as -git version
+
 #### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Nor Configs are NOT written in Nix. Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . 
 
@@ -20,6 +24,8 @@
 
 - the wallpaper offered to be downloaded towards the end are from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 
+> [!IMPORTANT]
+> take note of the requirements
 
 ### 👋 👋 👋 Requirements 
 - You must be running on NixOS.
