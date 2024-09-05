@@ -1,6 +1,6 @@
 # Main default config
 
-{ config, pkgs, host, username, options, inputs, ...}: let
+{ config, pkgs, host, username, options, lib, inputs, system, ...}: let
     inherit (import ./variables.nix) keyboardLayout;
     python-packages = pkgs.python3.withPackages (
       ps:

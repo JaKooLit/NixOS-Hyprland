@@ -130,6 +130,10 @@ Hope you enjoy! 🎉
 - GTK themes and Icons including cursor not applied automatically. gsettings does not seem to work
 - You can set the GTK Themes, icons and cursor using nwg-look
 
+##### as of 06 Sep 2024 here are NOT working 
+- install.sh
+- grub theme  
+
 
 #### 🪤 My NixOS configs 
 - on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
