@@ -1,8 +1,15 @@
-{
-  config, pkgs, host, username, host, options, inputs, ...}: let
-  inherit (import ./variables.nix) keyboardLayout;
-	in
-  {
+# Main default config
+
+{ config, pkgs, host, username, options, inputs, ...}: let
+    inherit (import ./variables.nix) keyboardLayout;
+    python-packages = pkgs.python3.withPackages (
+      ps:
+        with ps; [
+          requests
+          pyquery # needed for hyprland-dots Weather script
+        ]
+  	  );
+  in {
   imports = [
     ./hardware.nix
     ./users.nix
@@ -15,62 +22,76 @@
   ];
 
   # BOOT related stuff
-  
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; # Kernel
 
     kernelParams = [
     	"systemd.mask=systemd-vconsole-setup.service"
     	"systemd.mask=dev-tpmrm0.device" #this is to mask that stupid 1.5 mins systemd bug
-      	"nowatchdog" 
+      "nowatchdog" 
 	   	"modprobe.blacklist=sp5100_tco" #watchdog for AMD
-      	"modprobe.blacklist=iTCO_wdt" #watchdog for Intel
+      "modprobe.blacklist=iTCO_wdt" #watchdog for Intel
  	  ];
 
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    
+    initrd = { 
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+      kernelModules = [ ];
+    };
+
     # Needed For Some Steam Games
     #kernel.sysctl = {
     #  "vm.max_map_count" = 2147483642;
     #};
-    
-    # Bootloader SystemD
-    loader.systemd-boot.enable = true;
-	loader.efi = {
+
+  ## BOOT LOADERS: NOT USE ONLY 1. either systemd or grub  
+  # Bootloader SystemD
+  loader.systemd-boot.enable = true;
+  
+  loader.efi = {
 	  #efiSysMountPoint = "/efi"; #this is if you have separate /efi partition
 	  canTouchEfiVariables = true;
-	  timeout = 1;
   	  };
-  			
-  	# Bootloader GRUB
-  	#loader.grub = {
-	  enable = true;
-	  devices = [ "nodev" ];
-	  efiSupport = true;
-  	  gfxmodeBios = "auto";
-	  memtest86.enable = true;
-	  extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
-	  configurationName = "${host}";
-  		};
 
-	
-    # Make /tmp a tmpfs
-    tmp = {
-      useTmpfs = false;
-      tmpfsSize = "30%";
+  loader.timeout = 1;    
+  			
+  # Bootloader GRUB
+  #loader.grub = {
+	  #enable = true;
+	  #  devices = [ "nodev" ];
+	  #  efiSupport = true;
+    #  gfxmodeBios = "auto";
+	  #memtest86.enable = true;
+	  #extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
+	  #configurationName = "${host}";
+  	#	};
+
+  # Bootloader GRUB theme  
+  #loader.grub = rec {
+    #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
+    #  splashImage = "${theme}/splash_image.jpg";
+    #};
+  ## -end of BOOTLOADERS----- ##
+  
+  # Make /tmp a tmpfs
+  tmp = {
+    useTmpfs = false;
+    tmpfsSize = "30%";
     };
     
-    # Appimage Support
-    binfmt.registrations.appimage = {
-      wrapInterpreterInShell = false;
-      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-      recognitionType = "magic";
-      offset = 0;
-      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-      magicOrExtension = ''\x7fELF....AI\x02'';
+  # Appimage Support
+  binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
     };
-    plymouth.enable = true;
+  plymouth.enable = true;
   };
 
   # Extra Module Options
@@ -85,9 +106,9 @@
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-  # Enable networking
+  # networking
   networking.networkmanager.enable = true;
-  networking.hostName = host;
+  networking.hostName = "${host}";
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
@@ -112,8 +133,7 @@
 	  hyprland = {
       enable = true;
 		  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdph
-      xwayland.enable = true;
+		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdphls
   	  };
 
 	xwayland.enable = true;
@@ -151,40 +171,35 @@
 	
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
-  ];    
-
   nixpkgs.config.allowUnfree = true;
 
   users = {
     mutableUsers = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
   # System Packages
     baobab
     btrfs-progs
     cpufrequtils
-	duf
+    duf
     ffmpeg   
     glib #for gsettings to work
-	killall  
+    killall  
     libappindicator
     libnotify
     openssl #required by Rainbow borders
     vim
     wget
     xdg-user-dirs
-	xdg-utils
-	
+    xdg-utils
+
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
-    ranger
+    #ranger
       
     # Hyprland Stuff | Laptop related stuff on a separate .nix
-	ags        
+    ags        
     btop
     cava
     cliphist
@@ -198,13 +213,13 @@
     inxi
     jq
     kitty
-	libsForQt5.qtstyleplugin-kvantum #kvantum
-	networkmanagerapplet
+    libsForQt5.qtstyleplugin-kvantum #kvantum
+    networkmanagerapplet
     nwg-look # requires unstable channel
     nvtopPackages.full
     pamixer
     pavucontrol
-	playerctl
+    playerctl
     polkit_gnome
     pyprland
     qt5ct
@@ -221,11 +236,12 @@
     wl-clipboard
     wlogout
     yad
+    yt-dlp
 
     #waybar  # if wanted experimental next line
     #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
   ]) ++ [
-	python-packages
+	  python-packages
   ];
 
   # FONTS
@@ -235,9 +251,23 @@
     noto-fonts-cjk
     jetbrains-mono
     font-awesome
-	terminus_font
+	  terminus_font
     (nerdfonts.override {fonts = ["JetBrainsMono"];})
  	];
+
+    # Extra Portal Configuration
+  xdg.portal = {
+    enable = true;
+    wlr.enable = false;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      #pkgs.xdg-desktop-portal
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+  };
 
   # Services to start
   services = {
@@ -248,26 +278,32 @@
         variant = "";
       };
     };
+    
     greetd = {
       enable = true;
       vt = 3;
       settings = {
         default_session = {
+          # Wayland Desktop Manager is installed only for user ryan via home-manager!
           user = username;
+          # .wayland-session is a script generated by home-manager, which links to the current wayland compositor(sway/hyprland or others).
+          # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
+          # command = "$HOME/.wayland-session"; # start a wayland session directly without a login manager
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
         };
       };
     };
+    
     smartd = {
       enable = false;
       autodetect = true;
     };
+    
     envfs.enable = true;
     libinput.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
-    dbus.enable = true;
-    openssh.enable = false;
+    openssh.enable = true;
     flatpak.enable = false;
     
     #printing = {
@@ -276,26 +312,29 @@
         # pkgs.hplipWithPlugin
     #  ];
     #};
+    
     gnome.gnome-keyring.enable = true;
+    
     #avahi = {
     #  enable = true;
     #  nssmdns4 = true;
     #  openFirewall = true;
     #};
     
-    ipp-usb.enable = true;
-    syncthing = {
-      enable = false;
-      user = "${username}";
-      dataDir = "/home/${username}";
-      configDir = "/home/${username}/.config/syncthing";
-    };
+    #ipp-usb.enable = true;
+    
+    #syncthing = {
+    #  enable = false;
+    #  user = "${username}";
+    #  dataDir = "/home/${username}";
+    #  configDir = "/home/${username}/.config/syncthing";
+    #};
+    
     pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      wireplumber.enable = true;
     };
     rpcbind.enable = false;
     nfs.server.enable = false;
@@ -308,48 +347,27 @@
     '';
   };
   
-  # Hardware stuff
-  hardware = {
-  	bluetooth = {
-		enable = true;
-		powerOnBoot = true;
-		settings = {
-			General = {
-			Enable = "Source,Sink,Media,Socket";
-			Experimental = true;
-			};
-		};
-    };
-    #sane = {
-      #enable = true;
-      #extraBackends = [ pkgs.sane-airscan ];
-      #disabledDefaultBackends = [ "escl" ];
-      #};
+  #hardware.sane = {
+  #  enable = true;
+  #  extraBackends = [ pkgs.sane-airscan ];
+  #  disabledDefaultBackends = [ "escl" ];
+  #};
 
-    # Extra Logitech Support
-    logitech.wireless.enable = false;
-    logitech.wireless.enableGraphical = false;
+  # Extra Logitech Support
+  hardware.logitech.wireless.enable = false;
+  hardware.logitech.wireless.enableGraphical = false;
 
-  
-    pulseaudio.enable = false; # Enable sound with pipewire.
-    
-    # CPU Microcodes update
-    cpu.amd.updateMicrocode = true;
-    
-	graphics = {
-    	enable = true;
-    	enable32Bit = true;
-  	  };
+  # Bluetooth Support
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
-    };  
-  
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false;
+
   # Security / Polkit
-  security = {
-	pam.services.swaylock.text = "auth include login";
-	polkit.enable = true;
-	rtkit.enable = true;
-  };
-  
+  security.rtkit.enable = true;
+  security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (
@@ -366,16 +384,13 @@
       }
     })
   '';
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
-  # zram
-  zramSwap = {
-	enable = true;
-	priority = 100;
-	memoryPercent = 30;
-	swapDevices = 1;
-    };
-    
-  # Cachix Optimization settings and garbage collection automation
+  # Cachix, Optimization settings and garbage collection automation
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -394,63 +409,20 @@
   };
 
   # Virtualization / Containers
-  #virtualisation.libvirtd.enable = true;
-  #virtualisation.podman = {
-  #  enable = true;
-  #  dockerCompat = true;
-  #  defaultNetwork.settings.dns_enabled = true;
-  #};
+  virtualisation.libvirtd.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
+  # OpenGL
+  hardware.graphics = {
+    enable = true;
+  };
 
   console.keyMap = "${keyboardLayout}";
 
-  # SYSTEMD
-  systemd.services = {
-	  NetworkManager-wait-online.enable = false;
-	  firewalld.enable = true;
-	  power-profiles-daemon = {
-		  enable = true;
-		  wantedBy = [ "multi-user.target" ];
-  		};
-  };
-
-  systemd.extraConfig = ''
-  	DefaultTimeoutStartSec=5s
-  	DefaultTimeoutStopSec=5s
-  	''; 
-  	
-  # Masking sleep, hibernate, suspend
-  systemd = {
-	  targets = {
-	    sleep = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
-  		};
-	    suspend = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
-		  };
-	    hibernate = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
-		  };
-	    "hybrid-sleep" = {
-	    enable = false;
-	    unitConfig.DefaultDependencies = "no";
-		  };
-	  };
-  };
-  
-  services = {  	
-  	
-  	blueman.enable = true;
-  	
-  	#hardware.openrgb.enable = true;
-  	#hardware.openrgb.motherboard = "amd";
-  };
-
-  # For Electron apps to use wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -463,5 +435,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
