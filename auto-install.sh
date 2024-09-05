@@ -128,7 +128,6 @@ else
     echo "$ERROR Download failed for GTK themes and Icons.." 
 fi
 
-tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons 
 echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 
 
 echo "-----"
