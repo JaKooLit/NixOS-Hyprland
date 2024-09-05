@@ -59,13 +59,11 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 #### 🦽 Manual:
 
 Run this command to ensure Git & Vim are installed:
-
 ```
 nix-shell -p git vim
 ```
 
 Clone this repo & CD into it:
-
 ```
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
 cd NixOS-Hyprland
@@ -74,7 +72,6 @@ cd NixOS-Hyprland
 - *You should stay in this folder for the rest of the install*
 
 Create the host folder for your machine(s)
-
 ```
 cp -r hosts/default hosts/<your-desired-hostname>
 ```
@@ -82,13 +79,11 @@ cp -r hosts/default hosts/<your-desired-hostname>
 **🪧🪧🪧 Edit options.nix 🪧🪧🪧**
 
 Generate your hardware.nix like so:
-
 ```
 nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
 ```
 
 Run this to enable flakes and install the flake replacing hostname with whatever you put as the hostname:
-
 ```
 NIX_CONFIG="experimental-features = nix-command flakes" 
 sudo nixos-rebuild switch --flake .#hostname
@@ -102,6 +97,10 @@ auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake!
 
 Hope you enjoy!
+
+#### 💔 known issues 💔 
+- GTK themes and Icons including cursor not applied automatically. gsettings does not seem to work
+- You can set the GTK Themes, icons and cursor using nwg-look
 
 
 #### My NixOS configs 
