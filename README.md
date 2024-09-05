@@ -11,7 +11,7 @@
 > [!NOTE]
 > This is not purely written in Nix-Language. You should check ZaneyOS. Link below
 
-### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
+#### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Nor Configs are NOT written in Nix. Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . 
 
 - Hyprland-Dots use are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
@@ -21,7 +21,7 @@
 - the wallpaper offered to be downloaded towards the end are from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 
 
-#### 🍖 Requirements
+### 👋 👋 👋 Requirements 
 - You must be running on NixOS.
 - Minimum space is 40gb. 60gb recommended as NixOS is a space hungry distro
 - Must have installed using GPT & UEFI. Systemd-boot is what is supported, for GRUB you need to edit `hosts/default/config.nix`
