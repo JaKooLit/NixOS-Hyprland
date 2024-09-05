@@ -36,11 +36,6 @@ sleep 2
 
 echo "-----"
 
-echo "Ensure In Home Directory"
-cd || exit
-
-echo "-----"
-
 read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
 if [ -z "$hostName" ]; then
   hostName="default"
@@ -94,7 +89,7 @@ if [ -d "GTK-themes-icons" ]; then
 fi
 
 echo "$NOTE Cloning GTK themes and Icons repository..." 
-if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
+if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ; then
     cd GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh

@@ -110,7 +110,7 @@ cp -r hosts/default hosts/<your-desired-hostname>
 - Edit as required the `config.nix` in `hosts/<your-desired-hostname>/`
 - Generate your hardware.nix like so:
 ```
-nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
+sudo nixos-generate-config --show-hardware-config > ./hosts/<your-desired-hostname>/hardware.nix
 ```
 - Run this to enable flakes and install the flake replacing hostname with whatever you put as the hostname:
 ```
