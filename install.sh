@@ -43,10 +43,12 @@ fi
 
 echo "-----"
 
-# creating host and adding to flake.nix
+# creating host directory
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-
+git config --global user.name "installer"
+git config --global user.email "installer@gmail.com"
+git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
 
@@ -75,10 +77,19 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 echo "-----"
 printf "\n%.0s" {1..2}
 
-sudo nixos-rebuild switch --flake .#${hostName}
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 echo "-----"
 printf "\n%.0s" {1..2}
+
+# for initial zsh
+# Check if ~/.zshrc and  exists, create a backup, and copy the new configuration
+if [ -f "$HOME/.zshrc" ]; then
+ 	cp -b "$HOME/.zshrc" "$HOME/.zshrc-backup" || true
+fi
+
+# Copying the preconfigured zsh themes and profile
+cp -r 'assets/.zshrc' ~/
 
 # GTK Themes and Icons installation
 printf "Installing GTK-Themes and Icons..\n"
@@ -99,7 +110,6 @@ else
     echo "$ERROR Download failed for GTK themes and Icons.." 
 fi
 
-tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons 
 echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 
 
 echo "-----"
@@ -124,6 +134,11 @@ else
   fi
 fi
 
+cd ..
+
+echo "-----"
+printf "\n%.0s" {1..3}
+
  # Check for existing configs and copy if does not exist
 for DIR1 in gtk-3.0 Thunar xfce4; do
   DIRPATH=~/.config/$DIR1
@@ -144,6 +159,7 @@ if [ -d "GTK-themes-icons" ]; then
     echo "$NOTE GTK themes and Icons folder exist..deleting..." 
     rm -rf "GTK-themes-icons" 
 fi
+
 echo "-----"
 printf "\n%.0s" {1..3}
 
@@ -152,14 +168,14 @@ sleep 2
 printf "\n${NOTE} You can start Hyprland by typing Hyprland (note the capital H!).\n"
 printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
 
-    # Prompt user to reboot
+# Prompt user to reboot
 read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
-    if [[ "$HYP" =~ ^[Yy]$ ]]; then
-        sudo systemctl reboot
-    fi
+if [[ "$HYP" =~ ^[Yy]$ ]]; then
+    # If user confirms, reboot the system
+    sudo systemctl reboot
 else
-    # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...\n\n"
-    exit 1
+    # Print a message if the user does not want to reboot
+    echo "Reboot skipped."
 fi
+
