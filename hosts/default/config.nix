@@ -1,41 +1,39 @@
-{ config, pkgs, host, username, host, options, inputs, ...}: let
+{ config, pkgs, host, username, options, inputs, ...}: let
     inherit (import ./variables.nix) keyboardLayout;
 	  
     python-packages = pkgs.python3.withPackages (
-    ps:
-      with ps; [
-        requests
-        pyquery # needed for hyprland-dots Weather script
-      ]
-  	);
+      ps:
+        with ps; [
+          requests
+          pyquery # needed for hyprland-dots Weather script
+        ]
+  	  );
   in {
   imports = [
     ./hardware.nix
     ./users.nix
     ../../modules/amd-drivers.nix
-    ../../modules/nvidia-drivers.nix
-    ../../modules/nvidia-prime-drivers.nix
+    #../../modules/nvidia-drivers.nix
+    #../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
   ];
 
   # BOOT related stuff
-  
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; # Kernel
 
     kernelParams = [
     	"systemd.mask=systemd-vconsole-setup.service"
     	"systemd.mask=dev-tpmrm0.device" #this is to mask that stupid 1.5 mins systemd bug
-      	"nowatchdog" 
+      "nowatchdog" 
 	   	"modprobe.blacklist=sp5100_tco" #watchdog for AMD
-      	"modprobe.blacklist=iTCO_wdt" #watchdog for Intel
+      "modprobe.blacklist=iTCO_wdt" #watchdog for Intel
  	  ];
 
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
-    
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     
     # Needed For Some Steam Games
@@ -49,8 +47,9 @@
   loader.efi = {
 	  #efiSysMountPoint = "/efi"; #this is if you have separate /efi partition
 	  canTouchEfiVariables = true;
-	  timeout = 1;
   	  };
+
+  loader.timeout = 1;    
   			
   # Bootloader GRUB
   #loader.grub = {
@@ -63,7 +62,7 @@
 	  #configurationName = "${host}";
   	#	};
 
-  # GRUB theme  
+  # Bootloader GRUB theme  
   #loader.grub = rec {
     #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
     #  splashImage = "${theme}/splash_image.jpg";
@@ -165,18 +164,13 @@
 	
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
-  ];    
-
   nixpkgs.config.allowUnfree = true;
 
   users = {
     mutableUsers = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
   # System Packages
     baobab
     btrfs-progs
@@ -313,13 +307,13 @@
     #  openFirewall = true;
     #};
     
-    ipp-usb.enable = true;
-    syncthing = {
-      enable = false;
-      user = "${username}";
-      dataDir = "/home/${username}";
-      configDir = "/home/${username}/.config/syncthing";
-    };
+    #ipp-usb.enable = true;
+    #syncthing = {
+    #  enable = false;
+    #  user = "${username}";
+    #  dataDir = "/home/${username}";
+    #  configDir = "/home/${username}/.config/syncthing";
+    #};
     pipewire = {
       enable = true;
       alsa.enable = true;

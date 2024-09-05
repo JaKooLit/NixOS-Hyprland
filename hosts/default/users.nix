@@ -1,15 +1,11 @@
-{
-  pkgs,
-  username,
-  ...
-}:
+{ pkgs, username, ... }:
 
 let
   inherit (import ./variables.nix) gitUsername;
 in
 {
-  users.users = {
-    "${username}" = {
+  users = { 
+    users."${username}" = {
       homeMode = "755";
       isNormalUser = true;
       description = "${gitUsername}";
@@ -20,25 +16,24 @@ in
         "scanner"
         "lp"
         "video" 
-		"input" 
-		"audio"
+        "input" 
+        "audio"
       ];
-      defaultUserShell = pkgs.zsh;
 
-      packages = with pkgs; [
+    # define user packages here
+    packages = with pkgs; [
       ];
     };
     
-   environment.shells = with pkgs; [ zsh ];
-  };
+    defaultUserShell = pkgs.zsh;
+  }; 
   
-  environment.systemPackages = with pkgs; [
-    fzf 
-    ]; 
+  environment.shells = with pkgs; [ zsh ];
+  environment.systemPackages = with pkgs; [ fzf ]; 
     
-   programs = {
-  	# Zsh configuration
-	zsh = {
+  programs = {
+  # Zsh configuration
+	  zsh = {
     	enable = true;
 	  	enableCompletion = true;
       ohMyZsh = {
@@ -46,8 +41,10 @@ in
         plugins = ["git"];
         theme = "xiong-chiamiov-plus";
       	};
+      
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
+      
       promptInit = ''
 	    #krabby random --no-mega --no-gmax --no-regional --no-title -s;
         source <(fzf --zsh);
@@ -56,5 +53,6 @@ in
 	    SAVEHIST=10000;
 	    setopt appendhistory;
       '';
-  };
+      };
+   };
 }
