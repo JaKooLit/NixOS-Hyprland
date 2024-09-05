@@ -1,3 +1,10 @@
+
+<div align="center">
+<br> 
+  <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
+  <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
+ </div><br>
+
 <div align="center">
 
 ## 💌 ** JaKooLit's ❄️ NixOS-Hyprland Install Script ** 💌
@@ -6,6 +13,33 @@
 
 
 <br/>
+</div>
+
+
+<div align="center">
+👇 KOOL's Hyprland-Dots related Links 👇
+<br/>
+</div>
+<div align="center">
+<br>
+  <a href="https://github.com/JaKooLit/Hyprland-Dots"><kbd> <br> Hyprland-Dots repo <br> </kbd></a>&ensp;&ensp;
+  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
+  <a href="https://discord.gg/9JEgZsfhex"><kbd> <br> Discord <br> </kbd></a>
+</div><br>
+
+<h3 align="center">
+	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
+	KooL Hyprland-Dotfiles Showcase 
+	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
+</h3>
+
+<div align="center">
+
+https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-9913-76039e84a2cd
+
 </div>
 
 > [!NOTE]
