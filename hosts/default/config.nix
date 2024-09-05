@@ -183,6 +183,7 @@
     btrfs-progs
     cpufrequtils
     duf
+    eza
     ffmpeg   
     glib #for gsettings to work
     killall  
