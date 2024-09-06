@@ -39,7 +39,7 @@ in
       ohMyZsh = {
         enable = true;
         plugins = ["git"];
-        theme = "xiong-chiamiov-plus";
+        #theme = "xiong-chiamiov-plus"; #set in .zshrc
       	};
       
       autosuggestions.enable = true;
@@ -47,7 +47,7 @@ in
       
       promptInit = ''
 	    #krabby random --no-mega --no-gmax --no-regional --no-title -s;
-        source <(fzf --zsh);
+      source <(fzf --zsh);
 	    HISTFILE=~/.zsh_history;
 	    HISTSIZE=10000;
 	    SAVEHIST=10000;
