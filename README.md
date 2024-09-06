@@ -2,7 +2,8 @@
 <div align="center">
 <br> 
   <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
-  <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
+  <a href="#-1-using-auto-install-script"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
+  <a href="#-2-manual"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
  </div><br>
 
 <div align="center">
@@ -119,7 +120,7 @@ sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname
 NIX_CONFIG="experimental-features = nix-command flakes" 
 sudo nixos-rebuild switch --flake .#hostname
 ```
-#### 3. Alternative
+#### 👉🏻 3. Alternative
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
