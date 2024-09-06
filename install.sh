@@ -18,7 +18,7 @@ if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
   echo "-----"
 else
   echo "$ERROR This is not NixOS or the distribution information is not available."
-  exit
+  exit 1
 fi
 
 if command -v git &> /dev/null; then
@@ -27,8 +27,22 @@ if command -v git &> /dev/null; then
 else
   echo "$ERROR Git is not installed. Please install Git and try again."
   echo "Example: nix-shell -p git"
-  exit
+  exit 1
 fi
+
+# Checking if running on a VM and enable in default config.nix
+if hostnamectl | grep -q 'Chassis: vm'; then
+  echo "${ORANGE}System is running in a virtual machine. Setting up guest${RESET}"
+  sed -i 's/^  vm\.guest-services\.enable = false;/  vm.guest-services.enable = true;/' hosts/default/config.nix
+fi
+
+# Checking if system has nvidia gpu and enable in default config.nix
+if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
+  echo "${YELLOW}Nvidia GPU detected. Setting up for nvidia${RESET}" 
+  sed -i 's/^  drivers\.nvidia\.enable = false;/  drivers.nvidia.enable = true;/' hosts/default/config.nix
+fi
+echo "-----"
+printf "\n%.0s" {1..2}
 
 echo "$NOTE Default options are in brackets []"
 echo "$NOTE Just press enter to select the default"
