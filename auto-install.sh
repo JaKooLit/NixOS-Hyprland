@@ -215,7 +215,7 @@ if command -v Hyprland &> /dev/null; then
 
   if [[ "$HYP" =~ ^[Yy]$ ]]; then
     # If user confirms, reboot the system
-    sudo systemctl reboot
+    systemctl reboot
   else
     # Print a message if the user does not want to reboot
     echo "Reboot skipped."
