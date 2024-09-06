@@ -1,14 +1,15 @@
 # Main default config
 
 { config, pkgs, host, username, options, lib, inputs, system, ...}: let
-    inherit (import ./variables.nix) keyboardLayout;
-    python-packages = pkgs.python3.withPackages (
-      ps:
-        with ps; [
-          requests
-          pyquery # needed for hyprland-dots Weather script
+  inherit (import ./variables.nix) keyboardLayout;
+   python-packages = pkgs.python3.withPackages (
+    ps:
+      with ps; [
+        requests
+        pyquery # needed for hyprland-dots Weather script
         ]
-  	  );
+    );
+  
   in {
   imports = [
     ./hardware.nix
@@ -26,10 +27,10 @@
     kernelPackages = pkgs.linuxPackages_latest; # Kernel
 
     kernelParams = [
-    	"systemd.mask=systemd-vconsole-setup.service"
-    	"systemd.mask=dev-tpmrm0.device" #this is to mask that stupid 1.5 mins systemd bug
+      "systemd.mask=systemd-vconsole-setup.service"
+      "systemd.mask=dev-tpmrm0.device" #this is to mask that stupid 1.5 mins systemd bug
       "nowatchdog" 
-	   	"modprobe.blacklist=sp5100_tco" #watchdog for AMD
+      "modprobe.blacklist=sp5100_tco" #watchdog for AMD
       "modprobe.blacklist=iTCO_wdt" #watchdog for Intel
  	  ];
 
@@ -64,16 +65,13 @@
 	    #  devices = [ "nodev" ];
 	    #  efiSupport = true;
       #  gfxmodeBios = "auto";
-	    #memtest86.enable = true;
-	    #extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
-	    #configurationName = "${host}";
-  	  #	};
+	    #  memtest86.enable = true;
+	    #  extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
+	    #  configurationName = "${host}";
+  	  #	 };
 
-    # Bootloader GRUB theme  
-    #loader.grub = rec {
-    #  theme = inputs.distro-grub-themes.packages.${system}.nixos-grub-theme;
-    #  splashImage = "${theme}/splash_image.jpg";
-      #};
+    # Bootloader GRUB theme, configure below
+
     ## -end of BOOTLOADERS----- ##
   
     # Make /tmp a tmpfs
@@ -91,18 +89,26 @@
       mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
       magicOrExtension = ''\x7fELF....AI\x02'';
       };
+    
     plymouth.enable = true;
   };
 
+  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh!
+  #distro-grub-themes = {
+  #  enable = true;
+  #  theme = "nixos";
+  #};
+
+
   # Extra Module Options
   drivers.amdgpu.enable = true;
+  drivers.intel.enable = true;
   drivers.nvidia.enable = false;
   drivers.nvidia-prime = {
     enable = false;
     intelBusID = "";
     nvidiaBusID = "";
   };
-  drivers.intel.enable = false;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 

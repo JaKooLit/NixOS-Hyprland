@@ -31,7 +31,10 @@
 			inherit username;
 			inherit host;
 			};
-	   		modules = [ ./hosts/${host}/config.nix ];
+	   		modules = [ 
+				./hosts/${host}/config.nix 
+				inputs.distro-grub-themes.nixosModules.${system}.default
+				];
 			};
 		};
 	};

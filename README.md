@@ -110,7 +110,7 @@ cp -r hosts/default hosts/<your-desired-hostname>
 - Edit as required the `config.nix` in `hosts/<your-desired-hostname>/`
 - Generate your hardware.nix like so:
 ```
-sudo nixos-generate-config --show-hardware-config > ./hosts/<your-desired-hostname>/hardware.nix
+sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
 ```
 - Run this to enable flakes and install the flake replacing hostname with whatever you put as the hostname:
 ```
@@ -120,7 +120,7 @@ sudo nixos-rebuild switch --flake .#hostname
 - Alternatively:
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
-> install.sh is a strip version of auto-install.sh as it will not re-download repo
+> install.sh is a stripped version of auto-install.sh as it will not re-download repo
 
 Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake!
 
@@ -129,10 +129,6 @@ Hope you enjoy! 🎉
 #### 💔 known issues 💔 
 - GTK themes and Icons including cursor not applied automatically. gsettings does not seem to work
 - You can set the GTK Themes, icons and cursor using nwg-look
-
-##### as of 06 Sep 2024 here are NOT working 
-- install.sh
-- grub theme  
 
 
 #### 🪤 My NixOS configs 
