@@ -177,19 +177,25 @@ fi
 echo "-----"
 printf "\n%.0s" {1..3}
 
-printf "\n${OK} Yey! Installation Completed.\n"
-sleep 2
-printf "\n${NOTE} You can start Hyprland by typing Hyprland (note the capital H!).\n"
-printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
+if command -v Hyprland &> /dev/null; then
+  printf "\n${OK} Yey! Installation Completed.${RESET}\n"
+  sleep 2
+  printf "\n${NOTE} You can start Hyprland by typing Hyprland (note the capital H!).${RESET}\n"
+  printf "\n${NOTE} It is highly recommended to reboot your system.${RESET}\n\n"
 
-# Prompt user to reboot
-read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
+  # Prompt user to reboot
+  read -rp "${CAT} Would you like to reboot now? (y/n): ${RESET}" HYP
 
-if [[ "$HYP" =~ ^[Yy]$ ]]; then
+  if [[ "$HYP" =~ ^[Yy]$ ]]; then
     # If user confirms, reboot the system
     sudo systemctl reboot
-else
+  else
     # Print a message if the user does not want to reboot
     echo "Reboot skipped."
+  fi
+else
+  # Print error message if Hyprland is not installed
+  printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...${RESET}\n\n"
+  exit 1
 fi
 
