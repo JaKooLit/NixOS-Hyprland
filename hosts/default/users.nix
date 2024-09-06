@@ -39,7 +39,7 @@ in
       ohMyZsh = {
         enable = true;
         plugins = ["git"];
-        #theme = "xiong-chiamiov-plus"; #set in .zshrc
+        theme = "xiong-chiamiov-plus"; 
       	};
       
       autosuggestions.enable = true;

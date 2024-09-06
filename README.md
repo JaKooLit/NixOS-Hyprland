@@ -81,21 +81,23 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 #### 🙋 Having Issues / Questions?
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!
 
-### ⬇️ Installation
+### ⬇️ Installations
 
-#### 📜 Using auto install Script:
-- This is the easiest and recommended way of starting out. The script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chances of breakages and then fiddle to your hearts content!
-
+#### 📜 1. Using auto install Script:
+- This is the easiest and recommended way of starting out. 
+- This script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chances of breakages and then fiddle to your hearts content!
 - Simply copy this and run it:
 ```
-nix-shell -p git curl
+nix-shell -p git curl pciutils
 sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh)
 ```
+> [!NOTE]
+> pciutils is necessary to detect if you have nvidia card. 
 
-#### 🦽 Manual:
+#### 🦽 2. Manual:
 - Run this command to ensure Git & Vim are installed:
 ```
-nix-shell -p git vim
+nix-shell -p git curl pciutils
 ```
 - Clone this repo & CD into it:
 ```
@@ -117,7 +119,7 @@ sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname
 NIX_CONFIG="experimental-features = nix-command flakes" 
 sudo nixos-rebuild switch --flake .#hostname
 ```
-- Alternatively:
+#### 3. Alternative
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo

@@ -8,9 +8,9 @@ alias ls='eza -a --icons'
 alias ll='eza -al --icons'
 alias lt='eza -a --tree --level=1 --icons'
 
-ZSH_THEME="xiong-chiamiov-plus"
-
 # Starting down here, are set in user.nix
+
+#ZSH_THEME="xiong-chiamiov-plus"
 
 #plugins=(
 #    git

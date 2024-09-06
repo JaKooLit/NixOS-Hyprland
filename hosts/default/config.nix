@@ -198,6 +198,7 @@
     libappindicator
     libnotify
     openssl #required by Rainbow borders
+    pciutils
     vim
     wget
     xdg-user-dirs
