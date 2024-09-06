@@ -1,8 +1,9 @@
 # Main default config
 
 { config, pkgs, host, username, options, lib, inputs, system, ...}: let
+  
   inherit (import ./variables.nix) keyboardLayout;
-   python-packages = pkgs.python3.withPackages (
+  python-packages = pkgs.python3.withPackages (
     ps:
       with ps; [
         requests
@@ -304,12 +305,44 @@
       autodetect = true;
     };
     
-    envfs.enable = true;
+	  gvfs.enable = true;
+	  tumbler.enable = true;
+
+	  pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+	    wireplumber.enable = true;
+  	  };
+	
+	  udev.enable = true;
+	  envfs.enable = true;
+	  dbus.enable = true;
+
+	  fstrim = {
+      enable = true;
+      interval = "weekly";
+      };
+  
     libinput.enable = true;
-    fstrim.enable = true;
-    gvfs.enable = true;
+
+    rpcbind.enable = false;
+    nfs.server.enable = false;
+  
     openssh.enable = true;
     flatpak.enable = false;
+	
+  	blueman.enable = true;
+  	
+  	#hardware.openrgb.enable = true;
+  	#hardware.openrgb.motherboard = "amd";
+
+	  fwupd.enable = true;
+
+	  upower.enable = true;
+    
+    gnome.gnome-keyring.enable = true;
     
     #printing = {
     #  enable = false;
@@ -317,8 +350,6 @@
         # pkgs.hplipWithPlugin
     #  ];
     #};
-    
-    gnome.gnome-keyring.enable = true;
     
     #avahi = {
     #  enable = true;
@@ -334,15 +365,7 @@
     #  dataDir = "/home/${username}";
     #  configDir = "/home/${username}/.config/syncthing";
     #};
-    
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    rpcbind.enable = false;
-    nfs.server.enable = false;
+
   };
   
   systemd.services.flatpak-repo = {
@@ -352,6 +375,11 @@
     '';
   };
   
+  powerManagement = {
+  	enable = true;
+	  cpuFreqGovernor = "schedutil";
+  };
+
   #hardware.sane = {
   #  enable = true;
   #  extraBackends = [ pkgs.sane-airscan ];
@@ -362,10 +390,19 @@
   hardware.logitech.wireless.enable = false;
   hardware.logitech.wireless.enableGraphical = false;
 
-  # Bluetooth Support
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  # Bluetooth
+  hardware = {
+  	bluetooth = {
+	    enable = true;
+	    powerOnBoot = true;
+	    settings = {
+		    General = {
+		      Enable = "Source,Sink,Media,Socket";
+		      Experimental = true;
+		    };
+      };
+    };
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -428,6 +465,9 @@
 
   console.keyMap = "${keyboardLayout}";
 
+  # For Electron apps to use wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
