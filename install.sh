@@ -43,13 +43,13 @@ fi
 
 echo "-----"
 
-# creating host directory
+# configure for new hostname
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
-git add .
-sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
+#git config --global user.name "installer"
+#git config --global user.email "installer@gmail.com"
+#git add .
+sed -i '/^\s*host[[:space:]]*=[[:space:]]*\"[^"]*\"/s/\"\([^"]*\)\"/\"'"$hostName"'\"/' ./flake.nix
 
 
 read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
