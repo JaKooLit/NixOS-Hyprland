@@ -46,9 +46,9 @@ echo "-----"
 # configure for new hostname
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-#git config --global user.name "installer"
-#git config --global user.email "installer@gmail.com"
-#git add .
+git config --global user.name "installer"
+git config --global user.email "installer@gmail.com"
+git add .
 sed -i '/^\s*host[[:space:]]*=[[:space:]]*\"[^"]*\"/s/\"\([^"]*\)\"/\"'"$hostName"'\"/' ./flake.nix
 
 
@@ -67,7 +67,7 @@ sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername
 echo "-----"
 
 echo "Generating The Hardware Configuration"
-sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
+sudo nixos-generate-config --show-hardware-config > hosts/$hostName/hardware.nix 2>/dev/null
 
 echo "-----"
 
@@ -77,7 +77,7 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 echo "-----"
 printf "\n%.0s" {1..2}
 
-sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
+sudo nixos-rebuild switch --flake .#${hostName}
 
 echo "-----"
 printf "\n%.0s" {1..2}
