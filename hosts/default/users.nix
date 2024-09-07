@@ -39,20 +39,24 @@ in
       ohMyZsh = {
         enable = true;
         plugins = ["git"];
-        theme = "xiong-chiamiov-plus";
+        theme = "xiong-chiamiov-plus"; 
       	};
       
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
       
       promptInit = ''
-	    #krabby random --no-mega --no-gmax --no-regional --no-title -s;
+        fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
+        
+        #pokemon colorscripts like. Make sure to install krabby package
+        #krabby random --no-mega --no-gmax --no-regional --no-title -s; 
+        
         source <(fzf --zsh);
-	    HISTFILE=~/.zsh_history;
-	    HISTSIZE=10000;
-	    SAVEHIST=10000;
-	    setopt appendhistory;
-      '';
+        HISTFILE=~/.zsh_history;
+        HISTSIZE=10000;
+        SAVEHIST=10000;
+        setopt appendhistory;
+        '';
       };
    };
 }

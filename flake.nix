@@ -11,18 +11,18 @@
   outputs = 
 	inputs@{ self,nixpkgs, ... }:
     	let
-      	system = "x86_64-linux";
-      	host = "NixOS-Hyprland";
-		username = "ja";
+      system = "x86_64-linux";
+      host = "NixOS-Hyprland";
+      username = "alice";
 
-      	pkgs = import nixpkgs {
-        	inherit system;
-        	config = {
-          	allowUnfree = true;
-        	};
-      	};
+    pkgs = import nixpkgs {
+       	inherit system;
+       	config = {
+       	allowUnfree = true;
+       	};
+      };
     in
-    {
+      {
 	nixosConfigurations = {
       "${host}" = nixpkgs.lib.nixosSystem rec {
 		specialArgs = { 
@@ -31,7 +31,10 @@
 			inherit username;
 			inherit host;
 			};
-	   		modules = [ ./hosts/${host}/config.nix ];
+	   		modules = [ 
+				./hosts/${host}/config.nix 
+				inputs.distro-grub-themes.nixosModules.${system}.default
+				];
 			};
 		};
 	};
