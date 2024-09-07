@@ -34,7 +34,7 @@ sleep 2
 
 echo "-----"
 
-echo "Ensure In Home Directory"
+echo "$NOTE Ensure In Home Directory"
 cd || exit
 
 echo "-----"
@@ -48,42 +48,43 @@ echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "NixOS-Hyprland" ]; then
-  echo "NixOS-Hyprland exists, backing up to NixOS-Hyprland-backups folder."
+  echo "$NOTE NixOS-Hyprland exists, backing up to NixOS-Hyprland-backups folder."
   if [ -d "NixOS-Hyprland-backups" ]; then
     echo "Moving current version of NixOS-Hyprland to backups folder."
     mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
     sleep 1
   else
-    echo "Creating the backups folder & moving NixOS-Hyprland to it."
+    echo "$NOTE Creating the backups folder & moving NixOS-Hyprland to it."
     mkdir -p NixOS-Hyprland-backups
     mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
     sleep 1
   fi
 else
-  echo "$ORANGE Thank you for choosing KooL's NixOS-Hyprland"
-  echo "$ORANGE I hope you find your time here enjoyable!"
+  echo "$OK Thank you for choosing KooL's NixOS-Hyprland"
+  echo "$OK I hope you find your time here enjoyable!"
 fi
 
 echo "-----"
 
 set -e
 
-echo "Cloning & Entering NixOS-Hyprland Repository"
+echo "$NOTE Cloning & Entering NixOS-Hyprland Repository"
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
 cd NixOS-Hyprland || exit
 
-
+printf "\n%.0s" {1..2}
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "${ORANGE}System is running in a virtual machine. Setting up guest${RESET}"
+  echo "${NOTE}System is running in a virtual machine. Enabling guest services.."
   sed -i '/vm\.guest-services\.enable = false;/s/vm\.guest-services\.enable = false;/ vm.guest-services.enable = true;/' hosts/default/config.nix
 fi
+printf "\n%.0s" {1..1}
 
 # Checking if system has nvidia gpu and enable in default config.nix
 if command -v lspci > /dev/null 2>&1; then
   # lspci is available, proceed with checking for Nvidia GPU
   if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-    echo "${YELLOW}Nvidia GPU detected. Setting up for nvidia${RESET}"
+    echo "$NOTE Nvidia GPU detected. Setting up for nvidia..."
     sed -i '/drivers\.nvidia\.enable = false;/s/drivers\.nvidia\.enable = false;/ drivers.nvidia.enable = true;/' hosts/default/config.nix
   fi
 fi
@@ -113,17 +114,18 @@ sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername
 
 echo "-----"
 
-echo "Generating The Hardware Configuration"
+echo "$NOTE Generating The Hardware Configuration"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
 
 echo "-----"
 
-echo "Setting Required Nix Settings Then Going To Install"
+echo "$NOTE Setting Required Nix Settings Then Going To Install"
 NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 printf "\n%.0s" {1..2}
 
+echo "$NOTE Rebuilding NixOS to your system....... pls be patient"
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 echo "-----"

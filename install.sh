@@ -85,18 +85,19 @@ sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername
 
 echo "-----"
 
-echo "Generating The Hardware Configuration"
-sudo nixos-generate-config --show-hardware-config > hosts/$hostName/hardware.nix 2>/dev/null
+echo "$NOTE Generating The Hardware Configuration"
+sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
 
 echo "-----"
 
-echo "Setting Required Nix Settings Then Going To Install"
+echo "$NOTE Setting Required Nix Settings Then Going To Install"
 NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 printf "\n%.0s" {1..2}
 
-sudo nixos-rebuild switch --flake .#${hostName}
+echo "$NOTE Rebuilding NixOS to your system....... pls be patient"
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 echo "-----"
 printf "\n%.0s" {1..2}
