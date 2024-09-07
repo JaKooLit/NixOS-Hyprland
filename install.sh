@@ -133,30 +133,6 @@ echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder."
 echo "-----"
 printf "\n%.0s" {1..2}
 
-# KooL's Dots installation
-printf "$NOTE Downloading Hyprland dots from main..\n"
-if [ -d Hyprland-Dots ]; then
-  cd Hyprland-Dots
-  git stash
-  git pull
-  git stash apply
-  chmod +x copy.sh
-  ./copy.sh 
-else
-  if git clone --depth 1 https://github.com/JaKooLit/Hyprland-Dots; then
-    cd Hyprland-Dots || exit 1
-    chmod +x copy.sh
-    ./copy.sh 
-  else
-    echo -e "$ERROR Can't download Hyprland-Dots"
-  fi
-fi
-
-cd ..
-
-echo "-----"
-printf "\n%.0s" {1..3}
-
  # Check for existing configs and copy if does not exist
 for DIR1 in gtk-3.0 Thunar xfce4; do
   DIRPATH=~/.config/$DIR1
@@ -181,6 +157,33 @@ fi
 echo "-----"
 printf "\n%.0s" {1..3}
 
+
+# Cloning Hyprland-Dots repo to home folder
+# KooL's Dots installation
+printf "$NOTE Downloading Hyprland dots from main to HOME folder..\n"
+if [ -d ~/Hyprland-Dots ]; then
+  cd ~/Hyprland-Dots
+  git stash
+  git pull
+  git stash apply
+  chmod +x copy.sh
+  ./copy.sh 
+else
+  if git clone --depth 1 https://github.com/JaKooLit/Hyprland-Dots ~/Hyprland-Dots; then
+    cd ~/Hyprland-Dots || exit 1
+    chmod +x copy.sh
+    ./copy.sh 
+  else
+    echo -e "$ERROR Can't download Hyprland-Dots"
+  fi
+fi
+
+cd ..
+
+# copy fastfetch config for NixOS
+cp -r assets/fastfetch ~/.config/ || true
+
+printf "\n%.0s" {1..2}
 if command -v Hyprland &> /dev/null; then
   printf "\n${OK} Yey! Installation Completed.${RESET}\n"
   sleep 2
@@ -202,4 +205,3 @@ else
   printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...${RESET}\n\n"
   exit 1
 fi
-
