@@ -125,7 +125,11 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 echo "-----"
 printf "\n%.0s" {1..2}
 
-echo "$NOTE Rebuilding NixOS to your system....... pls be patient"
+echo "$NOTE Rebuilding NixOS..... sor pls be patient.."
+echo "$CAT In the meantime, go grab a coffee or stretch or something..."
+echo "$ERROR YES you read it right.. you staring too much at your monitor ha ha... joke :)......"
+printf "\n%.0s" {1..2}
+
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 echo "-----"
