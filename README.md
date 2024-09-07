@@ -124,6 +124,7 @@ sudo nixos-rebuild switch --flake .#hostname
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
+- to use the install.sh. Clone and cd repo as per above. edit `hosts/default/config.nix` to your liking. Once you satisfied. ran `./install.sh`. 
 
 Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake!
 

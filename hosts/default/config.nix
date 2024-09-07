@@ -374,7 +374,15 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
-  
+
+  # zram
+  zramSwap = {
+	  enable = true;
+	  priority = 100;
+	  memoryPercent = 30;
+	  swapDevices = 1;
+    };
+
   powerManagement = {
   	enable = true;
 	  cpuFreqGovernor = "schedutil";
