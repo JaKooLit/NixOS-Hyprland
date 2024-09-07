@@ -99,7 +99,7 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 
 #### 🦽 2. Manual:
 <details>
-<summary align=center>Manual Installation</summary>
+<summary align=center>Click here 👉🏻 Manual Installation</summary>
 
 - Run this command to ensure Git & Vim are installed:
 ```
@@ -134,7 +134,16 @@ Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
-- to use the install.sh. Clone and cd repo as per above. edit `hosts/default/config.nix` to your liking. Once you satisfied. ran `./install.sh`. 
+
+- Clone this repo & CD into it:
+```
+git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+cd ~/NixOS-Hyprland
+```
+- *You should stay in this folder for the rest of the install*
+- edit `hosts/default/config.nix` to your liking. Once you are satisfied, ran `./install.sh`
+
+
 
 Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake!
 
