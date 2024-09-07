@@ -70,14 +70,14 @@ echo "-----"
 set -e
 
 echo "$NOTE Cloning & Entering NixOS-Hyprland Repository"
-git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
-cd NixOS-Hyprland || exit
+git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+cd ~/NixOS-Hyprland || exit
 
 printf "\n%.0s" {1..2}
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "${NOTE} Your system is running on a VM. Enabling guest services.."
-  echo "${WARN} A Kind reminded to enable 3D acceleration.."
+  echo "${WARN} A Kind reminder to enable 3D acceleration.."
   sed -i '/vm\.guest-services\.enable = false;/s/vm\.guest-services\.enable = false;/ vm.guest-services.enable = true;/' hosts/default/config.nix
 fi
 printf "\n%.0s" {1..1}
@@ -129,7 +129,7 @@ printf "\n%.0s" {1..2}
 
 echo "$NOTE Rebuilding NixOS..... sor pls be patient.."
 echo "$CAT In the meantime, go grab a coffee or stretch or something..."
-echo "$ERROR YES you read it right.. you staring too much at your monitor ha ha... joke :)......"
+echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
@@ -215,8 +215,8 @@ else
   fi
 fi
 
-#return to NixOS-Hyprland
-cd $(pwd)
+#return to NixOS-Hyprland directory
+cd ~/NixOS-Hyprland
 
 # copy fastfetch config for NixOS
 cp -r assets/fastfetch ~/.config/ || true
