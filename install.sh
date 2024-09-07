@@ -30,6 +30,22 @@ else
   exit 1
 fi
 
+echo "$NOTE Default options are in brackets []"
+echo "$NOTE Just press enter to select the default"
+sleep 2
+
+echo "-----"
+
+read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
+if [ -z "$hostName" ]; then
+  hostName="default"
+fi
+
+echo "-----"
+
+# configure for new hostname
+mkdir hosts/"$hostName"
+
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "${ORANGE}System is running in a virtual machine. Setting up guest${RESET}"
@@ -48,21 +64,6 @@ fi
 echo "-----"
 printf "\n%.0s" {1..2}
 
-echo "$NOTE Default options are in brackets []"
-echo "$NOTE Just press enter to select the default"
-sleep 2
-
-echo "-----"
-
-read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
-if [ -z "$hostName" ]; then
-  hostName="default"
-fi
-
-echo "-----"
-
-# configure for new hostname
-mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 git config --global user.name "installer"
 git config --global user.email "installer@gmail.com"
