@@ -100,6 +100,7 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 #### 🦽 2. Manual:
 <details>
 <summary align=center>Manual Installation</summary>
+
 - Run this command to ensure Git & Vim are installed:
 ```
 nix-shell -p git curl pciutils
@@ -126,6 +127,7 @@ sudo nixos-rebuild switch --flake .#hostname
 ```
 
 Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
+
 </details>
 
 #### 👉🏻 3. Alternative
