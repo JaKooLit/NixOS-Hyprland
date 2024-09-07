@@ -102,8 +102,8 @@ nix-shell -p git curl pciutils
 ```
 - Clone this repo & CD into it:
 ```
-git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
-cd NixOS-Hyprland
+git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+cd ~/NixOS-Hyprland
 ```
 - *You should stay in this folder for the rest of the install*
 - Create the host folder for your machine(s)
