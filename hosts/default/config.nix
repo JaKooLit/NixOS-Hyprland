@@ -214,7 +214,7 @@
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
     #ranger
       
-    # Hyprland Stuff | Laptop related stuff on a separate .nix
+    # Hyprland Stuff
     ags        
     btop
     cava
@@ -226,6 +226,7 @@
     gtk-engine-murrine #for gtk themes
     hyprcursor # requires unstable channel
     hypridle # requires unstable channel
+    imagemagick 
     inxi
     jq
     kitty
