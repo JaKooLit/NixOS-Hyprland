@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -81,6 +79,8 @@ else
 fi
 
 echo "-----"
+
+set -e
 
 echo "Cloning & Entering NixOS-Hyprland Repository"
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git
