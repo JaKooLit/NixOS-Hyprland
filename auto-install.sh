@@ -10,6 +10,7 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
+initial_dir=$(pwd)
 
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
   echo "Verified this is NixOS."
@@ -75,7 +76,8 @@ cd NixOS-Hyprland || exit
 printf "\n%.0s" {1..2}
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "${NOTE}System is running in a virtual machine. Enabling guest services.."
+  echo "${NOTE} Your system is running on a VM. Enabling guest services.."
+  echo "${WARN} A Kind reminded to enable 3D acceleration.."
   sed -i '/vm\.guest-services\.enable = false;/s/vm\.guest-services\.enable = false;/ vm.guest-services.enable = true;/' hosts/default/config.nix
 fi
 printf "\n%.0s" {1..1}
@@ -213,7 +215,8 @@ else
   fi
 fi
 
-cd ..
+#return to NixOS-Hyprland
+cd $(pwd)
 
 # copy fastfetch config for NixOS
 cp -r assets/fastfetch ~/.config/ || true

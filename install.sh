@@ -48,7 +48,8 @@ mkdir hosts/"$hostName"
 
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "${ORANGE}System is running in a virtual machine. Setting up guest${RESET}"
+  echo "${NOTE} Your system is running on a VM. Enabling guest services.."
+  echo "${WARN} A Kind reminded to enable 3D acceleration.."
   sed -i '/vm\.guest-services\.enable = false;/s/vm\.guest-services\.enable = false;/ vm.guest-services.enable = true;/' hosts/default/config.nix
 fi
 
@@ -56,7 +57,7 @@ fi
 if command -v lspci > /dev/null 2>&1; then
   # lspci is available, proceed with checking for Nvidia GPU
   if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-    echo "${YELLOW}Nvidia GPU detected. Setting up for nvidia${RESET}"
+    echo "${NOTE} Nvidia GPU detected. Setting up for nvidia..."
     sed -i '/drivers\.nvidia\.enable = false;/s/drivers\.nvidia\.enable = false;/ drivers.nvidia.enable = true;/' hosts/default/config.nix
   fi
 fi
@@ -166,7 +167,7 @@ printf "\n%.0s" {1..3}
 
 # Cloning Hyprland-Dots repo to home folder
 # KooL's Dots installation
-printf "$NOTE Downloading Hyprland dots from main to HOME folder..\n"
+printf "$NOTE Downloading Hyprland-Dots to HOME folder..\n"
 if [ -d ~/Hyprland-Dots ]; then
   cd ~/Hyprland-Dots
   git stash
@@ -184,7 +185,8 @@ else
   fi
 fi
 
-cd ..
+#return to NixOS-Hyprland
+cd $(pwd)
 
 # copy fastfetch config for NixOS
 cp -r assets/fastfetch ~/.config/ || true
