@@ -136,38 +136,33 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  nixpkgs.config.allowUnfree = true;
+  
   programs = {
 	  hyprland = {
       enable = true;
 		  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
 		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdphls
-  	  };
+  	  xwayland.enable = true;
+      };
 
-	xwayland.enable = true;
-
-	waybar.enable = true;
-	hyprlock.enable = true;
-	firefox.enable = true;
-	git.enable = true;
-
-	thunar.enable = true;
-	thunar.plugins = with pkgs.xfce; [
-		exo
-		mousepad
-		thunar-archive-plugin
-		thunar-volman
-		tumbler
-  	];
 	
-    dconf.enable = true;
-    seahorse.enable = true;
-    fuse.userAllowOther = true;
-    mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    
+	  waybar.enable = true;
+	  hyprlock.enable = true;
+	  firefox.enable = true;
+	  git.enable = true;
+    nm-applet.indicator = true;
+    neovim.enable = true;
+
+	  thunar.enable = true;
+	  thunar.plugins = with pkgs.xfce; [
+		  exo
+		  mousepad
+		  thunar-archive-plugin
+		  thunar-volman
+		  tumbler
+  	  ];
+	
     virt-manager.enable = false;
     
     #steam = {
@@ -176,10 +171,19 @@
     #  remotePlay.openFirewall = true;
     #  dedicatedServer.openFirewall = true;
     #};
+    
+    xwayland.enable = true;
+
+    dconf.enable = true;
+    seahorse.enable = true;
+    fuse.userAllowOther = true;
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
 	
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   users = {
     mutableUsers = true;
@@ -189,6 +193,7 @@
   # System Packages
     baobab
     btrfs-progs
+    clang
     cpufrequtils
     duf
     eza
@@ -476,7 +481,7 @@
 
   # For Electron apps to use wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
