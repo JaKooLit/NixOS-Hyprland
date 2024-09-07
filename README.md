@@ -65,8 +65,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ### 👋 👋 👋 Requirements 
 - You must be running on NixOS.
 - Minimum space is 40gb. 60gb recommended as NixOS is a space hungry distro
-- Must have installed using GPT & UEFI. Systemd-boot is what is supported, for GRUB you need to edit `hosts/default/config.nix`
-- Manually editing your host specific files. The host is the specific computer your installing on.
+- Must have installed using GPT & UEFI. Systemd-boot is configured as default bootloader, for GRUB users, you need to edit `hosts/default/config.nix`
+- Manually edit your host specific files. The host is the specific computer your installing on.
 
 
 #### 🖥️ Multi Host & User Configuration
@@ -134,6 +134,12 @@ Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
+
+
+- Run this command to ensure Git & Vim are installed:
+```
+nix-shell -p git curl pciutils
+```
 
 - Clone this repo & CD into it:
 ```
