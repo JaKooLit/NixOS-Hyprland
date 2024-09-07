@@ -30,20 +30,6 @@ else
   exit 1
 fi
 
-# Checking if running on a VM and enable in default config.nix
-if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "${ORANGE}System is running in a virtual machine. Setting up guest${RESET}"
-  sed -i 's/^  vm\.guest-services\.enable = false;/  vm.guest-services.enable = true;/' hosts/default/config.nix
-fi
-
-# Checking if system has nvidia gpu and enable in default config.nix
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-  echo "${YELLOW}Nvidia GPU detected. Setting up for nvidia${RESET}" 
-  sed -i 's/^  drivers\.nvidia\.enable = false;/  drivers.nvidia.enable = true;/' hosts/default/config.nix
-fi
-echo "-----"
-printf "\n%.0s" {1..2}
-
 echo "$NOTE Default options are in brackets []"
 echo "$NOTE Just press enter to select the default"
 sleep 2
@@ -59,6 +45,25 @@ echo "-----"
 
 # configure for new hostname
 mkdir hosts/"$hostName"
+
+# Checking if running on a VM and enable in default config.nix
+if hostnamectl | grep -q 'Chassis: vm'; then
+  echo "${ORANGE}System is running in a virtual machine. Setting up guest${RESET}"
+  sed -i '/vm\.guest-services\.enable = false;/s/vm\.guest-services\.enable = false;/ vm.guest-services.enable = true;/' hosts/default/config.nix
+fi
+
+# Checking if system has nvidia gpu and enable in default config.nix
+if command -v lspci > /dev/null 2>&1; then
+  # lspci is available, proceed with checking for Nvidia GPU
+  if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
+    echo "${YELLOW}Nvidia GPU detected. Setting up for nvidia${RESET}"
+    sed -i '/drivers\.nvidia\.enable = false;/s/drivers\.nvidia\.enable = false;/ drivers.nvidia.enable = true;/' hosts/default/config.nix
+  fi
+fi
+
+echo "-----"
+printf "\n%.0s" {1..2}
+
 cp hosts/default/*.nix hosts/"$hostName"
 git config --global user.name "installer"
 git config --global user.email "installer@gmail.com"
@@ -129,30 +134,6 @@ echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder."
 echo "-----"
 printf "\n%.0s" {1..2}
 
-# KooL's Dots installation
-printf "$NOTE Downloading Hyprland dots from main..\n"
-if [ -d Hyprland-Dots ]; then
-  cd Hyprland-Dots
-  git stash
-  git pull
-  git stash apply
-  chmod +x copy.sh
-  ./copy.sh 
-else
-  if git clone --depth 1 https://github.com/JaKooLit/Hyprland-Dots; then
-    cd Hyprland-Dots || exit 1
-    chmod +x copy.sh
-    ./copy.sh 
-  else
-    echo -e "$ERROR Can't download Hyprland-Dots"
-  fi
-fi
-
-cd ..
-
-echo "-----"
-printf "\n%.0s" {1..3}
-
  # Check for existing configs and copy if does not exist
 for DIR1 in gtk-3.0 Thunar xfce4; do
   DIRPATH=~/.config/$DIR1
@@ -177,6 +158,33 @@ fi
 echo "-----"
 printf "\n%.0s" {1..3}
 
+
+# Cloning Hyprland-Dots repo to home folder
+# KooL's Dots installation
+printf "$NOTE Downloading Hyprland dots from main to HOME folder..\n"
+if [ -d ~/Hyprland-Dots ]; then
+  cd ~/Hyprland-Dots
+  git stash
+  git pull
+  git stash apply
+  chmod +x copy.sh
+  ./copy.sh 
+else
+  if git clone --depth 1 https://github.com/JaKooLit/Hyprland-Dots ~/Hyprland-Dots; then
+    cd ~/Hyprland-Dots || exit 1
+    chmod +x copy.sh
+    ./copy.sh 
+  else
+    echo -e "$ERROR Can't download Hyprland-Dots"
+  fi
+fi
+
+cd ..
+
+# copy fastfetch config for NixOS
+cp -r assets/fastfetch ~/.config/ || true
+
+printf "\n%.0s" {1..2}
 if command -v Hyprland &> /dev/null; then
   printf "\n${OK} Yey! Installation Completed.${RESET}\n"
   sleep 2
@@ -188,7 +196,7 @@ if command -v Hyprland &> /dev/null; then
 
   if [[ "$HYP" =~ ^[Yy]$ ]]; then
     # If user confirms, reboot the system
-    sudo systemctl reboot
+    systemctl reboot
   else
     # Print a message if the user does not want to reboot
     echo "Reboot skipped."
@@ -198,4 +206,3 @@ else
   printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...${RESET}\n\n"
   exit 1
 fi
-
