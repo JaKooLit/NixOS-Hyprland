@@ -141,11 +141,15 @@ Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 nix-shell -p git curl pciutils
 ```
 
-- Clone this repo & CD into it:
+- Clone this repo into your home directory & CD into it:
 ```
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland
 ```
+
+> [!IMPORTANT]
+> need to download in your home folder as some part of the installer are going back again to ~/NixOS-Hyprland
+
 - *You should stay in this folder for the rest of the install*
 - edit `hosts/default/config.nix` to your liking. Once you are satisfied, ran `./install.sh`
 
