@@ -95,7 +95,11 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 > [!NOTE]
 > pciutils is necessary to detect if you have nvidia card. 
 
+
+
 #### 🦽 2. Manual:
+<details>
+<summary align=center>Manual Installation</summary>
 - Run this command to ensure Git & Vim are installed:
 ```
 nix-shell -p git curl pciutils
@@ -120,6 +124,10 @@ sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname
 NIX_CONFIG="experimental-features = nix-command flakes" 
 sudo nixos-rebuild switch --flake .#hostname
 ```
+
+Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
+</details>
+
 #### 👉🏻 3. Alternative
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
