@@ -40,20 +40,6 @@ cd || exit
 
 echo "-----"
 
-read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
-if [ -z "$hostName" ]; then
-  hostName="default"
-fi
-
-echo "-----"
-
-# Create directory for the new hostname, unless the default is selected
-if [ "$hostName" != "default" ]; then
-  mkdir -p hosts/"$hostName"
-else
-  echo "Default hostname selected, no extra hosts directory created."
-fi
-
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "NixOS-Hyprland" ]; then
   echo "$NOTE NixOS-Hyprland exists, backing up to NixOS-Hyprland-backups folder."
@@ -101,13 +87,26 @@ fi
 echo "-----"
 printf "\n%.0s" {1..1}
 
-mkdir hosts/"$hostName"
-cp hosts/default/*.nix hosts/"$hostName"
+read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
+if [ -z "$hostName" ]; then
+  hostName="default"
+fi
+
+echo "-----"
+
+# Create directory for the new hostname, unless the default is selected
+if [ "$hostName" != "default" ]; then
+  mkdir -p hosts/"$hostName"
+  cp hosts/default/*.nix hosts/"$hostName"
+else
+  echo "Default hostname selected, no extra hosts directory created."
+fi
 git config --global user.name "installer"
 git config --global user.email "installer@gmail.com"
 git add .
 sed -i '/^\s*host[[:space:]]*=[[:space:]]*\"[^"]*\"/s/\"\([^"]*\)\"/\"'"$hostName"'\"/' ./flake.nix
 
+echo "-----"
 
 read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
 if [ -z "$keyboardLayout" ]; then

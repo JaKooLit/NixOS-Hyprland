@@ -30,26 +30,6 @@ else
   exit 1
 fi
 
-echo "$NOTE Default options are in brackets []"
-echo "$NOTE Just press enter to select the default"
-sleep 2
-
-echo "-----"
-
-read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
-if [ -z "$hostName" ]; then
-  hostName="default"
-fi
-
-echo "-----"
-
-# Create directory for the new hostname, unless the default is selected
-if [ "$hostName" != "default" ]; then
-  mkdir -p hosts/"$hostName"
-else
-  echo "Default hostname selected, no extra hosts directory created."
-fi
-
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "${NOTE} Your system is running on a VM. Enabling guest services.."
@@ -69,7 +49,26 @@ fi
 echo "-----"
 printf "\n%.0s" {1..1}
 
-cp hosts/default/*.nix hosts/"$hostName"
+echo "$NOTE Default options are in brackets []"
+echo "$NOTE Just press enter to select the default"
+sleep 2
+
+echo "-----"
+
+read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
+if [ -z "$hostName" ]; then
+  hostName="default"
+fi
+
+echo "-----"
+
+# Create directory for the new hostname, unless the default is selected
+if [ "$hostName" != "default" ]; then
+  mkdir -p hosts/"$hostName"
+  cp hosts/default/*.nix hosts/"$hostName"
+else
+  echo "Default hostname selected, no extra hosts directory created."
+fi
 git config --global user.name "installer"
 git config --global user.email "installer@gmail.com"
 git add .
