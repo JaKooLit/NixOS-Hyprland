@@ -194,12 +194,14 @@
     baobab
     btrfs-progs
     clang
+    curl
     cpufrequtils
     duf
     eza
     ffmpeg   
     glib #for gsettings to work
     gsettings-qt
+    git
     killall  
     libappindicator
     libnotify
