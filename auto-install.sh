@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -9,8 +10,6 @@ CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
-
-initial_dir=$(pwd)
 
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
   echo "Verified this is NixOS."
@@ -54,13 +53,12 @@ fi
 
 echo "-----"
 
-set -e
-
 echo "$NOTE Cloning & Entering NixOS-Hyprland Repository"
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland || exit
 
 printf "\n%.0s" {1..2}
+
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "${NOTE} Your system is running on a VM. Enabling guest services.."
@@ -73,7 +71,7 @@ printf "\n%.0s" {1..1}
 if command -v lspci > /dev/null 2>&1; then
   # lspci is available, proceed with checking for Nvidia GPU
   if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-    echo "$NOTE Nvidia GPU detected. Setting up for nvidia..."
+    echo "${NOTE} Nvidia GPU detected. Setting up for nvidia..."
     sed -i '/drivers\.nvidia\.enable = false;/s/drivers\.nvidia\.enable = false;/ drivers.nvidia.enable = true;/' hosts/default/config.nix
   fi
 fi
@@ -163,7 +161,6 @@ printf "\n%.0s" {1..2}
 NIX_CONFIG="experimental-features = nix-command flakes"
 #sudo nix flake update
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#"${hostName}"
-
 
 echo "-----"
 printf "\n%.0s" {1..2}

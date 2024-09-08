@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -e
 
 # Set some colors for output messages
