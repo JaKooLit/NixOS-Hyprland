@@ -92,7 +92,7 @@ if command -v lspci > /dev/null 2>&1; then
 fi
 
 echo "-----"
-printf "\n%.0s" {1..2}
+printf "\n%.0s" {1..1}
 
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
@@ -127,8 +127,10 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 echo "-----"
 printf "\n%.0s" {1..2}
 
-echo "$NOTE Rebuilding NixOS..... sor pls be patient.."
+echo "$NOTE Rebuilding NixOS..... so pls be patient.."
+echo "-----"
 echo "$CAT In the meantime, go grab a coffee or stretch or something..."
+echo "-----"
 echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 

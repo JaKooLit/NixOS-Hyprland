@@ -65,8 +65,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ### 👋 👋 👋 Requirements 
 - You must be running on NixOS.
 - Minimum space is 40gb. 60gb recommended as NixOS is a space hungry distro
-- Must have installed using GPT & UEFI. Systemd-boot is what is supported, for GRUB you need to edit `hosts/default/config.nix`
-- Manually editing your host specific files. The host is the specific computer your installing on.
+- Must have installed using GPT & UEFI. Systemd-boot is configured as default bootloader, for GRUB users, you need to edit `hosts/default/config.nix`
+- Manually edit your host specific files. The host is the specific computer your installing on.
 
 
 #### 🖥️ Multi Host & User Configuration
@@ -95,7 +95,12 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 > [!NOTE]
 > pciutils is necessary to detect if you have nvidia card. 
 
+
+
 #### 🦽 2. Manual:
+<details>
+<summary align=center>Click here 👉🏻 Manual Installation</summary>
+
 - Run this command to ensure Git & Vim are installed:
 ```
 nix-shell -p git curl pciutils
@@ -120,11 +125,35 @@ sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname
 NIX_CONFIG="experimental-features = nix-command flakes" 
 sudo nixos-rebuild switch --flake .#hostname
 ```
+
+Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
+
+</details>
+
 #### 👉🏻 3. Alternative
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
-- to use the install.sh. Clone and cd repo as per above. edit `hosts/default/config.nix` to your liking. Once you satisfied. ran `./install.sh`. 
+
+
+- Run this command to ensure Git & Vim are installed:
+```
+nix-shell -p git curl pciutils
+```
+
+- Clone this repo into your home directory & CD into it:
+```
+git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+cd ~/NixOS-Hyprland
+```
+
+> [!IMPORTANT]
+> need to download in your home folder as some part of the installer are going back again to ~/NixOS-Hyprland
+
+- *You should stay in this folder for the rest of the install*
+- edit `hosts/default/config.nix` to your liking. Once you are satisfied, ran `./install.sh`
+
+
 
 Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake!
 
