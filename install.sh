@@ -128,7 +128,7 @@ printf "\n%.0s" {1..2}
 
 # Set the Nix configuration for experimental features
 export NIX_CONFIG="experimental-features = nix-command flakes"
-sudo nix flake update
+#sudo nix flake update
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#"${hostName}"
 
 echo "-----"
