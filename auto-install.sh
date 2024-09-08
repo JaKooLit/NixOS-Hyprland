@@ -96,15 +96,9 @@ echo "-----"
 if [ "$hostName" != "default" ]; then
   mkdir -p hosts/"$hostName"
   cp hosts/default/*.nix hosts/"$hostName"
-  git add .
 else
   echo "Default hostname selected, no extra hosts directory created."
 fi
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
-git add .
-sed -i 's/host\s*=\s*"\([^"]*\)"/host = "'"$hostName"'"/' ./flake.nix
-
 echo "-----"
 
 read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
@@ -147,6 +141,10 @@ done
 echo "-----"
 
 echo "$NOTE Setting Required Nix Settings Then Going To Install"
+git config --global user.name "installer"
+git config --global user.email "installer@gmail.com"
+git add .
+sed -i 's/host\s*=\s*"\([^"]*\)"/host = "'"$hostName"'"/' ./flake.nix
 
 echo "-----"
 printf "\n%.0s" {1..2}
