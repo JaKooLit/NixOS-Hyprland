@@ -87,7 +87,27 @@ sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername
 echo "-----"
 
 echo "$NOTE Generating The Hardware Configuration"
-sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
+attempts=0
+max_attempts=3
+hardware_file="./hosts/$hostName/hardware.nix"
+
+while [ $attempts -lt $max_attempts ]; do
+  sudo nixos-generate-config --show-hardware-config > "$hardware_file" 2>/dev/null
+
+  if [ -f "$hardware_file" ]; then
+    echo "${OK} Hardware configuration successfully generated."
+    break
+  else
+    echo "${WARN} Failed to generate hardware configuration. Attempt $(($attempts + 1)) of $max_attempts."
+    attempts=$(($attempts + 1))
+
+    # Exit if this was the last attempt
+    if [ $attempts -eq $max_attempts ]; then
+      echo "${ERROR} Unable to generate hardware configuration after $max_attempts attempts."
+      exit 1
+    fi
+  fi
+done
 
 echo "-----"
 
