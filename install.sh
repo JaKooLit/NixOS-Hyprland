@@ -51,7 +51,7 @@ printf "\n%.0s" {1..1}
 
 echo "$NOTE Default options are in brackets []"
 echo "$NOTE Just press enter to select the default"
-sleep 2
+sleep 1
 
 echo "-----"
 

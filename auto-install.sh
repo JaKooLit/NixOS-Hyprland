@@ -29,12 +29,6 @@ else
   exit 1
 fi
 
-echo "$NOTE Default options are in brackets []"
-echo "$NOTE Just press enter to select the default"
-sleep 2
-
-echo "-----"
-
 echo "$NOTE Ensure In Home Directory"
 cd || exit
 
@@ -86,6 +80,12 @@ fi
 
 echo "-----"
 printf "\n%.0s" {1..1}
+
+echo "$NOTE Default options are in brackets []"
+echo "$NOTE Just press enter to select the default"
+sleep 1
+
+echo "-----"
 
 read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
 if [ -z "$hostName" ]; then
