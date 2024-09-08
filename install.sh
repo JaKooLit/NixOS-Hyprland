@@ -43,8 +43,12 @@ fi
 
 echo "-----"
 
-# configure for new hostname
-mkdir hosts/"$hostName"
+# Create directory for the new hostname, unless the default is selected
+if [ "$hostName" != "default" ]; then
+  mkdir -p hosts/"$hostName"
+else
+  echo "Default hostname selected, no extra hosts directory created."
+fi
 
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
@@ -123,9 +127,10 @@ echo "-----"
 echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 
-NIX_CONFIG="experimental-features = nix-command flakes"
+# Set the Nix configuration for experimental features
+export NIX_CONFIG="experimental-features = nix-command flakes"
 sudo nix flake update
-sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#"${hostName}"
 
 echo "-----"
 printf "\n%.0s" {1..2}
