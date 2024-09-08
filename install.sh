@@ -112,7 +112,6 @@ done
 echo "-----"
 
 echo "$NOTE Setting Required Nix Settings Then Going To Install"
-NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 printf "\n%.0s" {1..2}
@@ -124,6 +123,7 @@ echo "-----"
 echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 
+NIX_CONFIG="experimental-features = nix-command flakes"
 sudo nix flake update
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
