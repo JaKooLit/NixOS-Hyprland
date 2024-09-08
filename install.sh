@@ -124,6 +124,7 @@ echo "-----"
 echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 
+sudo nix flake update
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
 
 echo "-----"
