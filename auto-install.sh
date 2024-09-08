@@ -52,12 +52,12 @@ if [ -d "NixOS-Hyprland" ]; then
   echo "$NOTE NixOS-Hyprland exists, backing up to NixOS-Hyprland-backups folder."
   if [ -d "NixOS-Hyprland-backups" ]; then
     echo "Moving current version of NixOS-Hyprland to backups folder."
-    mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
+    sudo mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
     sleep 1
   else
     echo "$NOTE Creating the backups folder & moving NixOS-Hyprland to it."
     mkdir -p NixOS-Hyprland-backups
-    mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
+    sudo mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
     sleep 1
   fi
 else
