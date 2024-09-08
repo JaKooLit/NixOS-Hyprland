@@ -96,6 +96,7 @@ echo "-----"
 if [ "$hostName" != "default" ]; then
   mkdir -p hosts/"$hostName"
   cp hosts/default/*.nix hosts/"$hostName"
+  git add .
 else
   echo "Default hostname selected, no extra hosts directory created."
 fi
