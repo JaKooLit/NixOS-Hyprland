@@ -160,7 +160,7 @@ echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha 
 printf "\n%.0s" {1..2}
 
 # Set the Nix configuration for experimental features
-export NIX_CONFIG="experimental-features = nix-command flakes"
+NIX_CONFIG="experimental-features = nix-command flakes"
 #sudo nix flake update
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#"${hostName}"
 
