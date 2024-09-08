@@ -89,7 +89,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - This script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chances of breakages and then fiddle to your hearts content!
 - Simply copy this and run it:
 ```
-nix-shell -p git curl pciutils
+nix-shell -p git vim curl pciutils
 sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh)
 ```
 > [!NOTE]
@@ -101,9 +101,9 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 <details>
 <summary align=center>Click here 👉🏻 Manual Installation</summary>
 
-- Run this command to ensure Git & Vim are installed:
+- Run this command to ensure git, curl, vim & pciutils are installed: Note: or nano if you prefer nano for editing
 ```
-nix-shell -p git curl pciutils
+nix-shell -p git vim curl pciutils
 ```
 - Clone this repo & CD into it:
 ```
@@ -136,7 +136,7 @@ Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
 
 
-- Run this command to ensure Git & Vim are installed:
+- Run this command to ensure git, curl, vim & pciutils are installed: Note: or nano if you prefer nano for editing
 ```
 nix-shell -p git curl pciutils
 ```
