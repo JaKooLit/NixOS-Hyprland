@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-
 set -e
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
@@ -30,22 +29,6 @@ else
   exit 1
 fi
 
-echo "$NOTE Default options are in brackets []"
-echo "$NOTE Just press enter to select the default"
-sleep 2
-
-echo "-----"
-
-read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
-if [ -z "$hostName" ]; then
-  hostName="default"
-fi
-
-echo "-----"
-
-# configure for new hostname
-mkdir hosts/"$hostName"
-
 # Checking if running on a VM and enable in default config.nix
 if hostnamectl | grep -q 'Chassis: vm'; then
   echo "${NOTE} Your system is running on a VM. Enabling guest services.."
@@ -65,34 +48,73 @@ fi
 echo "-----"
 printf "\n%.0s" {1..1}
 
-cp hosts/default/*.nix hosts/"$hostName"
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
-git add .
-sed -i '/^\s*host[[:space:]]*=[[:space:]]*\"[^"]*\"/s/\"\([^"]*\)\"/\"'"$hostName"'\"/' ./flake.nix
+echo "$NOTE Default options are in brackets []"
+echo "$NOTE Just press enter to select the default"
+sleep 1
 
+echo "-----"
+
+read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
+if [ -z "$hostName" ]; then
+  hostName="default"
+fi
+
+echo "-----"
+
+# Create directory for the new hostname, unless the default is selected
+if [ "$hostName" != "default" ]; then
+  mkdir -p hosts/"$hostName"
+  cp hosts/default/*.nix hosts/"$hostName"
+  git add .
+else
+  echo "Default hostname selected, no extra hosts directory created."
+fi
+echo "-----"
 
 read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
 if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
 
-sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+sed -i 's/keyboardLayout\s*=\s*"\([^"]*\)"/keyboardLayout = "'"$keyboardLayout"'"/' ./hosts/$hostName/variables.nix
 
 echo "-----"
 
 installusername=$(echo $USER)
-sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
+sed -i 's/username\s*=\s*"\([^"]*\)"/username = "'"$installusername"'"/' ./flake.nix
 
 echo "-----"
 
 echo "$NOTE Generating The Hardware Configuration"
-sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
+attempts=0
+max_attempts=3
+hardware_file="./hosts/$hostName/hardware.nix"
+
+while [ $attempts -lt $max_attempts ]; do
+  sudo nixos-generate-config --show-hardware-config > "$hardware_file" 2>/dev/null
+
+  if [ -f "$hardware_file" ]; then
+    echo "${OK} Hardware configuration successfully generated."
+    break
+  else
+    echo "${WARN} Failed to generate hardware configuration. Attempt $(($attempts + 1)) of $max_attempts."
+    attempts=$(($attempts + 1))
+
+    # Exit if this was the last attempt
+    if [ $attempts -eq $max_attempts ]; then
+      echo "${ERROR} Unable to generate hardware configuration after $max_attempts attempts."
+      exit 1
+    fi
+  fi
+done
 
 echo "-----"
 
 echo "$NOTE Setting Required Nix Settings Then Going To Install"
-NIX_CONFIG="experimental-features = nix-command flakes"
+git config --global user.name "installer"
+git config --global user.email "installer@gmail.com"
+git add .
+sed -i 's/host\s*=\s*"\([^"]*\)"/host = "'"$hostName"'"/' ./flake.nix
 
 echo "-----"
 printf "\n%.0s" {1..2}
@@ -104,7 +126,10 @@ echo "-----"
 echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 
-sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#${hostName}
+# Set the Nix configuration for experimental features
+NIX_CONFIG="experimental-features = nix-command flakes"
+#sudo nix flake update
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#"${hostName}"
 
 echo "-----"
 printf "\n%.0s" {1..2}

@@ -1,5 +1,8 @@
 ## Changelogs
 
+### 08 Sep 2024
+- officially released
+
 ### 07 Sep 2024
 - Beta stage 🫰
 - added zram
