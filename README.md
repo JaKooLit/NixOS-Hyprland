@@ -77,13 +77,15 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 #### 📦 How To Install Packages?
 - You can search the [Nix Packages](https://search.nixos.org/packages?) & [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
-- To add a package there are the sections for it in config.nix and users.nix in your host folder. One is for programs available system wide and the other for your users environment only.
+- Then edit `hosts/<your-hostname>/config.nix` and/or `hosts/<your-hostname>/user.nix` . Config.nix is system-wide changes / packages and user.nix is only available to that user.
+- Once you edit, ran `sudo nixos-rebuild switch --flake .#<your-hostname>` NOTE. omit < > and ensure you are in directory where your flake.nix is.
 
 #### 🙋 Having Issues / Questions?
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!
+- If you have a question about KooL's Hyprland dots, see [`KooL's Dots WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki) . In that wiki are some tips, keybinds, some collective FAQ etc.
+
 
 ### ⬇️ Installations
-
 #### 📽 Youtube video for using this script
 - [KooL's Hyprland Dots on NixOS](https://youtu.be/nJLnRgnLPWI)
 
