@@ -84,6 +84,9 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 ### ⬇️ Installations
 
+#### 📽 Youtube video for using this script
+- [KooL's Hyprland Dots on NixOS](https://youtu.be/nJLnRgnLPWI)
+
 #### 📜 1. Using auto install Script:
 - This is the easiest and recommended way of starting out. 
 - This script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chances of breakages and then fiddle to your hearts content!
