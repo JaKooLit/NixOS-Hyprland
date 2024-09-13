@@ -4,6 +4,7 @@
   <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
   <a href="#-1-using-auto-install-script"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
   <a href="#-2-manual"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
+  <a href="#-🔙-Reverting-back-to-your-default-configs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
  </div><br>
 
 <div align="center">
@@ -173,7 +174,13 @@ Hope you enjoy! 🎉
 - on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
-  - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
+- [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
+
+### 🔙 Reverting back to your default configs
+- if you use flakes, you can just simply cd into your own default or previous configs. CD into it and execute `sudo nixos-rebuild switch --flake . or .#<your-previous-flake-hostname>`
+- if you dont have flakes enabled previous, simply running `sudo nixos-rebuild switch` will revert you to your default configs from `/etc/nixos/` 
+- ⚠️ just remember to clean up your nix/store and remove unnessary garbage from your system `sudo nix-collect-garbage -d`
+- OR, simply just revert into your previous snapshot of your system by choosing which snapshot to boot via your bootloaders.
 
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
