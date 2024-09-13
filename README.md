@@ -177,9 +177,9 @@ Hope you enjoy! 🎉
 - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
 ### 🔙 Reverting back to your default configs
-- if you use flakes, you can just simply cd into your own default or previous configs. CD into it and execute `sudo nixos-rebuild switch --flake . or .#<your-previous-flake-hostname>`
+- if you use flakes, you can just simply locate your default or previous configs. CD into it and execute `sudo nixos-rebuild switch --flake .#<your-previous-flake-hostname>`
 - if you dont have flakes enabled previous, simply running `sudo nixos-rebuild switch` will revert you to your default configs from `/etc/nixos/` 
-- ⚠️ just remember to clean up your nix/store and remove unnessary garbage from your system `sudo nix-collect-garbage -d`
+- ⚠️ just remember to clean up your nix/store to remove unnessary garbage from your system `sudo nix-collect-garbage -d`
 - OR, simply just revert into your previous snapshot of your system by choosing which snapshot to boot via your bootloaders.
 
 #### 📒 Final Notes
