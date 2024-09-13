@@ -4,7 +4,7 @@
   <a href="#-announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
   <a href="#-1-using-auto-install-script"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
   <a href="#-2-manual"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
-  <a href="#-🔙-Reverting-back-to-your-default-configs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
+  <a href="#-reverting-back-to-your-default-configs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
  </div><br>
 
 <div align="center">
