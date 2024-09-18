@@ -1,5 +1,9 @@
 ## Changelogs
 
+### 18 Sep 2024
+- removed neovim
+- nvim config will be downloaded or copied into ~/.config anymore
+
 ### 08 Sep 2024
 - officially released
 
