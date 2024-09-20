@@ -66,7 +66,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ### 👋 👋 👋 Requirements 
 - You must be running on NixOS.
 - Minimum space is 40gb. 60gb recommended as NixOS is a space hungry distro
-- Must have installed using GPT & UEFI. Systemd-boot is configured as default bootloader, for GRUB users, you need to edit `hosts/default/config.nix`
+- Must have installed NIXOS using GPT & UEFI. Systemd-boot is configured as default bootloader, for GRUB users, you need to edit `hosts/default/config.nix` before installing
 - Manually edit your host specific files. The host is the specific computer your installing on.
 
 
