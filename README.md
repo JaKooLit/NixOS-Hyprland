@@ -173,6 +173,13 @@ Hope you enjoy! 🎉
 #### 🪤 My NixOS configs 
 - on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
 
+
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
+> [!TIP]
+> KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
+
+
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
 - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
