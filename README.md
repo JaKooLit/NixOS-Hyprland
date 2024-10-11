@@ -44,7 +44,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 </div>
 
-> [!NOTE]
+> [!CAUTION]
 > This is not purely written in Nix-Language. You should check ZaneyOS. Link below
 
 
