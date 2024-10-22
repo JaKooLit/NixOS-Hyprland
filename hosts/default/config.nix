@@ -219,6 +219,7 @@
     # Hyprland Stuff
     ags        
     btop
+    brightnessctl # for brightness control
     cava
     #cliphist
     eog
@@ -241,7 +242,7 @@
     playerctl
     polkit_gnome
     pyprland
-    qt5ct
+    libsForQt5.qt5ct
     qt6ct
     qt6.qtwayland
     qt6Packages.qtstyleplugin-kvantum #kvantum
@@ -267,7 +268,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     fira-code
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
 	  terminus_font
