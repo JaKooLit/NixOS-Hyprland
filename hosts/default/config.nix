@@ -217,7 +217,11 @@
     #ranger
       
     # Hyprland Stuff
-    ags        
+    (ags.overrideAttrs (oldAttrs: {
+        inherit (oldAttrs) pname;
+        version = "1.8.2";
+      }))
+    #ags    
     btop
     brightnessctl # for brightness control
     cava
