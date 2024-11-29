@@ -225,7 +225,7 @@
     btop
     brightnessctl # for brightness control
     #cava
-    #cliphist
+    cliphist
     eog
     gnome-system-monitor
     file-roller
