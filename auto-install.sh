@@ -113,7 +113,6 @@ echo "-----"
 installusername=$(echo $USER)
 sed -i 's/username\s*=\s*"\([^"]*\)"/username = "'"$installusername"'"/' ./flake.nix
 
-echo "-----"
 
 echo "$NOTE Generating The Hardware Configuration"
 attempts=0
@@ -146,7 +145,6 @@ git config --global user.email "installer@gmail.com"
 git add .
 sed -i 's/host\s*=\s*"\([^"]*\)"/host = "'"$hostName"'"/' ./flake.nix
 
-echo "-----"
 printf "\n%.0s" {1..2}
 
 echo "$NOTE Rebuilding NixOS..... so pls be patient.."

@@ -152,7 +152,7 @@
 	  firefox.enable = true;
 	  git.enable = true;
     nm-applet.indicator = true;
-    neovim.enable = true;
+    #neovim.enable = true;
 
 	  thunar.enable = true;
 	  thunar.plugins = with pkgs.xfce; [
@@ -217,9 +217,14 @@
     #ranger
       
     # Hyprland Stuff
-    ags        
+    (ags.overrideAttrs (oldAttrs: {
+        inherit (oldAttrs) pname;
+        version = "1.8.2";
+      }))
+    #ags    
     btop
-    cava
+    brightnessctl # for brightness control
+    #cava
     cliphist
     eog
     gnome-system-monitor
@@ -241,7 +246,7 @@
     playerctl
     polkit_gnome
     pyprland
-    qt5ct
+    libsForQt5.qt5ct
     qt6ct
     qt6.qtwayland
     qt6Packages.qtstyleplugin-kvantum #kvantum
@@ -267,11 +272,11 @@
   fonts.packages = with pkgs; [
     noto-fonts
     fira-code
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
 	  terminus_font
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    nerd-fonts.jetbrains-mono
  	];
 
   # Extra Portal Configuration
