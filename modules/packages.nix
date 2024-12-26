@@ -23,7 +23,6 @@
 
  # System Packages
 
-
     #  override for AGS to keep it at v1
        (ags.overrideAttrs (oldAttrs: {
         inherit (oldAttrs) pname;
@@ -58,14 +57,7 @@
     file-roller
     grim
     gtk-engine-murrine # for gtk themes
-    aquamarine
-    hyprlang
-    hyprshot
-    hyprutils
-    hyprcursor 
-    hypridle 
-    hyprpolkitagent
-    hyprpaper
+    hyprlock
     imagemagick
     inxi
     jq
@@ -94,25 +86,6 @@
     wlogout
     yad
     yt-dlp
-
-
- ## common packages 
-
-    alacritty
-    appimage-run
-    bat
-    bottom
-    gping
-    gpu-screen-recorder
-    gpu-screen-recorder-gtk
-    htop
-    lsd
-    ncdu
-    neovim
-    nh
-    ripgrep
-    tldr
-    ugrep
   ];
 
   # FONTS
