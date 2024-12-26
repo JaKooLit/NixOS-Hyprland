@@ -190,8 +190,6 @@ else
     echo "$ERROR Download failed for GTK themes and Icons.." 
 fi
 
-echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 
-
 echo "-----"
 printf "\n%.0s" {1..2}
 

@@ -1,5 +1,6 @@
 ## Changelogs
 
+
 ### 22 Oct 2024
 - added brightnessctl
 - updated packages names
