@@ -50,7 +50,7 @@
     xdg-utils
     #AGS version 2.x not backward compatible with v1 at this time
     #ags 
-    btop
+    btop-rocm
     cliphist
     eog
     feh
