@@ -1,3 +1,5 @@
+# 💫 https://github.com/JaKooLit 💫 #
+
 #!/usr/bin/env bash
 set -e
 
@@ -149,9 +151,9 @@ printf "\n%.0s" {1..2}
 
 echo "$NOTE Rebuilding NixOS..... so pls be patient.."
 echo "-----"
-echo "$CAT In the meantime, go grab a coffee or stretch or something..."
+echo "$CAT In the meantime, go grab a coffee and stretch your legs or atleast do something!!..."
 echo "-----"
-echo "$ERROR YES!!! YOU read it right.. you staring too much at your monitor ha ha... joke :)......"
+echo "$ERROR YES!!! YOU read it right!!.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
 
 # Set the Nix configuration for experimental features

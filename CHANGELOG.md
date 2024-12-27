@@ -1,5 +1,7 @@
 ## Changelogs
 
+### 27 Dec 2024
+- moved Packages and Fonts in a separate.nix. Thanks to @dwilliam62 for the lead
 
 ### 22 Oct 2024
 - added brightnessctl

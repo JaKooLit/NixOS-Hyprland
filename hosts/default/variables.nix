@@ -1,3 +1,6 @@
+# 💫 https://github.com/JaKooLit 💫 #
+# Variables
+
 {
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "JaKooLit";
