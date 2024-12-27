@@ -78,7 +78,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 #### 📦 How To Install Packages?
 - You can search the [Nix Packages](https://search.nixos.org/packages?) & [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
-- Then edit `hosts/<your-hostname>/config.nix` and/or `hosts/<your-hostname>/user.nix` . Config.nix is for system-wide changes / system packages, while changes made to user.nix are only available to the user(s).
+- Then edit `hosts/<your-hostname>/configs.nix` , `hosts/<your-hostname>/packages-&-fonts.nix` and/or `hosts/<your-hostname>/user.nix` depending on what you want. `config.nix` is for system packages with options. ie `programs.hyprland.enable=true`, while packages-&-fonts.nix is for adding packages and changes made to user.nix are only available to the current user.
 - Once you are finished editing, run `sudo nixos-rebuild switch --flake .#<your-hostname>` NOTE. omit < > and ensure you are in the directory where your **flake.nix** is. (For example: If you make the hostname `nixos` then your command should be `sudo nixos-rebuild switch --flake .#nixos`)
 
 #### 🙋 Having Issues / Questions?
@@ -121,8 +121,8 @@ cd ~/NixOS-Hyprland
 ```
 cp -r hosts/default hosts/<your-desired-hostname>
 ```
-- Edit as required the `config.nix` in `hosts/<your-desired-hostname>/`
-- Generate your hardware.nix like so:
+- Edit as required the `config.nix` , `packages-&-fonts.nix` and/or `users.nix` in `hosts/<your-desired-hostname>/`
+- then generate your hardware.nix with:
 ```
 sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
 ```
