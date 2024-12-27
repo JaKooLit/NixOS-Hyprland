@@ -1,6 +1,8 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Main default config
-# NOTE: Packages and Fonts are configured in modules/packages.nix
+
+
+# NOTE!!! : Packages and Fonts are configured in packages-&-fonts.nix
 
 
 { config, pkgs, host, username, options, lib, inputs, system, ...}: let
@@ -11,13 +13,13 @@
   imports = [
     ./hardware.nix
     ./users.nix
+    ./packages-&-fonts.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
-    ../../modules/packages.nix
   ];
 
   # BOOT related stuff
@@ -409,5 +411,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
