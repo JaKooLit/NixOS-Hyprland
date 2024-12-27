@@ -1,16 +1,12 @@
+# 💫 https://github.com/JaKooLit 💫 #
 # Main default config
+# NOTE: Packages and Fonts are configured in modules/packages.nix
+
 
 { config, pkgs, host, username, options, lib, inputs, system, ...}: let
   
   inherit (import ./variables.nix) keyboardLayout;
-  python-packages = pkgs.python3.withPackages (
-    ps:
-      with ps; [
-        requests
-        pyquery # needed for hyprland-dots Weather script
-        ]
-    );
-  
+    
   in {
   imports = [
     ./hardware.nix
@@ -189,25 +185,6 @@
   users = {
     mutableUsers = true;
   };
-
-  environment.systemPackages = (with pkgs; [
-  # System Packages  Moved to modules/packages.nix
-  # All hosts will install the packages or fonts
-  # defined in the modules/packages.nix file. 
-
-  # Files added here will be local to this host
-      
- 
-  ]) ++ [
-	  python-packages
-  ];
-
-  # FONTS
-  fonts.packages = with pkgs; [
-    #fonts are defined in modules/packages.nix
-    # Adding fonts here will only be installed
-    # on this host 
- 	];
 
   # Extra Portal Configuration
   xdg.portal = {

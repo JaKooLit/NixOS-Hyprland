@@ -1,79 +1,78 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  environment.systemPackages = with pkgs; [
- 
-    # Override for cliphis  aiting for update to reach unstable bracnh
-    #  10-16-24
-    #  https://nixpk.gs/pr-tracker.html?pr=348887
+# 💫 https://github.com/JaKooLit 💫 #
+# Packages and Fonts config
 
-    #    (cliphist.overrideAttrs (_old: {
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "sentriz";
-    #       repo = "cliphist";
-    #       rev = "c49dcd26168f704324d90d23b9381f39c30572bd";
-    #       sha256 = "sha256-2mn55DeF8Yxq5jwQAjAcvZAwAg+pZ4BkEitP6S2N0HY=";
-    #       };
-    #        vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
-    #      }))
+{ pkgs, inputs, ...}: let
 
- ## From systemPackages.nix
+  python-packages = pkgs.python3.withPackages (
+    ps:
+      with ps; [
+        requests
+        pyquery # needed for hyprland-dots Weather script
+        ]
+    );
 
- # System Packages
-
-    #  override for AGS to keep it at v1
-       (ags.overrideAttrs (oldAttrs: {
-        inherit (oldAttrs) pname;
-        version = "1.8.2";
-      }))
-
-    cava
+  in {
+  environment.systemPackages = (with pkgs; [
+  # System Packages
+    baobab
+    btrfs-progs
     clang
+    curl
     cpufrequtils
     duf
     eza
-    fastfetch
-    ffmpeg
-    glib # for gsettings to work
-    git
+    ffmpeg   
+    glib #for gsettings to work
     gsettings-qt
-    killall
+    git
+    killall  
     libappindicator
     libnotify
-    (mpv.override { scripts = [ mpvScripts.mpris ]; }) # with tray
-    openssl # required by Rainbow borders
+    openssl #required by Rainbow borders
     pciutils
+    vim
     wget
     xdg-user-dirs
     xdg-utils
-    #AGS version 2.x not backward compatible with v1 at this time
-    #ags 
+
+    fastfetch
+    (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
+    #ranger
+      
+    # Hyprland Stuff
+    (ags.overrideAttrs (oldAttrs: {
+        inherit (oldAttrs) pname;
+        version = "1.8.2";
+      }))
+    #ags    
     btop
+    brightnessctl # for brightness control
+    #cava
     cliphist
     eog
-    feh
+    gnome-system-monitor
     file-roller
     grim
-    gtk-engine-murrine # for gtk themes
-    hyprlock
-    imagemagick
+    gtk-engine-murrine #for gtk themes
+    hyprcursor # requires unstable channel
+    hypridle # requires unstable channel
+    imagemagick 
     inxi
     jq
     kitty
-    libsForQt5.qtstyleplugin-kvantum # kvantum
-    libsForQt5.qt5ct
+    libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
     nwg-look # requires unstable channel
+    nvtopPackages.full
     pamixer
     pavucontrol
     playerctl
     polkit_gnome
     pyprland
+    libsForQt5.qt5ct
     qt6ct
     qt6.qtwayland
-    qt6Packages.qtstyleplugin-kvantum # kvantum
+    qt6Packages.qtstyleplugin-kvantum #kvantum
     rofi-wayland
     slurp
     swappy
@@ -81,11 +80,15 @@
     swww
     unzip
     wallust
-    wdisplays
     wl-clipboard
     wlogout
     yad
     yt-dlp
+
+    #waybar  # if wanted experimental next line
+    #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
+  ]) ++ [
+	  python-packages
   ];
 
   # FONTS
@@ -95,10 +98,7 @@
     noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
-    terminus_font
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
-
-  # Added per VIMjoyner vidoe on setting up nixd
-  nix.nixPath = ["nixpkgs = ${inputs.nixpkgs}"];
-}
+	  terminus_font
+    nerd-fonts.jetbrains-mono
+ 	];
+  }
