@@ -48,6 +48,15 @@ body:
     validations:
       required: true
       
+  - type: textarea
+    id: dots
+    attributes:
+      label: KooL's Dots version
+      description: |
+        Paste the output of `find ~/.config/hypr/ -type f -name 'v*' -exec basename {} \;` .
+        This is just KooL's Dots hyprland version.
+    validations:
+      required: true
 
   - type: textarea
     id: desc
