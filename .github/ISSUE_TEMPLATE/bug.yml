@@ -3,7 +3,7 @@ description: Something is not working right
 title: "[Bug]: "
 labels: ["bug"]
 assignees:
-  - Ja.KooLit
+  - JaKooLit
 
 body:
   - type: checkboxes
@@ -32,7 +32,19 @@ body:
       label: System Info and Version
       description: |
         Paste the output of `inxi -CGIsSMnr` here.
-        install inxi if command not found
+        install inxi if command not found.
+      value: "<details>
+        <summary>System/Version info</summary>
+
+
+        ```
+
+        <Paste the output of the command here, without removing any formatting around this>
+
+        ```
+
+
+        </details>"
     validations:
       required: true
       
