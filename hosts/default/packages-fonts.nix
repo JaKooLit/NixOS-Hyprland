@@ -98,7 +98,8 @@
     noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
-	  terminus_font
+	   terminus_font
     nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
  	];
   }
