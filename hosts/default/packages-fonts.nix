@@ -63,7 +63,7 @@
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
     nwg-look # requires unstable channel
-    nvtopPackages.full
+    nvtopPackages.panthor
     pamixer
     pavucontrol
     playerctl
@@ -98,8 +98,9 @@
     noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
-	   terminus_font
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
+	  terminus_font
+    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable
+    #nerd-fonts.jetbrains-mono # unstable
+    #nerd-fonts.fira-code # unstable
  	];
   }

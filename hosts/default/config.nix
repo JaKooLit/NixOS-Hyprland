@@ -238,7 +238,7 @@
 	    wireplumber.enable = true;
   	  };
 	
-    pulseaudio.enable = false;
+    # pulseaudio.enable = false; #unstable
 	  udev.enable = true;
 	  envfs.enable = true;
 	  dbus.enable = true;

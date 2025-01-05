@@ -4,7 +4,7 @@
   description = "KooL's NixOS-Hyprland"; 
   	
   inputs = {
-  	nixpkgs.url = "nixpkgs/nixos-unstable";
+  	nixpkgs.url = "nixpkgs/nixos-24.11";
 	#wallust.url = "git+https://codeberg.org/explosion-mental/wallust?ref=dev";
 	hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
 	distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes"; 
