@@ -13,7 +13,7 @@
   imports = [
     ./hardware.nix
     ./users.nix
-    ./packages-&-fonts.nix
+    ./packages-fonts.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
@@ -238,6 +238,7 @@
 	    wireplumber.enable = true;
   	  };
 	
+    pulseaudio.enable = false;
 	  udev.enable = true;
 	  envfs.enable = true;
 	  dbus.enable = true;
@@ -336,7 +337,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = false; # replaced with services.pulseaudio 04-Jan-2025
 
   # Security / Polkit
   security.rtkit.enable = true;

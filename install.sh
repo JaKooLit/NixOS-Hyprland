@@ -125,6 +125,8 @@ echo "$CAT In the meantime, go grab a coffee and stretch your legs or atleast do
 echo "-----"
 echo "$ERROR YES!!! YOU read it right!!.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
+echo "-----"
+printf "\n%.0s" {1..1}
 
 # Set the Nix configuration for experimental features
 NIX_CONFIG="experimental-features = nix-command flakes"

@@ -47,7 +47,7 @@
     #ags    
     btop
     brightnessctl # for brightness control
-    #cava
+    cava
     cliphist
     eog
     gnome-system-monitor
@@ -98,7 +98,8 @@
     noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
-	  terminus_font
+	   terminus_font
     nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
  	];
   }
