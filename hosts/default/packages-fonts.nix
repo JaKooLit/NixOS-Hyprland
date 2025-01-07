@@ -51,7 +51,6 @@
     cliphist
     eog
     gnome-system-monitor
-    file-roller
     grim
     gtk-engine-murrine #for gtk themes
     hyprcursor # requires unstable channel
@@ -82,6 +81,7 @@
     wallust
     wl-clipboard
     wlogout
+    xarchiver
     yad
     yt-dlp
 
@@ -99,8 +99,8 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
-    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable
-    #nerd-fonts.jetbrains-mono # unstable
-    #nerd-fonts.fira-code # unstable
+    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    nerd-fonts.jetbrains-mono # unstable
+    nerd-fonts.fira-code # unstable
  	];
   }

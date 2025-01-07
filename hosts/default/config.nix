@@ -141,7 +141,7 @@
 	  hyprland = {
       enable = true;
 		  #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		  portalPackage = [ "pkgs.xdg-desktop-portal-hyprland" ];
+		  portalPackage = pkgs.xdg-desktop-portal-hyprland;
   	  xwayland.enable = true;
       };
 
@@ -238,7 +238,7 @@
 	    wireplumber.enable = true;
   	  };
 	
-    # pulseaudio.enable = false; #unstable
+    pulseaudio.enable = false; #unstable
 	  udev.enable = true;
 	  envfs.enable = true;
 	  dbus.enable = true;
