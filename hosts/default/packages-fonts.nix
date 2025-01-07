@@ -69,9 +69,9 @@
     polkit_gnome
     pyprland
     libsForQt5.qt5ct
-    qt6ct
-    qt6.qtwayland
-    qt6Packages.qtstyleplugin-kvantum #kvantum
+    kdePackages.qt6ct
+    kdePackages.qtwayland
+    kdePackages.qtstyleplugin-kvantum #kvantum
     rofi-wayland
     slurp
     swappy
