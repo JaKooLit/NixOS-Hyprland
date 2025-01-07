@@ -215,8 +215,11 @@ fi
 #return to NixOS-Hyprland
 cd ~/NixOS-Hyprland
 
-# copy fastfetch config for NixOS
-cp -r assets/fastfetch ~/.config/ || true
+# copy fastfetch config if nixos.png is not present
+if [ ! -f "$HOME/.config/fastfetch/nixos.png" ]; then
+    cp -r assets/fastfetch "$HOME/.config/"
+fi
+
 
 printf "\n%.0s" {1..2}
 if command -v Hyprland &> /dev/null; then
