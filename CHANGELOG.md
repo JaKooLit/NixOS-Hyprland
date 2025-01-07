@@ -1,5 +1,8 @@
 ## Changelogs
 
+### 07 Jan 2025
+- switched to non-development Hyprland
+
 ### 27 Dec 2024
 - moved Packages and Fonts in a separate.nix. Thanks to @dwilliam62 for the lead
 

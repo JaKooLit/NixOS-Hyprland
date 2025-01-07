@@ -5,13 +5,12 @@
   	
   inputs = {
   	nixpkgs.url = "nixpkgs/nixos-unstable";
-	#wallust.url = "git+https://codeberg.org/explosion-mental/wallust?ref=dev";
-	hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
+	#hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
 	distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes"; 
   	};
 
   outputs = 
-	inputs@{ self,nixpkgs, ... }:
+	inputs@{ self, nixpkgs, ... }:
     	let
       system = "x86_64-linux";
       host = "NixOS-Hyprland";

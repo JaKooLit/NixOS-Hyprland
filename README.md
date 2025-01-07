@@ -49,7 +49,8 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 
 > [!NOTE]
-> The Hyprland that is installed will be from the development branch, otherwise known as -git version
+> By default, all packages set to install are from NixOS unstable channel
+
 
 #### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Configs are NOT written in Nix. Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots). 

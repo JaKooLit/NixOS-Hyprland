@@ -51,7 +51,6 @@
     cliphist
     eog
     gnome-system-monitor
-    file-roller
     grim
     gtk-engine-murrine #for gtk themes
     hyprcursor # requires unstable channel
@@ -63,16 +62,16 @@
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
     nwg-look # requires unstable channel
-    nvtopPackages.full
+    nvtopPackages.panthor
     pamixer
     pavucontrol
     playerctl
     polkit_gnome
     pyprland
     libsForQt5.qt5ct
-    qt6ct
-    qt6.qtwayland
-    qt6Packages.qtstyleplugin-kvantum #kvantum
+    kdePackages.qt6ct
+    kdePackages.qtwayland
+    kdePackages.qtstyleplugin-kvantum #kvantum
     rofi-wayland
     slurp
     swappy
@@ -82,6 +81,7 @@
     wallust
     wl-clipboard
     wlogout
+    xarchiver
     yad
     yt-dlp
 
@@ -98,8 +98,9 @@
     noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
-	   terminus_font
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
+	  terminus_font
+    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    nerd-fonts.jetbrains-mono # unstable
+    nerd-fonts.fira-code # unstable
  	];
   }
