@@ -40,11 +40,7 @@
     #ranger
       
     # Hyprland Stuff
-    (ags.overrideAttrs (oldAttrs: {
-        inherit (oldAttrs) pname;
-        version = "1.8.2";
-      }))
-    #ags    
+    ags # note: defined at flake.nix to download and install ags v1    
     btop
     brightnessctl # for brightness control
     cava

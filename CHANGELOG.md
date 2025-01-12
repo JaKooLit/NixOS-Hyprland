@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 12 Jan 2025
+- switch to final version of aylurs-gtk-shell-v1
+- default oh-my-zsh theme was changed to `funky`
+
 ### 07 Jan 2025
 - switched to non-development Hyprland
 

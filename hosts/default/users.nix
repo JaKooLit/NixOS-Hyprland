@@ -42,7 +42,7 @@ in
       ohMyZsh = {
         enable = true;
         plugins = ["git"];
-        theme = "xiong-chiamiov-plus"; 
+        theme = "funky"; 
       	};
       
       autosuggestions.enable = true;
