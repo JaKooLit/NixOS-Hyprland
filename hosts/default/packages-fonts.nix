@@ -1,5 +1,5 @@
 # 💫 https://github.com/JaKooLit 💫 #
-# Packages and Fonts config
+# Packages and Fonts config including the "programs" options
 
 { pkgs, inputs, ...}: let
 
@@ -99,4 +99,67 @@
     nerd-fonts.jetbrains-mono # unstable
     nerd-fonts.fira-code # unstable
  	];
+  
+    nixpkgs.config.allowUnfree = true;
+  
+  programs = {
+	  hyprland = {
+      enable = true;
+		  #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		  portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  	  xwayland.enable = true;
+      };
+
+	
+	  waybar.enable = true;
+	  hyprlock.enable = true;
+	  firefox.enable = true;
+	  git.enable = true;
+    nm-applet.indicator = true;
+    #neovim.enable = true;
+
+	  thunar.enable = true;
+	  thunar.plugins = with pkgs.xfce; [
+		  exo
+		  mousepad
+		  thunar-archive-plugin
+		  thunar-volman
+		  tumbler
+  	  ];
+	
+    virt-manager.enable = false;
+    
+    #steam = {
+    #  enable = true;
+    #  gamescopeSession.enable = true;
+    #  remotePlay.openFirewall = true;
+    #  dedicatedServer.openFirewall = true;
+    #};
+    
+    xwayland.enable = true;
+
+    dconf.enable = true;
+    seahorse.enable = true;
+    fuse.userAllowOther = true;
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+	
+  };
+
+  # Extra Portal Configuration
+  xdg.portal = {
+    enable = true;
+    wlr.enable = false;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+  };
+
   }
