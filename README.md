@@ -190,6 +190,9 @@ Hope you enjoy! 🎉
 > [!TIP]
 > KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
+#### ⌚ Setting timezone
+- by default, timezone is depending on your location using internet. 
+- To set your timezone manually, edit `host/<your-hostname>/config.nix`
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
 - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)

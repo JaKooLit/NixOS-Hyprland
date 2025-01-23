@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 23 Jan 2025
+- set the timezone to take automatically based on IP location
+
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
 - default oh-my-zsh theme was changed to `funky`
