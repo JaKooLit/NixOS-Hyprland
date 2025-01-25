@@ -19,7 +19,6 @@ in
       extraPackages = with pkgs; [
         libva
 			  libva-utils
-        nvtopPackages.amd	
         ];
     };
   };

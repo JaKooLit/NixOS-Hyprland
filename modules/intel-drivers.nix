@@ -22,7 +22,6 @@ in
         libvdpau-va-gl
         libva
 			  libva-utils
-        nvtopPackages.intel	
       ];
     };
   };

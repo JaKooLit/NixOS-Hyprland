@@ -59,7 +59,8 @@
     kitty
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
-    nwg-look 
+    nwg-look
+    #nvtopPackages.intel	 
     pamixer
     pavucontrol
     playerctl
