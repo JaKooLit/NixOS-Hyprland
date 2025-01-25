@@ -52,7 +52,6 @@
     gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
-    hyprcursor # requires unstable channel
     hypridle # requires unstable channel
     imagemagick 
     inxi
@@ -60,9 +59,7 @@
     kitty
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
-    nwg-look # requires unstable channel
-    nvtopPackages.intel
-    nvtopPackages.amd
+    nwg-look 
     pamixer
     pavucontrol
     playerctl

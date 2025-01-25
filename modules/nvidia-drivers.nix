@@ -23,7 +23,8 @@ in
   	  nvidia-vaapi-driver
   	  vdpauinfo
 	    libva
- 		  libva-utils		
+ 		  libva-utils
+      #nvtopPackages.nvidia		
     	];
   	};
 
