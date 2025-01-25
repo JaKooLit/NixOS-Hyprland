@@ -61,7 +61,8 @@
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
     nwg-look # requires unstable channel
-    nvtopPackages.panthor
+    nvtopPackages.intel
+    nvtopPackages.amd
     pamixer
     pavucontrol
     playerctl
@@ -106,8 +107,8 @@
   programs = {
 	  hyprland = {
       enable = true;
-		  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		  portalPackage = pkgs.xdg-desktop-portal-hyprland;
+		    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   	  xwayland.enable = true;
       };
 
