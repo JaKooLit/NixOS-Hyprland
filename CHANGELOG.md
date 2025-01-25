@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 25 Jan 2025
+- time will now be based via location
+- switched to full stable branch
+
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
 - default oh-my-zsh theme was changed to `funky`
