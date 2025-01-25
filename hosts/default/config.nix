@@ -35,8 +35,8 @@
  	  ];
 
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" ];
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    #kernelModules = [ "v4l2loopback" ];
+    #  extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     
     initrd = { 
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
@@ -48,7 +48,7 @@
     #  "vm.max_map_count" = 2147483642;
     #};
 
-    ## BOOT LOADERS: NOT USE ONLY 1. either systemd or grub  
+    ## BOOT LOADERS: NOTE USE ONLY 1. either systemd or grub  
     # Bootloader SystemD
     loader.systemd-boot.enable = true;
   
@@ -57,7 +57,7 @@
 	    canTouchEfiVariables = true;
   	  };
 
-    loader.timeout = 1;    
+    loader.timeout = 5;    
   			
     # Bootloader GRUB
     #loader.grub = {
