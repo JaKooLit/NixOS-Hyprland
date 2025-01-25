@@ -12,6 +12,9 @@
     );
 
   in {
+
+  nixpkgs.config.allowUnfree = true;
+  
   environment.systemPackages = (with pkgs; [
   # System Packages
     baobab
@@ -95,17 +98,15 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
-    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    nerd-fonts.jetbrains-mono # unstable
-    nerd-fonts.fira-code # unstable
+    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    #nerd-fonts.jetbrains-mono # unstable
+    #nerd-fonts.fira-code # unstable
  	];
-  
-    nixpkgs.config.allowUnfree = true;
   
   programs = {
 	  hyprland = {
       enable = true;
-		  #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
 		  portalPackage = pkgs.xdg-desktop-portal-hyprland;
   	  xwayland.enable = true;
       };
@@ -160,6 +161,6 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal
     ];
-  };
+    };
 
   }
