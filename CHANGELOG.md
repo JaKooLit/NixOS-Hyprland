@@ -1,7 +1,7 @@
 ## Changelogs
 
-## 25 Jan 2025
-- time will now be based via location
+## 26 Jan 2025
+- system time will now be based via location or UTC
 - switched to full stable branch
 
 ## 12 Jan 2025
