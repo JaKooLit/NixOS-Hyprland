@@ -21,7 +21,7 @@ in
         intel-media-driver
         libvdpau-va-gl
         libva
-			  libva-utils
+			  libva-utils	
       ];
     };
   };

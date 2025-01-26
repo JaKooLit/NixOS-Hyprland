@@ -1,5 +1,5 @@
 # 💫 https://github.com/JaKooLit 💫 #
-# Packages and Fonts config including the "programs" options
+# Packages and Fonts config
 
 { pkgs, inputs, ...}: let
 
@@ -12,9 +12,6 @@
     );
 
   in {
-
-  nixpkgs.config.allowUnfree = true;
-  
   environment.systemPackages = (with pkgs; [
   # System Packages
     baobab
@@ -52,6 +49,7 @@
     gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
+    hyprcursor # requires unstable channel
     hypridle # requires unstable channel
     imagemagick 
     inxi
@@ -59,8 +57,8 @@
     kitty
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
-    nwg-look
-    #nvtopPackages.intel	 
+    nwg-look # requires unstable channel
+    nvtopPackages.panthor
     pamixer
     pavucontrol
     playerctl
@@ -97,69 +95,8 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
-    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    #nerd-fonts.jetbrains-mono # unstable
-    #nerd-fonts.fira-code # unstable
+    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    nerd-fonts.jetbrains-mono # unstable
+    nerd-fonts.fira-code # unstable
  	];
-  
-  programs = {
-	  hyprland = {
-      enable = true;
-		    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  	  xwayland.enable = true;
-      };
-
-	
-	  waybar.enable = true;
-	  hyprlock.enable = true;
-	  firefox.enable = true;
-	  git.enable = true;
-    nm-applet.indicator = true;
-    #neovim.enable = true;
-
-	  thunar.enable = true;
-	  thunar.plugins = with pkgs.xfce; [
-		  exo
-		  mousepad
-		  thunar-archive-plugin
-		  thunar-volman
-		  tumbler
-  	  ];
-	
-    virt-manager.enable = false;
-    
-    #steam = {
-    #  enable = true;
-    #  gamescopeSession.enable = true;
-    #  remotePlay.openFirewall = true;
-    #  dedicatedServer.openFirewall = true;
-    #};
-    
-    xwayland.enable = true;
-
-    dconf.enable = true;
-    seahorse.enable = true;
-    fuse.userAllowOther = true;
-    mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-	
-  };
-
-  # Extra Portal Configuration
-  xdg.portal = {
-    enable = true;
-    wlr.enable = false;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
-    ];
-    };
-
   }
