@@ -59,9 +59,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 
 > [!NOTE]
-> By default, all packages set to install are from NixOS stable channel and hyprland is abit old version
-
-- one reason why I switched to stable branch is because NixOS unstable is really freaking unstable / buggy 
+> By default, all packages set to install are from NixOS unstable channel
 
 
 #### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧

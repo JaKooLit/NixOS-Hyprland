@@ -18,7 +18,7 @@ in
     hardware.graphics = {
       extraPackages = with pkgs; [
         libva
-			  libva-utils
+			  libva-utils	
         ];
     };
   };
