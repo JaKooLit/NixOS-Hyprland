@@ -1,7 +1,8 @@
 ## Changelogs
 
-## 23 Jan 2025
-- set the timezone to take automatically based on IP location
+## 26 Jan 2025
+- time will now be based via location
+- switched to full stable branch
 
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
