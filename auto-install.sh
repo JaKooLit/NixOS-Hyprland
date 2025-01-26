@@ -112,6 +112,30 @@ sed -i 's/keyboardLayout\s*=\s*"\([^"]*\)"/keyboardLayout = "'"$keyboardLayout"'
 
 echo "-----"
 
+#Check if user already has git username set,
+#if they don't, request the user set them or select the defaults,
+#if they do, do nothing
+
+git_user=$(git config --global user.name)
+if [ -z "$git_user" ]; then
+  read -rp "$CAT Enter a username for Git: [ installer ] " git_user
+  if [ -z "$git_user" ]; then
+    git_user="installer"
+  fi
+  git config --global user.name ""$git_user""
+fi
+#Then do the same for git email
+git_email=$(git config --global user.email)
+if [ -z "$git_email" ]; then
+  read -rp "$CAT Enter an email for Git: [ installer@gmail.com ] " git_email
+  if [ -z "$git_email" ]; then
+    git_email="installer@gmail.com"
+  fi
+  git config --global user.email ""$git_email""
+fi
+
+echo "-----"
+
 installusername=$(echo $USER)
 sed -i 's/username\s*=\s*"\([^"]*\)"/username = "'"$installusername"'"/' ./flake.nix
 
@@ -141,9 +165,8 @@ done
 
 echo "-----"
 
-echo "$NOTE Setting Required Nix Settings Then Going To Install"
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
+echo "$NOTE Starting install..."
+
 git add .
 sed -i 's/host\s*=\s*"\([^"]*\)"/host = "'"$hostName"'"/' ./flake.nix
 
