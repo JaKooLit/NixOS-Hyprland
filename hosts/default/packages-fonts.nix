@@ -60,7 +60,7 @@
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
     nwg-look
-    #nvtopPackages.intel	 
+    nvtopPackages.full	 
     pamixer
     pavucontrol
     playerctl

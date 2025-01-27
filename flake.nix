@@ -7,8 +7,10 @@
 	nixpkgs.url = "nixpkgs/nixos-24.11";
   	#nixpkgs.url = "nixpkgs/nixos-unstable";
 	#hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
-	distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
+
 	ags.url = "github:aylur/ags/v1"; # aylurs-gtk-shell-v1
+	
+	#distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes"; #for grub themes
   	};
 
   outputs = 
@@ -36,7 +38,7 @@
 			};
 	   		modules = [ 
 				./hosts/${host}/config.nix 
-				inputs.distro-grub-themes.nixosModules.${system}.default
+				#inputs.distro-grub-themes.nixosModules.${system}.default #for grub themes
 				];
 			};
 		};

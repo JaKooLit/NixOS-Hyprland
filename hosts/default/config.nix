@@ -94,7 +94,7 @@
     plymouth.enable = true;
   };
 
-  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh!
+  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
   #distro-grub-themes = {
   #  enable = true;
   #  theme = "nixos";
