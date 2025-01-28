@@ -11,10 +11,12 @@
 	ags.url = "github:aylur/ags/v1"; # aylurs-gtk-shell-v1
 	
 	#distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes"; #for grub themes
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   	};
 
   outputs = 
-	inputs@{ self, nixpkgs, ... }:
+	inputs@{ self, nixpkgs, systems, ... }:
     	let
       system = "x86_64-linux";
       host = "NixOS-Hyprland";
@@ -26,6 +28,8 @@
        	allowUnfree = true;
        	};
       };
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+    treefmtEval = eachSystem (pkgs: inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
       {
 	nixosConfigurations = {
@@ -42,5 +46,9 @@
 				];
 			};
 		};
+    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+    checks = eachSystem (pkgs: {
+    formatting = treefmtEval.${pkgs.system}.config.build.check self;
+    });
 	};
 }
