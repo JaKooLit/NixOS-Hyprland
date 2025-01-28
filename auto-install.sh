@@ -273,4 +273,3 @@ else
   printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...${RESET}\n\n"
   exit 1
 fi
-

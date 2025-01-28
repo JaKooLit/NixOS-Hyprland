@@ -12,6 +12,9 @@
     );
 
   in {
+
+  nixpkgs.config.allowUnfree = true;
+  
   environment.systemPackages = (with pkgs; [
   # System Packages
     baobab
@@ -49,7 +52,6 @@
     gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
-    hyprcursor # requires unstable channel
     hypridle # requires unstable channel
     imagemagick 
     inxi
@@ -57,8 +59,8 @@
     kitty
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
-    nwg-look # requires unstable channel
-    nvtopPackages.panthor
+    nwg-look
+    nvtopPackages.full	 
     pamixer
     pavucontrol
     playerctl
@@ -95,18 +97,16 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
-    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    nerd-fonts.jetbrains-mono # unstable
-    nerd-fonts.fira-code # unstable
+    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    #nerd-fonts.jetbrains-mono # unstable
+    #nerd-fonts.fira-code # unstable
  	];
-  
-    nixpkgs.config.allowUnfree = true;
   
   programs = {
 	  hyprland = {
       enable = true;
-		  #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		  portalPackage = pkgs.xdg-desktop-portal-hyprland;
+		    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   	  xwayland.enable = true;
       };
 
@@ -160,6 +160,6 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal
     ];
-  };
+    };
 
   }

@@ -1,5 +1,12 @@
 ## Changelogs
 
+## 27 Jan 2025
+- switched to zen kernel for now until NixOS team fix the Kernel 6.13 plague
+
+## 26 Jan 2025
+- time will now be based via location
+- switched to full stable branch
+
 ## 12 Jan 2025
 - switch to final version of aylurs-gtk-shell-v1
 - default oh-my-zsh theme was changed to `funky`

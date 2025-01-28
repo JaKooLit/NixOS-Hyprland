@@ -24,7 +24,8 @@
 
   # BOOT related stuff
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest; # Kernel
+    kernelPackages = pkgs.linuxPackages_zen; # Kernel
+    #kernelPackages = pkgs.linuxPackages_latest; # Kernel 
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
@@ -35,8 +36,8 @@
  	  ];
 
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" ];
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    #kernelModules = [ "v4l2loopback" ];
+    #  extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     
     initrd = { 
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
@@ -48,7 +49,7 @@
     #  "vm.max_map_count" = 2147483642;
     #};
 
-    ## BOOT LOADERS: NOT USE ONLY 1. either systemd or grub  
+    ## BOOT LOADERS: NOTE USE ONLY 1. either systemd or grub  
     # Bootloader SystemD
     loader.systemd-boot.enable = true;
   
@@ -57,7 +58,7 @@
 	    canTouchEfiVariables = true;
   	  };
 
-    loader.timeout = 1;    
+    loader.timeout = 5;    
   			
     # Bootloader GRUB
     #loader.grub = {
@@ -93,7 +94,7 @@
     plymouth.enable = true;
   };
 
-  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh!
+  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
   #distro-grub-themes = {
   #  enable = true;
   #  theme = "nixos";
@@ -117,7 +118,10 @@
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
-  time.timeZone = "Asia/Seoul";
+  services.automatic-timezoned.enable = true; #based on IP location
+  
+  #https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  #time.timeZone = "Asia/Seoul"; # Set local timezone
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -172,7 +176,7 @@
 	    wireplumber.enable = true;
   	  };
 	
-    pulseaudio.enable = false; #unstable
+    #pulseaudio.enable = false; #unstable
 	  udev.enable = true;
 	  envfs.enable = true;
 	  dbus.enable = true;

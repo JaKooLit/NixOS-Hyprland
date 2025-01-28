@@ -59,7 +59,9 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 
 > [!NOTE]
-> By default, all packages set to install are from NixOS unstable channel
+> By default, all packages set to install are from NixOS stable channel and hyprland is abit old version
+
+- one reason why I switched to stable branch is because NixOS unstable is really freaking unstable / buggy 
 
 
 #### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
@@ -77,8 +79,10 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 ### 👋 👋 👋 Requirements 
 - You must be running on NixOS.
 - Minimum space required is 40gb. 60gb is recommended as NixOS is a space-hungry distro
-- Must have installed NIXOS using GPT & UEFI. Systemd-boot is configured as the default bootloader, for GRUB users, you need to edit `hosts/default/config.nix` before installing
-- Manually edit your host specific files. The host is the specific computer you're installing onto.
+- Must have installed NIXOS using GPT & UEFI. Systemd-boot is configured as the default bootloader
+
+> [!TIP]
+> if you use GRUB as bootloader you need to edit `hosts/default/config.nix` before install and `flake.nix` for additional grub themes
 
 
 #### 🖥️ Multi Host & User Configuration
@@ -190,6 +194,9 @@ Hope you enjoy! 🎉
 > [!TIP]
 > KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
+#### ⌚ Setting timezone
+- by default, timezone is depending on your location using internet. 
+- To set your timezone manually, edit `host/<your-hostname>/config.nix`
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
 - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
