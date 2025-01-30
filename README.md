@@ -188,6 +188,8 @@ Hope you enjoy! 🎉
 #### 🪤 My NixOS configs 
 - on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
 
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 #### ⌨ Keybinds
 - Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
