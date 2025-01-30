@@ -50,6 +50,19 @@ fi
 echo "-----"
 printf "\n%.0s" {1..1}
 
+# Aylurs GTK Shell v1 installation option
+read -p "Do you want to add AGS (aylur's gtk shell) v1 for Desktop Overview Like? (Y/n): " answer
+
+answer=${answer:-Y}
+
+if [[ "$answer" == "n" || "$answer" == "N" ]]; then
+    sed -i 's/^ags.url = "github:aylur\/ags\/v1";/#ags.url = "github:aylur\/ags\/v1";/' flake.nix
+    sed -i 's/^ags/#ags/' host/default/packages-fonts.nix
+fi
+
+echo "-----"
+printf "\n%.0s" {1..1}
+
 echo "$NOTE Default options are in brackets []"
 echo "$NOTE Just press enter to select the default"
 sleep 1
