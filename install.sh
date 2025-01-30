@@ -56,8 +56,8 @@ read -p "${CAT} Do you want to add ${ORANGE}AGS (aylur's gtk shell) v1${RESET} f
 answer=${answer:-Y}
 
 if [[ "$answer" == "n" || "$answer" == "N" ]]; then
-    sed -i 's/^ags.url = "github:aylur\/ags\/v1";/#ags.url = "github:aylur\/ags\/v1";/' flake.nix
-    sed -i 's/^ags/#ags/' hosts/default/packages-fonts.nix
+    sed -i 's|^\([[:space:]]*\)ags.url = "github:aylur/ags/v1";|\1#ags.url = "github:aylur/ags/v1";|' flake.nix
+    sed -i 's|^\([[:space:]]*\)ags|\1#ags|' hosts/default/packages-fonts.nix
 fi
 
 echo "-----"
