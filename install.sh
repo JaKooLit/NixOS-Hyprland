@@ -51,7 +51,7 @@ echo "-----"
 printf "\n%.0s" {1..1}
 
 # Aylurs GTK Shell v1 installation option
-read -p "${CAT} Do you want to add ${ORANGE}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
+read -p "${CAT} Do you want to add ${YELLOW}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
 
 answer=${answer:-Y}
 
