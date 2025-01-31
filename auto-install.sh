@@ -9,7 +9,8 @@ ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
 WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 5)
+MAGENTA=$(tput setaf 5)
+WARNING=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
@@ -82,7 +83,7 @@ echo "-----"
 printf "\n%.0s" {1..1}
 
 # Aylurs GTK Shell v1 installation option
-read -p "${CAT} Do you want to add ${ORANGE}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
+read -p "${CAT} Do you want to add ${MAGENTA}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
 
 answer=${answer:-Y}
 
