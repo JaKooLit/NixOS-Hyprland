@@ -3,9 +3,9 @@
 "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
 "logo": {
   "source": "~/.config/fastfetch/nixos.png",
-  "type": "auto",
-  "height":20,
-  "width":40,
+  "type": "kitty-direct",
+  "height": 18,
+  "width": 36,
   "padding": {
     "top": 1
     }
