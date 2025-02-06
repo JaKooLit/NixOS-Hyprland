@@ -28,9 +28,10 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
+set -e 
 
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
-  echo "Verified this is NixOS."
+  echo "$OK Verified this is NixOS."
   echo "-----"
 else
   echo "$ERROR This is not NixOS or the distribution information is not available."
