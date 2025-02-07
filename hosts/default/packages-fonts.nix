@@ -43,7 +43,7 @@
     #ranger
       
     # Hyprland Stuff
-    ags # note: defined at flake.nix to download and install ags v1    
+    ags #for Desktop overview  
     btop
     brightnessctl # for brightness control
     cava

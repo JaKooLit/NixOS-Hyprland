@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 30 Jan 2025
+- AGS (aylurs gtk shell) v1 is now optional
+
 ## 27 Jan 2025
 - switched to zen kernel for now until NixOS team fix the Kernel 6.13 plague
 
