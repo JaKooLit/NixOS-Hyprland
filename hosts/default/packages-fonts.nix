@@ -43,6 +43,7 @@
     #ranger
       
     # Hyprland Stuff
+    #(ags.overrideAttrs (oldAttrs: { inherit (oldAttrs) pname; version = "1.8.2"; }))
     #ags #for Desktop overview  
     btop
     brightnessctl # for brightness control
@@ -52,7 +53,7 @@
     gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
-    hypridle # requires unstable channel
+    hypridle
     imagemagick 
     inxi
     jq
@@ -97,9 +98,9 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
-    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    #nerd-fonts.jetbrains-mono # unstable
-    #nerd-fonts.fira-code # unstable
+    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    nerd-fonts.jetbrains-mono # unstable
+    nerd-fonts.fira-code # unstable
  	];
   
   programs = {
