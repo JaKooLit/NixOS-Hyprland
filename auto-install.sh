@@ -1,20 +1,36 @@
 # 💫 https://github.com/JaKooLit 💫 #
 
 #!/usr/bin/env bash
-set -e
+clear
+
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
+	╠╩╗│ ││ │║    ╠═╣└┬┘├─┘├┬┘│  ├─┤│││ ││ 2025
+	╩ ╩└─┘└─┘╩═╝  ╩ ╩ ┴ ┴  ┴└─┴─┘┴ ┴┘└┘─┴┘ 
+\e[0m"
+printf "\n%.0s" {1..1}
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
+WARN="$(tput setaf 1)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
-ORANGE=$(tput setaf 166)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+MAGENTA="$(tput setaf 5)"
+ORANGE="$(tput setaf 214)"
+WARNING="$(tput setaf 1)"
+YELLOW="$(tput setaf 3)"
+GREEN="$(tput setaf 2)"
+BLUE="$(tput setaf 4)"
+SKY_BLUE="$(tput setaf 6)"
+RESET="$(tput sgr0)"
+
+set -e
 
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
-  echo "Verified this is NixOS."
+  echo "${OK} Verified this is NixOS."
   echo "-----"
 else
   echo "$ERROR This is not NixOS or the distribution information is not available."
@@ -50,7 +66,6 @@ if [ -d "NixOS-Hyprland" ]; then
   fi
 else
   echo "$OK Thank you for choosing KooL's NixOS-Hyprland"
-  echo "$OK I hope you find your time here enjoyable!"
 fi
 
 echo "-----"
@@ -81,8 +96,21 @@ fi
 echo "-----"
 printf "\n%.0s" {1..1}
 
+# Aylurs GTK Shell v1 installation option
+read -p "${CAT} Do you want to add ${MAGENTA}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
+
+answer=${answer:-Y}
+
+if [[ "$answer" == "n" || "$answer" == "N" ]]; then
+    sed -i 's|^\([[:space:]]*\)ags.url = "github:aylur/ags/v1";|\1#ags.url = "github:aylur/ags/v1";|' flake.nix
+    sed -i 's|^\([[:space:]]*\)ags|\1#ags|' hosts/default/packages-fonts.nix
+fi
+
+echo "-----"
+printf "\n%.0s" {1..1}
+
 echo "$NOTE Default options are in brackets []"
-echo "$NOTE Just press enter to select the default"
+echo "$NOTE Just press ${MAGENTA}ENTER${RESET} to select the default"
 sleep 1
 
 echo "-----"
@@ -273,4 +301,3 @@ else
   printf "\n${WARN} Hyprland failed to install. Please check Install-Logs...${RESET}\n\n"
   exit 1
 fi
-

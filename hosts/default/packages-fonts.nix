@@ -43,7 +43,7 @@
     #ranger
       
     # Hyprland Stuff
-    ags #for Desktop overview  
+    #ags #for Desktop overview  
     btop
     brightnessctl # for brightness control
     cava
