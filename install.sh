@@ -1,9 +1,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 
 #!/usr/bin/env bash
-
-clear
-
+set -e
 printf "\n%.0s" {1..2}  
 echo -e "\e[35m
 	╦╔═┌─┐┌─┐╦    ╦ ╦┬ ┬┌─┐┬─┐┬  ┌─┐┌┐┌┌┬┐
@@ -27,11 +25,8 @@ GREEN="$(tput setaf 2)"
 BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
-
-set -e 
-
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
-  echo "$OK Verified this is NixOS."
+  echo "Verified this is NixOS."
   echo "-----"
 else
   echo "$ERROR This is not NixOS or the distribution information is not available."
@@ -61,19 +56,6 @@ if command -v lspci > /dev/null 2>&1; then
     echo "${NOTE} Nvidia GPU detected. Setting up for nvidia..."
     sed -i '/drivers\.nvidia\.enable = false;/s/drivers\.nvidia\.enable = false;/ drivers.nvidia.enable = true;/' hosts/default/config.nix
   fi
-fi
-
-echo "-----"
-printf "\n%.0s" {1..1}
-
-# Aylurs GTK Shell v1 installation option
-read -p "${CAT} Do you want to add ${MAGENTA}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
-
-answer=${answer:-Y}
-
-if [[ "$answer" == "n" || "$answer" == "N" ]]; then
-    sed -i 's|^\([[:space:]]*\)ags.url = "github:aylur/ags/v1";|\1#ags.url = "github:aylur/ags/v1";|' flake.nix
-    sed -i 's|^\([[:space:]]*\)ags|\1#ags|' hosts/default/packages-fonts.nix
 fi
 
 echo "-----"
