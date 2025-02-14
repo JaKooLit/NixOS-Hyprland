@@ -24,8 +24,8 @@
 
   # BOOT related stuff
   boot = {
-    #kernelPackages = pkgs.linuxPackages_zen; # zen Kernel
-    kernelPackages = pkgs.linuxPackages_latest; # Kernel 
+    kernelPackages = pkgs.linuxPackages_zen; # zen Kernel
+    #kernelPackages = pkgs.linuxPackages_latest; # Kernel 
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
