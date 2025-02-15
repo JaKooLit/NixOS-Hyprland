@@ -44,7 +44,7 @@
       
     # Hyprland Stuff
     #(ags.overrideAttrs (oldAttrs: { inherit (oldAttrs) pname; version = "1.8.2"; }))
-    #ags #for Desktop overview  
+    ags_1 # desktop overview  
     btop
     brightnessctl # for brightness control
     cava

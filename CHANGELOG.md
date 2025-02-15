@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 15 Feb 2025
+- Returning AGS overview option :)
+
 ## 13 Feb 2025
 - disabled AGS permanently as it is trying to install version 2.2.1 even I set override
 - switched to latest kernel (from zen kernel) to unstable channel (from 24.11)
