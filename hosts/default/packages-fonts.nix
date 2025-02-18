@@ -17,6 +17,7 @@
   
   environment.systemPackages = (with pkgs; [
   # System Packages
+    bc
     baobab
     btrfs-progs
     clang
