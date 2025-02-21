@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 22 Feb 2025
+- replaced eog with loupe
+
 ## 15 Feb 2025
 - Returning AGS overview option :)
 
