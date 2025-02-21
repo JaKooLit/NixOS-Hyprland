@@ -17,6 +17,7 @@
   
   environment.systemPackages = (with pkgs; [
   # System Packages
+    bc
     baobab
     btrfs-progs
     clang
@@ -43,7 +44,8 @@
     #ranger
       
     # Hyprland Stuff
-    ags #for Desktop overview  
+    #(ags.overrideAttrs (oldAttrs: { inherit (oldAttrs) pname; version = "1.8.2"; }))
+    ags_1 # desktop overview  
     btop
     brightnessctl # for brightness control
     cava
@@ -52,7 +54,7 @@
     gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
-    hypridle # requires unstable channel
+    hypridle
     imagemagick 
     inxi
     jq
@@ -97,16 +99,18 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
-    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    #nerd-fonts.jetbrains-mono # unstable
-    #nerd-fonts.fira-code # unstable
+    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    nerd-fonts.jetbrains-mono # unstable
+    nerd-fonts.fira-code # unstable
  	];
   
   programs = {
 	  hyprland = {
       enable = true;
-		    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+		    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland development or -git version
+        #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-development
+		    
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
   	  xwayland.enable = true;
       };
 

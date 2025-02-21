@@ -24,7 +24,7 @@
 
   # BOOT related stuff
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen; # Kernel
+    kernelPackages = pkgs.linuxPackages_zen; # zen Kernel
     #kernelPackages = pkgs.linuxPackages_latest; # Kernel 
 
     kernelParams = [
@@ -176,7 +176,7 @@
 	    wireplumber.enable = true;
   	  };
 	
-    #pulseaudio.enable = false; #unstable
+    pulseaudio.enable = false; #unstable
 	  udev.enable = true;
 	  envfs.enable = true;
 	  dbus.enable = true;

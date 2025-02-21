@@ -93,8 +93,17 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 #### 📦 How To Install Packages?
 - You can search the [Nix Packages](https://search.nixos.org/packages?) & [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
+- By default, all the packages are in NixOS-Hyprland
+- you can safely move directories `hosts` `modules` `flake.lock` & `flake.nix` in different single directory.
+- If you have a set a different custom hostname, you can safely remove the default directory inside hosts.
 - Then edit `hosts/<your-hostname>/configs.nix` , `hosts/<your-hostname>/packages-fonts.nix` and/or `hosts/<your-hostname>/user.nix` depending on what you want. `config.nix` is for system packages with options. ie `pro  grams.hyprland.enable=true`, while packages-fonts.nix is for adding packages and changes made to user.nix are only available to the current user.
-- Once you are finished editing, run `sudo nixos-rebuild switch --flake .#<your-hostname>` NOTE. omit < > and ensure you are in the directory where your **flake.nix** is. (For example: If you make the hostname `nixos` then your command should be `sudo nixos-rebuild switch --flake .#nixos`)
+- Once you are finished editing, run `sudo nixos-rebuild switch --flake <path-where-you-move those directories above>/#"${hostName}"` NOTE. omit < > and ensure you are in the directory where your **flake.nix** is. (For example: If you make the hostname `nixos` then your command should be `sudo nixos-rebuild switch --flake .#nixos`)
+
+- If you decided NOT to move the directories stated above, then you can rebuild with 
+```
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
+```
+
 
 #### 🙋 Having Issues / Questions?
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!

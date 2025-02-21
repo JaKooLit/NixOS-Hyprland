@@ -71,9 +71,9 @@ read -p "${CAT} Do you want to add ${MAGENTA}AGS or aylur's gtk shell v1${RESET}
 
 answer=${answer:-Y}
 
-if [[ "$answer" == "n" || "$answer" == "N" ]]; then
-    sed -i 's|^\([[:space:]]*\)ags.url = "github:aylur/ags/v1";|\1#ags.url = "github:aylur/ags/v1";|' flake.nix
-    sed -i 's|^\([[:space:]]*\)ags|\1#ags|' hosts/default/packages-fonts.nix
+if [[ "$answer" =~ ^[Nn]$ ]]; then
+    # sed -i 's|^\([[:space:]]*\)ags.url = "github:aylur/ags/v1";|\1#ags.url = "github:aylur/ags/v1";|' flake.nix
+    sed -i 's|^\([[:space:]]*\)ags_1|\1#ags_1|' hosts/default/packages-fonts.nix
 fi
 
 echo "-----"
