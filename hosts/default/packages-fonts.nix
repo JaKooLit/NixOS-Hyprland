@@ -50,7 +50,7 @@
     brightnessctl # for brightness control
     cava
     cliphist
-    eog
+    loupe
     gnome-system-monitor
     grim
     gtk-engine-murrine #for gtk themes
@@ -61,6 +61,7 @@
     kitty
     libsForQt5.qtstyleplugin-kvantum #kvantum
     networkmanagerapplet
+    nwg-displays
     nwg-look
     nvtopPackages.full	 
     pamixer
@@ -99,9 +100,11 @@
     jetbrains-mono
     font-awesome
 	  terminus_font
+    victor-mono
     #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
     nerd-fonts.jetbrains-mono # unstable
     nerd-fonts.fira-code # unstable
+    nerd-fonts.fantasque-sans-mono #unstable
  	];
   
   programs = {
