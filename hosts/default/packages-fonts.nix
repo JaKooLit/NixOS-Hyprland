@@ -45,7 +45,7 @@
       
     # Hyprland Stuff
     #(ags.overrideAttrs (oldAttrs: { inherit (oldAttrs) pname; version = "1.8.2"; }))
-    ags_1 # desktop overview  
+    ags # desktop overview  
     btop
     brightnessctl # for brightness control
     cava
@@ -99,23 +99,24 @@
     noto-fonts-cjk-sans
     jetbrains-mono
     font-awesome
-	  terminus_font
+    terminus_font
     victor-mono
-    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    nerd-fonts.jetbrains-mono # unstable
-    nerd-fonts.fira-code # unstable
-    nerd-fonts.fantasque-sans-mono #unstable
+    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    (nerdfonts.override {fonts = ["FantasqueSansMono"];}) # stable banch
+    
+    #nerd-fonts.jetbrains-mono # unstable 
+    #nerd-fonts.fira-code # unstable
+    #nerd-fonts.fantasque-sans-mono #unstable
  	];
   
   programs = {
 	  hyprland = {
       enable = true;
-		    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland development or -git version
-        #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-development
-		    
-        portalPackage = pkgs.xdg-desktop-portal-hyprland;
+     	package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
+     	#portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
   	  xwayland.enable = true;
-      };
+    };
 
 	
 	  waybar.enable = true;
