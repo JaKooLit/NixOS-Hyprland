@@ -112,9 +112,10 @@
   programs = {
 	  hyprland = {
       enable = true;
-     	package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
-     	#portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
+     	  #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		    #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
+     	  
+        portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
   	  xwayland.enable = true;
     };
 
