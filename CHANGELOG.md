@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 09 Mar 2025
+- replaced eza with lsd
+
 ## 23 Feb 2025
 - added Victor Mono Font for proper hyprlock font rendering for Dots v2.3.12
 - added Fantasque Sans Mono Nerd for Kitty
