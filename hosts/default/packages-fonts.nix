@@ -67,7 +67,6 @@
     pavucontrol
     playerctl
     polkit_gnome
-    pyprland
     libsForQt5.qt5ct
     kdePackages.qt6ct
     kdePackages.qtwayland

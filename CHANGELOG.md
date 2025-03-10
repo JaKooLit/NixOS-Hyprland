@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 10 March 2025
+- Dropped pyprland in favor of hyprland built in tool for a drop down like terminal and Desktop magnifier
+
 ## 09 Mar 2025
 - replaced eza with lsd
 
