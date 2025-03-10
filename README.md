@@ -58,10 +58,12 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 > This is not purely written in Nix-Language. You should check ZaneyOS. Link below
 
 
-> [!NOTE]
-> By default, all packages set to install are from NixOS stable channel and hyprland is abit old version
+> [!IMPORTANT]
+> By default, all packages set to install are from NixOS stable channel. Note Hyprland to be installed will be of OLD version
 
-- one reason why I switched to stable branch is because NixOS unstable is really freaking unstable / buggy 
+- 25 Feb 2025 - I am really tired of baby sitting Unstable Channel. NixOS unstable d Most UNSTABLE Distro I have tried. If you are new to NixOS, stay on stable channel. However, if you wish to use unstable channel, you need to adjust `flake.nix` , `hosts/host/packages-fonts.nix`, `hosts/host/config.nix` before running the install.sh
+
+- Make sure to read Hyprland's [WIKI](https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/)
 
 
 #### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
@@ -236,11 +238,19 @@ Hope you enjoy! 🎉
 
 - Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
 
-- You can also buy me Coffee Through ko-fi.com or Coffee.com 🤩
+- you can also give support through coffee's or btc 😊
 
-<a href='https://ko-fi.com/jakoolit' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jakoolit)
+
+or
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/JaKooLit)
+
+Or you can donate cryto on my btc wallet :)  
+> 1N3MeV2dsX6gQB42HXU6MF2hAix1mqjo8i
+
+![Bitcoin](https://github.com/user-attachments/assets/7ed32f8f-c499-46f0-a53c-3f6fbd343699)
+
 
 ####  📹 Youtube videos (Click to view and watch the playlist) 📹
 [![Youtube Playlist Thumbnail](https://raw.githubusercontent.com/JaKooLit/screenshots/main/Youtube.png)](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)

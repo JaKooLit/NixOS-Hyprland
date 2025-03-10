@@ -176,7 +176,7 @@
 	    wireplumber.enable = true;
   	  };
 	
-    pulseaudio.enable = false; #unstable
+    #pulseaudio.enable = false; #unstable
 	  udev.enable = true;
 	  envfs.enable = true;
 	  dbus.enable = true;
@@ -259,6 +259,8 @@
   # Extra Logitech Support
   hardware.logitech.wireless.enable = false;
   hardware.logitech.wireless.enableGraphical = false;
+
+  hardware.pulseaudio.enable = false; # stable branch
 
   # Bluetooth
   hardware = {
