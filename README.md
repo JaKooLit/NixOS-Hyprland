@@ -142,8 +142,8 @@ nix-shell -p git vim curl pciutils
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland
 ```
-- *You should stay in this folder for the rest of the install*
-- Create the host folder for your machine(s)
+- *You should stay in this directory for the rest of the install*
+- Create the host directory for your machine(s)
 ```
 cp -r hosts/default hosts/<your-desired-hostname>
 ```
@@ -180,9 +180,9 @@ cd ~/NixOS-Hyprland
 ```
 
 > [!IMPORTANT]
-> need to download in your home folder as some part of the installer are going back again to ~/NixOS-Hyprland
+> need to download in your home directory as some part of the installer are going back again to ~/NixOS-Hyprland
 
-- *You should stay in this folder for the rest of the install*
+- *You should stay in this directory for the rest of the install*
 - edit `hosts/default/config.nix` to your liking. Once you are satisfied, ran `./install.sh`
 
 

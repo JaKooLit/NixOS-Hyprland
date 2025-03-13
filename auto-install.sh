@@ -53,13 +53,13 @@ echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "NixOS-Hyprland" ]; then
-  echo "$NOTE NixOS-Hyprland exists, backing up to NixOS-Hyprland-backups folder."
+  echo "$NOTE NixOS-Hyprland exists, backing up to NixOS-Hyprland-backups directory."
   if [ -d "NixOS-Hyprland-backups" ]; then
-    echo "Moving current version of NixOS-Hyprland to backups folder."
+    echo "Moving current version of NixOS-Hyprland to backups directory."
     sudo mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
     sleep 1
   else
-    echo "$NOTE Creating the backups folder & moving NixOS-Hyprland to it."
+    echo "$NOTE Creating the backups directory & moving NixOS-Hyprland to it."
     mkdir -p NixOS-Hyprland-backups
     sudo mv "$HOME"/NixOS-Hyprland NixOS-Hyprland-backups/"$backupname"
     sleep 1
@@ -207,7 +207,7 @@ cp -r 'assets/.zshrc' ~/
 printf "Installing GTK-Themes and Icons..\n"
 
 if [ -d "GTK-themes-icons" ]; then
-    echo "$NOTE GTK themes and Icons folder exist..deleting..." 
+    echo "$NOTE GTK themes and Icons directory exist..deleting..." 
     rm -rf "GTK-themes-icons" 
 fi
 
@@ -217,7 +217,7 @@ if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ; then
     chmod +x auto-extract.sh
     ./auto-extract.sh
     cd ..
-    echo "$OK Extracted GTK Themes & Icons to ~/.icons & ~/.themes folders" 
+    echo "$OK Extracted GTK Themes & Icons to ~/.icons & ~/.themes directories" 
 else
     echo "$ERROR Download failed for GTK themes and Icons.." 
 fi
@@ -242,7 +242,7 @@ printf "\n%.0s" {1..3}
 # Clean up
 # GTK Themes and Icons
 if [ -d "GTK-themes-icons" ]; then
-    echo "$NOTE GTK themes and Icons folder exist..deleting..." 
+    echo "$NOTE GTK themes and Icons directory exist..deleting..." 
     rm -rf "GTK-themes-icons" 
 fi
 
@@ -250,14 +250,13 @@ echo "-----"
 printf "\n%.0s" {1..3}
 
 
-# Cloning Hyprland-Dots repo to home folder
+# Cloning Hyprland-Dots repo to home directory
 # KooL's Dots installation
-printf "$NOTE Downloading Hyprland dots from main to HOME folder..\n"
+printf "$NOTE Downloading Hyprland dots from main to HOME directory..\n"
 if [ -d ~/Hyprland-Dots ]; then
   cd ~/Hyprland-Dots
   git stash
   git pull
-  git stash apply
   chmod +x copy.sh
   ./copy.sh 
 else
