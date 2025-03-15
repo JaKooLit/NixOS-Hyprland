@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
 </p>
 
-![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/NixOS-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/NixOS-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/NixOS-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/9JEgZsfhex"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%9JEgZsfhex"> </a>
+![GitHub Repo stars](https://img.shields.io/github/stars/JaKooLit/NixOS-Hyprland?style=for-the-badge&color=cba6f7) ![GitHub last commit](https://img.shields.io/github/last-commit/JaKooLit/NixOS-Hyprland?style=for-the-badge&color=b4befe) ![GitHub repo size](https://img.shields.io/github/repo-size/JaKooLit/NixOS-Hyprland?style=for-the-badge&color=cba6f7) <a href="https://discord.gg/kool-tech-world"> <img src="https://img.shields.io/discord/1151869464405606400?style=for-the-badge&logo=discord&color=cba6f7&link=https%3A%2F%2Fdiscord.gg%kool-tech-world"> </a>
 
 
 <br/>
@@ -35,7 +35,7 @@
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
   <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
-  <a href="https://discord.gg/9JEgZsfhex"><kbd> <br> Discord <br> </kbd></a>
+  <a href="https://discord.gg/kool-tech-world"><kbd> <br> Discord <br> </kbd></a>
 </div><br>
 
 <p align="center">
@@ -142,8 +142,8 @@ nix-shell -p git vim curl pciutils
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland
 ```
-- *You should stay in this folder for the rest of the install*
-- Create the host folder for your machine(s)
+- *You should stay in this directory for the rest of the install*
+- Create the host directory for your machine(s)
 ```
 cp -r hosts/default hosts/<your-desired-hostname>
 ```
@@ -180,9 +180,9 @@ cd ~/NixOS-Hyprland
 ```
 
 > [!IMPORTANT]
-> need to download in your home folder as some part of the installer are going back again to ~/NixOS-Hyprland
+> need to download in your home directory as some part of the installer are going back again to ~/NixOS-Hyprland
 
-- *You should stay in this folder for the rest of the install*
+- *You should stay in this directory for the rest of the install*
 - edit `hosts/default/config.nix` to your liking. Once you are satisfied, ran `./install.sh`
 
 
@@ -221,7 +221,7 @@ Hope you enjoy! 🎉
 - OR, simply just revert into a previous generation of your system by choosing which generation to boot via your bootloader.
 
 #### 📒 Final Notes
-- join my discord channel [`Discord`](https://discord.com/invite/9JEgZsfhex)
+- join my discord channel [`Discord`](https://discord.com/invite/kool-tech-world)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
 
 #### ⏩ Contributing

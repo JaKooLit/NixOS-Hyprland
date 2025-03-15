@@ -3,7 +3,7 @@
 
 #export ZSH="$HOME/.oh-my-zsh"
 
-# Set-up icons for files/folders in terminal
+# Set-up icons for files/directories in terminal
 #alias ls='eza -a --icons'
 #alias ll='eza -al --icons'
 #alias lt='eza -a --tree --level=1 --icons'
