@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 20 March 2025
+- added findutils as dependencies
+
 ## 10 March 2025
 - Dropped pyprland in favor of hyprland built in tool for a drop down like terminal and Desktop magnifier
 
