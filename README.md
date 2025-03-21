@@ -224,9 +224,11 @@ Hope you enjoy! 🎉
 - join my discord channel [`Discord`](https://discord.com/invite/kool-tech-world)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
 
-#### ⏩ Contributing
-- As stated above, this script does not contain actual config files. The only objective of this repository is to get my configuration working with as few issues as possible.
-- If you want to contribute and/or test the Hyprland-Dotfiles (development branch), [`Hyprland-Dots-Development`](https://github.com/JaKooLit/Hyprland-Dots/tree/development) 
+#### ✍️ Contributing
+- As stated above, these script does not contain actual config files. These are only the installer of packages
+- If you want to contribute and/or test the Hyprland-Dotfiles (development branch), [`Hyprland-Dots-Development`](https://github.com/JaKooLit/Hyprland-Dots/tree/development)
+- Want to contribute on KooL-Hyprland-Dots Click [`HERE`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) for a guide how to contribute
+- Want to contribute on This Installer? Click [`HERE`](https://github.com/JaKooLit/NixOS-Hyprland/blob/main/CONTRIBUTING.md) for a guide how to contribute
 
 
 #### 👍👍👍 Thanks and Credits!
