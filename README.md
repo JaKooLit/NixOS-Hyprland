@@ -65,58 +65,81 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 - Make sure to read Hyprland's [WIKI](https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/)
 
-
-#### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
-- This Repo does not contain Hyprland Dots or configs! Configs are NOT written in Nix. Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots). 
-
-- The Hyprland-Dots used are constantly evolving / improving. you can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
-
+<details>
+<summary><strong> #### 🪧🪧🪧 Click for important announcements 🪧🪧🪧 </strong></summary>
+    
+- This Repo does not contain Hyprland Dots or configs!
+- Configs are NOT written in Nix
+- Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
+- The Hyprland-Dots used are constantly evolving / improving
+- You can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
 - GTK Themes and Icons will be pulled from [`LINK`](https://github.com/JaKooLit/GTK-themes-icons), including Bibata Cursor Modern Ice
-
 - The wallpapers offered to be downloaded towards the end are from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
+
+</details>
 
 > [!IMPORTANT]
 > Take note of the requirements
+> 
+<details>
+<summary><strong>### 👋 👋 👋 Requirements </strong></summary>
 
-### 👋 👋 👋 Requirements 
-- You must be running on NixOS.
-- Minimum space required is 40gb. 60gb is recommended as NixOS is a space-hungry distro
-- Must have installed NIXOS using GPT & UEFI. Systemd-boot is configured as the default bootloader
+- You must be running on NixOS 23.11+
+- 24.11+ recommended 
+- Minimum space required is 64gb. 128gb is recommended as NixOS is a space-hungry distro
+- Must have installed NIXOS using **GPT partition ** & Boot **UEFI**
+- `/boot` must be at least 512MB.
+- Systemd-boot is configured as the default bootloader
 
 > [!TIP]
 > if you use GRUB as bootloader you need to edit `hosts/default/config.nix` before install and `flake.nix` for additional grub themes
 
+</details>
+<details>
+<summary><strong>#### 🖥️ Multi Host & User Configuration </strong></summary>
 
-#### 🖥️ Multi Host & User Configuration
 - You can now define separate settings for different host machines and users!
 - Easily specify extra packages for your users in the users.nix file.
 - Easy to understand file structure and simple, but encompassing, configuration.
+  
+</details>
+<details>
+<summary><strong>#### 📦 How To Install Packages? </strong></summary>
 
-
-#### 📦 How To Install Packages?
-- You can search the [Nix Packages](https://search.nixos.org/packages?) & [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
+- You can search the [Nix Packages](https://search.nixos.org/packages?)
+- [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
 - By default, all the packages are in NixOS-Hyprland
-- you can safely move directories `hosts` `modules` `flake.lock` & `flake.nix` in different single directory.
+- You can safely move directories `hosts` `modules` `flake.lock` & `flake.nix` in different single directory.
 - If you have a set a different custom hostname, you can safely remove the default directory inside hosts.
-- Then edit `hosts/<your-hostname>/configs.nix` , `hosts/<your-hostname>/packages-fonts.nix` and/or `hosts/<your-hostname>/user.nix` depending on what you want. `config.nix` is for system packages with options. ie `pro  grams.hyprland.enable=true`, while packages-fonts.nix is for adding packages and changes made to user.nix are only available to the current user.
-- Once you are finished editing, run `sudo nixos-rebuild switch --flake <path-where-you-move those directories above>/#"${hostName}"` NOTE. omit < > and ensure you are in the directory where your **flake.nix** is. (For example: If you make the hostname `nixos` then your command should be `sudo nixos-rebuild switch --flake .#nixos`)
+- Then edit `hosts/<your-hostname>/configs.nix` , `hosts/<your-hostname>/packages-fonts.nix` and/or `hosts/<your-hostname>/user.nix` depending on what you want.
+- The `config.nix` file is for system packages with options. ie `pro  grams.hyprland.enable=true`,
+- The packages-fonts.nix file is for adding packages and changes made to user.nix are only available to the current user.
+- Once you are finished editing, run `sudo nixos-rebuild switch --flake <path-where-you-move those directories above>/#"${hostName}"`
 
-- If you decided NOT to move the directories stated above, then you can rebuild with 
+** NOTE. omit < > and ensure you are in the directory where your **flake.nix** is. 
+    - For example: If you make the hostname `nixos` then your command should be `sudo nixos-rebuild switch --flake .#nixos`
+- If you decided NOT to move the directories stated above, then you can rebuild with
+ 
 ```
 sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
 ```
+</details>
 
-
-#### 🙋 Having Issues / Questions?
+<details>
+<summary><strong> #### 🙋 Having Issues / Questions? </strong></summary>
+    
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!
 - If you have a question about KooL's Hyprland dots, see [`KooL's Dots WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki). Contained within the wiki is an FAQ, along with other pages for tips, keybinds, and more!
+</details>
 
-
-### ⬇️ Installations
+<details>
+<summary><strong>### ⬇️ Installations </strong></summary>
+    
 #### 📽 Youtube video for using this script
 - [KooL's Hyprland Dots on NixOS](https://youtu.be/nJLnRgnLPWI)
 
-#### 📜 1. Using auto install Script:
+<details>
+<summary>#### 📜 1. Using auto install Script: <</summary>
 - This is the easiest and recommended way of starting out. 
 - This script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chance of breakages and then it is up to you to fiddle with to your heart's content!
 - Simply copy this and run it:
@@ -127,11 +150,10 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 > [!NOTE]
 > pciutils is necessary to detect if you have an Nvidia card. 
 
+</details>
 
-
-#### 🦽 2. Manual:
 <details>
-<summary align=center>Click here 👉🏻 Manual Installation</summary>
+<summary> #### 🦽 2. Manual: </summary>
 
 - Run this command to ensure git, curl, vim & pciutils are installed: Note: or nano if you prefer nano for editing
 ```
@@ -162,11 +184,12 @@ Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 
 </details>
 
-#### 👉🏻 3. Alternative
+<details>
+<summary>#### 👉🏻 3. Alternative </summary>
+    
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
 > install.sh is a stripped version of auto-install.sh as it will not re-download repo
-
 
 - Run this command to ensure git, curl, vim & pciutils are installed: Note: or nano if you prefer nano for editing
 ```
@@ -178,6 +201,8 @@ nix-shell -p git curl pciutils
 git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland
 ```
+</details>
+</details>
 
 > [!IMPORTANT]
 > need to download in your home directory as some part of the installer are going back again to ~/NixOS-Hyprland
@@ -190,6 +215,8 @@ cd ~/NixOS-Hyprland
 Now when you want to rebuild the configuration, you have access to an alias called `flake-rebuild` that will rebuild the flake!
 
 Hope you enjoy! 🎉
+
+
 
 #### 💔 known issues 💔 
 - GTK themes, icons, and the cursor, are not applied automatically. gsettings does not seem to work.
@@ -207,35 +234,45 @@ Hope you enjoy! 🎉
 > [!TIP]
 > KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
-#### ⌚ Setting timezone
+<details>
+<summary><strong>#### ⌚ Setting timezone </strong></summary>
+    
 - by default, timezone is depending on your location using internet. 
 - To set your timezone manually, edit `host/<your-hostname>/config.nix`
+</details>
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
 - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
-### 🔙 Reverting back to your default configs
+<details>
+<summary><strong> ### 🔙 Reverting back to your default configs </strong></summary>
+    
 - If you use flakes, you can just simply locate your default or previous configs. CD into it and execute `sudo nixos-rebuild switch --flake .#<your-previous-flake-hostname>`
 - If you didn't have flakes enabled previously, simply running `sudo nixos-rebuild switch` will revert you to your default configs contained in `/etc/nixos/` 
 - ⚠️ just remember to clean up your nix/store to remove unnessary garbage from your system `sudo nix-collect-garbage -d`
 - OR, simply just revert into a previous generation of your system by choosing which generation to boot via your bootloader.
+</details>
 
 #### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.com/invite/kool-tech-world)
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
 
-#### ✍️ Contributing
+<details>
+<summary><strong> #### ✍️ Contributing </strong></summary>
+    
 - As stated above, these script does not contain actual config files. These are only the installer of packages
 - If you want to contribute and/or test the Hyprland-Dotfiles (development branch), [`Hyprland-Dots-Development`](https://github.com/JaKooLit/Hyprland-Dots/tree/development)
 - Want to contribute on KooL-Hyprland-Dots Click [`HERE`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CONTRIBUTING.md) for a guide how to contribute
 - Want to contribute on This Installer? Click [`HERE`](https://github.com/JaKooLit/NixOS-Hyprland/blob/main/CONTRIBUTING.md) for a guide how to contribute
-
+</details>
 
 #### 👍👍👍 Thanks and Credits!
 - [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
 - [`ZaneyOS`](https://gitlab.com/Zaney/zaneyos) - template including auto installation script and idea. ZaneyOS is a NixOS-Hyprland with home-manager. Written in pure nix language
 
-## 💖 Support
+<details>
+<summary><strong> ## 💖 Support </strong></summary>
+    
 - a Star on my Github repos would be nice 🌟
 
 - Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
@@ -253,6 +290,7 @@ Or you can donate cryto on my btc wallet :)
 
 ![Bitcoin](https://github.com/user-attachments/assets/7ed32f8f-c499-46f0-a53c-3f6fbd343699)
 
+</details>
 
 ####  📹 Youtube videos (Click to view and watch the playlist) 📹
 [![Youtube Playlist Thumbnail](https://raw.githubusercontent.com/JaKooLit/screenshots/main/Youtube.png)](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
