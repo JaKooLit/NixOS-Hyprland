@@ -289,10 +289,10 @@ Or you can donate cryto on my btc wallet :)
 ![Bitcoin](https://github.com/user-attachments/assets/7ed32f8f-c499-46f0-a53c-3f6fbd343699)
 
 </details>
-
-####  📹 Youtube videos (Click to view and watch the playlist) 📹
+<details>
+<summary><strong> ####  📹 Youtube videos (Click to view and watch the playlist) 📹 </strong></summary>
 [![Youtube Playlist Thumbnail](https://raw.githubusercontent.com/JaKooLit/screenshots/main/Youtube.png)](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
-
+</details>
 
 ## 🥰🥰 💖💖 👍👍👍
 [![Stargazers over time](https://starchart.cc/JaKooLit/NixOS-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/NixOS-Hyprland)
