@@ -202,26 +202,24 @@ git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprl
 cd ~/NixOS-Hyprland
 ```
 </details>
-</details>
+
 
 > [!IMPORTANT]
 > need to download in your home directory as some part of the installer are going back again to ~/NixOS-Hyprland
 
 - *You should stay in this directory for the rest of the install*
 - edit `hosts/default/config.nix` to your liking. Once you are satisfied, ran `./install.sh`
-
-
-
 Now when you want to rebuild the configuration, you have access to an alias called `flake-rebuild` that will rebuild the flake!
+
+</details>
 
 Hope you enjoy! 🎉
 
-
-
-#### 💔 known issues 💔 
+<details>
+<summary><strong> #### 💔 known issues 💔 </strong></summary>
 - GTK themes, icons, and the cursor, are not applied automatically. gsettings does not seem to work.
 - You can set GTK themes, icons, and the cursor, using nwg-look
-
+</details>
 
 #### 🪤 My NixOS configs 
 - on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
