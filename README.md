@@ -66,7 +66,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - Make sure to read Hyprland's [WIKI](https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/)
 
 <details>
-<summary><strong> #### 🪧🪧🪧 Click for important announcements 🪧🪧🪧 </strong></summary>
+<summary><strong> 🪧🪧🪧 Click for important announcements 🪧🪧🪧 </strong></summary>
     
 - This Repo does not contain Hyprland Dots or configs!
 - Configs are NOT written in Nix
@@ -82,7 +82,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 > Take note of the requirements
 > 
 <details>
-<summary><strong>### 👋 👋 👋 Requirements </strong></summary>
+<summary><strong>👋 👋 👋 Requirements </strong></summary>
 
 - You must be running on NixOS 23.11+
 - 24.11+ recommended 
@@ -96,7 +96,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 </details>
 <details>
-<summary><strong>#### 🖥️ Multi Host & User Configuration </strong></summary>
+<summary><strong> 🖥️ Multi Host & User Configuration </strong></summary>
 
 - You can now define separate settings for different host machines and users!
 - Easily specify extra packages for your users in the users.nix file.
@@ -104,7 +104,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
   
 </details>
 <details>
-<summary><strong>#### 📦 How To Install Packages? </strong></summary>
+<summary><strong> 📦 How To Install Packages? </strong></summary>
 
 - You can search the [Nix Packages](https://search.nixos.org/packages?)
 - [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
@@ -126,20 +126,20 @@ sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
 </details>
 
 <details>
-<summary><strong> #### 🙋 Having Issues / Questions? </strong></summary>
+<summary><strong>🙋 Having Issues / Questions? </strong></summary>
     
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!
 - If you have a question about KooL's Hyprland dots, see [`KooL's Dots WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki). Contained within the wiki is an FAQ, along with other pages for tips, keybinds, and more!
 </details>
 
-<details>
-<summary><strong>### ⬇️ Installations </strong></summary>
+
+<summary><strong>⬇️ Installation </strong></summary>
     
 #### 📽 Youtube video for using this script
 - [KooL's Hyprland Dots on NixOS](https://youtu.be/nJLnRgnLPWI)
 
 <details>
-<summary>#### 📜 1. Using auto install Script: <</summary>
+<summary>📜 1. Using auto install Script: <</summary>
 - This is the easiest and recommended way of starting out. 
 - This script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chance of breakages and then it is up to you to fiddle with to your heart's content!
 - Simply copy this and run it:
@@ -153,7 +153,7 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 </details>
 
 <details>
-<summary> #### 🦽 2. Manual: </summary>
+<summary>🦽 2. Manual: </summary>
 
 - Run this command to ensure git, curl, vim & pciutils are installed: Note: or nano if you prefer nano for editing
 ```
@@ -185,7 +185,7 @@ Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 </details>
 
 <details>
-<summary>#### 👉🏻 3. Alternative </summary>
+<summary>👉🏻 3. Alternative </summary>
     
 - auto install by running `./install.sh` after cloning and CD into NixOS-Hyprland
 > [!NOTE]
@@ -216,18 +216,18 @@ Now when you want to rebuild the configuration, you have access to an alias call
 Hope you enjoy! 🎉
 
 <details>
-<summary><strong> #### 💔 known issues 💔 </strong></summary>
+<summary><strong>💔 known issues 💔 </strong></summary>
 - GTK themes, icons, and the cursor, are not applied automatically. gsettings does not seem to work.
 - You can set GTK themes, icons, and the cursor, using nwg-look
 </details>
 
-#### 🪤 My NixOS configs 
+🪤 My NixOS configs 
 - on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
 
-#### 🎞️ AGS Overview DEMO
+🎞️ AGS Overview DEMO
 - in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
-#### ⌨ Keybinds
+⌨ Keybinds
 - Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 > [!TIP]
 > KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
@@ -243,7 +243,7 @@ Hope you enjoy! 🎉
 - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
 
 <details>
-<summary><strong> ### 🔙 Reverting back to your default configs </strong></summary>
+<summary><strong>🔙 Reverting back to your default configs </strong></summary>
     
 - If you use flakes, you can just simply locate your default or previous configs. CD into it and execute `sudo nixos-rebuild switch --flake .#<your-previous-flake-hostname>`
 - If you didn't have flakes enabled previously, simply running `sudo nixos-rebuild switch` will revert you to your default configs contained in `/etc/nixos/` 
@@ -256,7 +256,7 @@ Hope you enjoy! 🎉
 - Feel free to copy, re-distribute, and use this script however you want. Would appreciate if you give me some loves by crediting my work :)
 
 <details>
-<summary><strong> #### ✍️ Contributing </strong></summary>
+<summary><strong>✍️ Contributing </strong></summary>
     
 - As stated above, these script does not contain actual config files. These are only the installer of packages
 - If you want to contribute and/or test the Hyprland-Dotfiles (development branch), [`Hyprland-Dots-Development`](https://github.com/JaKooLit/Hyprland-Dots/tree/development)
@@ -264,12 +264,12 @@ Hope you enjoy! 🎉
 - Want to contribute on This Installer? Click [`HERE`](https://github.com/JaKooLit/NixOS-Hyprland/blob/main/CONTRIBUTING.md) for a guide how to contribute
 </details>
 
-#### 👍👍👍 Thanks and Credits!
+👍👍👍 Thanks and Credits!
 - [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
 - [`ZaneyOS`](https://gitlab.com/Zaney/zaneyos) - template including auto installation script and idea. ZaneyOS is a NixOS-Hyprland with home-manager. Written in pure nix language
 
 <details>
-<summary><strong> ## 💖 Support </strong></summary>
+<summary><strong>💖 Support </strong></summary>
     
 - a Star on my Github repos would be nice 🌟
 
@@ -290,9 +290,9 @@ Or you can donate cryto on my btc wallet :)
 
 </details>
 <details>
-<summary><strong> ####  📹 Youtube videos (Click to view and watch the playlist) 📹 </strong></summary>
+<summary><strong> 📹 Youtube videos (Click to view and watch the playlist) 📹 </strong></summary>
 [![Youtube Playlist Thumbnail](https://raw.githubusercontent.com/JaKooLit/screenshots/main/Youtube.png)](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
 </details>
 
-## 🥰🥰 💖💖 👍👍👍
+🥰🥰 💖💖 👍👍👍
 [![Stargazers over time](https://starchart.cc/JaKooLit/NixOS-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/NixOS-Hyprland)
