@@ -133,7 +133,7 @@ sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
 </details>
 
 
-<summary><strong>⬇️ Installation </strong></summary>
+## ⬇️ Installation 
     
 #### 📽 Youtube video for using this script
 - [KooL's Hyprland Dots on NixOS](https://youtu.be/nJLnRgnLPWI)
