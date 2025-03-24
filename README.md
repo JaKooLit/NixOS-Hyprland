@@ -16,8 +16,8 @@
 <br> 
   <a href="#announcement"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
   <a href="#autoinstall"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
-  <a href="#-2-manual"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
-  <a href="#-reverting-back-to-your-default-configs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
+  <a href="#manualinstall"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
+  <a href="#revertconfigs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
  </div><br>
 
 <p align="center">
@@ -163,6 +163,8 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 
 <details>
 <summary>🦽 2. Manual: </summary>
+<br>
+<div id="manualinstall">
 
 - Run this command to ensure git, curl, vim & pciutils are installed: Note: or nano if you prefer nano for editing
 ```
@@ -191,6 +193,7 @@ sudo nixos-rebuild switch --flake .#hostname
 
 Once done, you can install the GTK Themes and Hyprland-Dots. Links are above
 
+</div>
 </details>
 
 <details>
@@ -253,6 +256,8 @@ Hope you enjoy! 🎉
 
 <details>
 <summary><strong>🔙 Reverting back to your default configs </strong></summary>
+<br>
+<div id="revertconfigs">
     
 - If you use flakes, you can just simply locate your default or previous configs. CD into it and execute `sudo nixos-rebuild switch --flake .#<your-previous-flake-hostname>`
 - If you didn't have flakes enabled previously, simply running `sudo nixos-rebuild switch` will revert you to your default configs contained in `/etc/nixos/` 
@@ -276,6 +281,8 @@ Hope you enjoy! 🎉
 👍👍👍 Thanks and Credits!
 - [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
 - [`ZaneyOS`](https://gitlab.com/Zaney/zaneyos) - template including auto installation script and idea. ZaneyOS is a NixOS-Hyprland with home-manager. Written in pure nix language
+
+</div>
 
 <details>
 <summary><strong>💖 Support </strong></summary>
