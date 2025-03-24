@@ -24,6 +24,7 @@
     curl
     cpufrequtils
     duf
+    findutils
     ffmpeg   
     glib #for gsettings to work
     gsettings-qt
