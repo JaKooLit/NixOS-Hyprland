@@ -68,6 +68,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 <details>
 <summary><strong> 🪧🪧🪧 Click for important announcements 🪧🪧🪧 </strong></summary>  
 <div id="announcement"> 
+<br>
 - This Repo does not contain Hyprland Dots or configs!
 - Configs are NOT written in Nix
 - Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
@@ -75,6 +76,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - You can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
 - GTK Themes and Icons will be pulled from [`LINK`](https://github.com/JaKooLit/GTK-themes-icons), including Bibata Cursor Modern Ice
 - The wallpapers offered to be downloaded towards the end are from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
+<br>
 </div>
 </details>
 
