@@ -246,9 +246,11 @@ Hope you enjoy! 🎉
 
 <details>
 <summary><strong>#### ⌚ Setting timezone </strong></summary>
+<br>    
     
-- by default, timezone is depending on your location using internet. 
+- By default, your timezone is configiured automatically using the internet. 
 - To set your timezone manually, edit `host/<your-hostname>/config.nix`
+ 
 </details>
 
 #### 🫥 Improving performance for Older Nvidia Cards using driver 470
