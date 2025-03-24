@@ -66,8 +66,8 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - Make sure to read Hyprland's [WIKI](https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/)
 
 <details>
-<div id="announcement"> 
 <summary><strong> 🪧🪧🪧 Click for important announcements 🪧🪧🪧 </strong></summary>  
+<div id="announcement"> 
 - This Repo does not contain Hyprland Dots or configs!
 - Configs are NOT written in Nix
 - Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
