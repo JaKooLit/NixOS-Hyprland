@@ -15,7 +15,7 @@
 <div align="center">
 <br> 
   <a href="#announcement"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
-  <a href="#-1-using-auto-install-script"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
+  <a href="#autoinstall"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
   <a href="#-2-manual"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
   <a href="#-reverting-back-to-your-default-configs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
  </div><br>
@@ -143,8 +143,14 @@ sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
 
 <details>
 <summary>📜 1. Using auto install Script: <</summary>
+<br>
+<div id="autoinstall">
+    
 - This is the easiest and recommended way of starting out. 
-- This script is NOT meant to allow you to change every option that you can in the flake or help you install extra packages. It is simply here so you can get my configuration installed with as little chance of breakages and then it is up to you to fiddle with to your heart's content!
+- This script is NOT meant to allow you to change every option that you can in the flake.
+- It won't help you install extra packages.
+- It is simply here so you can get my configuration installed with as little chance of breakages.
+- It is up to you to fiddle with to your heart's content!
 - Simply copy this and run it:
 ```
 nix-shell -p git vim curl pciutils
@@ -152,7 +158,7 @@ sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh
 ```
 > [!NOTE]
 > pciutils is necessary to detect if you have an Nvidia card. 
-
+</div?
 </details>
 
 <details>
