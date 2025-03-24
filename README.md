@@ -14,7 +14,7 @@
 
 <div align="center">
 <br> 
-  <a href="#announcement-"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
+  <a href="#announcement"><kbd> <br> Read this First <br> </kbd></a>&ensp;&ensp;
   <a href="#-1-using-auto-install-script"><kbd> <br> Auto Install <br> </kbd></a>&ensp;&ensp;
   <a href="#-2-manual"><kbd> <br> Manual Install <br> </kbd></a>&ensp;&ensp;
   <a href="#-reverting-back-to-your-default-configs"><kbd> <br> Reverting to your previous config <br> </kbd></a>&ensp;&ensp;
@@ -70,8 +70,8 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 <br>    
 <div id="announcement">
 
-- ** This Repo does not contain Hyprland Dots or configs!**
-- ** Configs are NOT written in NIX language**
+- ** This Repo does not contain Hyprland Dots or configs! **
+- ** Configs are NOT written in NIX language **
 - Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
 - The Hyprland-Dots used are constantly evolving / improving
 - You can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
