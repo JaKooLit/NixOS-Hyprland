@@ -248,7 +248,7 @@ Hope you enjoy! 🎉
 <summary><strong>⌚ Setting timezone </strong></summary>
 <br>    
     
-- By default, your timezone is configiured automatically using the internet. 
+- By default, your timezone is configured automatically using the internet. 
 - To set your timezone manually, edit `host/<your-hostname>/config.nix`
  
 </details>
