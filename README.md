@@ -245,7 +245,7 @@ Hope you enjoy! 🎉
 > KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
 <details>
-<summary><strong>#### ⌚ Setting timezone </strong></summary>
+<summary><strong>⌚ Setting timezone </strong></summary>
 <br>    
     
 - By default, your timezone is configiured automatically using the internet. 
