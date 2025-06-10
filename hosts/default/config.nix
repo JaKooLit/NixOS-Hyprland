@@ -261,8 +261,10 @@
   #};
 
   # Extra Logitech Support
-  hardware.logitech.wireless.enable = false;
-  hardware.logitech.wireless.enableGraphical = false;
+  hardware = { 
+     logitech.wireless.enable = false;
+     logitech.wireless.enableGraphical = false;
+  }; 
 
   services.pulseaudio.enable = false; # stable branch
 
@@ -281,24 +283,26 @@
   };
 
   # Security / Polkit
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (
-        subject.isInGroup("users")
-          && (
-            action.id == "org.freedesktop.login1.reboot" ||
-            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-            action.id == "org.freedesktop.login1.power-off" ||
-            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-          )
-        )
-      {
-        return polkit.Result.YES;
-      }
+  security = { 
+    rtkit.enable = true;
+    polkit.enable = true;
+    polkit.extraConfig = ''
+     polkit.addRule(function(action, subject) {
+       if (
+         subject.isInGroup("users")
+           && (
+             action.id == "org.freedesktop.login1.reboot" ||
+             action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+             action.id == "org.freedesktop.login1.power-off" ||
+             action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+           )
+         )
+       {
+         return polkit.Result.YES;
+       }
     })
   '';
+ };
   security.pam.services.swaylock = {
     text = ''
       auth include login
