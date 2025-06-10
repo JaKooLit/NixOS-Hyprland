@@ -44,8 +44,8 @@
     #ranger
       
     # Hyprland Stuff
-    #(ags.overrideAttrs (oldAttrs: { inherit (oldAttrs) pname; version = "1.8.2"; }))
-    ags # desktop overview  
+    # Buuild AGS v1 from source
+    inputs.ags.packages.${pkgs.system}.default
     btop
     brightnessctl # for brightness control
     cava
