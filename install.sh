@@ -223,20 +223,20 @@ printf "\n%.0s" {1..3}
 
 # Cloning Hyprland-Dots repo to home directory
 # KooL's Dots installation
-printf "$NOTE Downloading Hyprland-Dots to HOME directory..\n"
-if [ -d ~/Hyprland-Dots ]; then
-  cd ~/Hyprland-Dots
+printf "$NOTE Downloading Hyprland-Dots NixOS-Dots branch to HOME directory..\n"
+if [ -d ~/Hyprland-Dots-NixOS ]; then
+  cd ~/Hyprland-Dots-NixOS
   git stash
   git pull
   chmod +x copy.sh
   ./copy.sh 
 else
-  if git clone --depth 1 https://github.com/JaKooLit/Hyprland-Dots ~/Hyprland-Dots; then
-    cd ~/Hyprland-Dots || exit 1
+  if git clone --depth 1 -b NixOS-Dots https://github.com/JaKooLit/Hyprland-Dots ~/Hyprland-Dots-NixOS; then
+    cd ~/Hyprland-Dots-NixOS || exit 1
     chmod +x copy.sh
     ./copy.sh 
   else
-    echo -e "$ERROR Can't download Hyprland-Dots"
+    echo -e "$ERROR Can't download Hyprland-Dots NixOS-Dots branch"
   fi
 fi
 
