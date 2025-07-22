@@ -21,7 +21,7 @@
     	let
       system = "x86_64-linux";
       host = "NixOS-Hyprland";
-      username = "dwilliams";
+      username = "alice";
 
     pkgs = import nixpkgs {
        	inherit system;
