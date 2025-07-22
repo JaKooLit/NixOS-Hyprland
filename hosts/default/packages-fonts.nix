@@ -44,8 +44,6 @@
     #ranger
       
     # Hyprland Stuff
-    # Buuild AGS v1 from source
-    inputs.ags.packages.${pkgs.system}.default
     btop
     brightnessctl # for brightness control
     cava

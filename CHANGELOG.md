@@ -1,5 +1,10 @@
 ## CHANGELOGS
 
+## 23 July 2025
+- switched to unstable channel
+- removed AGS from the option
+- return to main Hyprland-Dots repo
+
 ## 17 July 2025
 - Diverted KooLs Dots to download from specific branch until I figure out how to install quickshell on NixOS
 
