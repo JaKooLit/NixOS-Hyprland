@@ -8,6 +8,12 @@
 	#hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
 	#distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 	ags.url = "github:aylur/ags/v1"; # aylurs-gtk-shell-v1
+
+    quickshell = {
+        url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
   	};
 
   outputs = 
@@ -36,6 +42,7 @@
 	   		modules = [ 
 				./hosts/${host}/config.nix 
 				# inputs.distro-grub-themes.nixosModules.${system}.default
+                ./modules/quickshell.nix  # quickshell module
 				];
 			};
 		};
