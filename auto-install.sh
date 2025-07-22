@@ -249,10 +249,9 @@ fi
 echo "-----"
 printf "\n%.0s" {1..3}
 
-
 # Cloning Hyprland-Dots repo to home directory
 # KooL's Dots installation
-printf "$NOTE Downloading Hyprland dots from main to HOME directory..\n"
+printf "$NOTE Downloading Hyprland-Dots to HOME directory..\n"
 if [ -d ~/Hyprland-Dots ]; then
   cd ~/Hyprland-Dots
   git stash
@@ -269,7 +268,7 @@ else
   fi
 fi
 
-#return to NixOS-Hyprland directory
+#return to NixOS-Hyprland
 cd ~/NixOS-Hyprland
 
 # copy fastfetch config if nixos.png is not present

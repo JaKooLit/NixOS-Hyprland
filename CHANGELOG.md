@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 17 July 2025
+- Diverted KooLs Dots to download from specific branch until I figure out how to install quickshell on NixOS
+
 ## 20 March 2025
 - added findutils as dependencies
 
