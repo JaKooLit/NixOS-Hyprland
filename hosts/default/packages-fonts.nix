@@ -46,6 +46,7 @@
     # Hyprland Stuff
     # Buuild AGS v1 from source
     inputs.ags.packages.${pkgs.system}.default
+    hyprland-qt-support # for hyprland-qt-support
     btop
     brightnessctl # for brightness control
     cava
