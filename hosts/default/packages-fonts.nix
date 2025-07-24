@@ -42,7 +42,7 @@
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
     #ranger
-      
+
     # KooL Dots and Hyprland Stuff
     hyprland-qt-support # for hyprland-qt-support
     btop
