@@ -42,8 +42,9 @@
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
     #ranger
-      
-    # Hyprland Stuff
+
+    # KooL Dots and Hyprland Stuff
+    hyprland-qt-support # for hyprland-qt-support
     btop
     brightnessctl # for brightness control
     cava
