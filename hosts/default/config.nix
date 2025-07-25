@@ -344,6 +344,8 @@
 
   # For Electron apps to use wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # For Hyprland QT Support
+  environment.sessionVariables.QML_IMPORT_PATH = "${pkgs.hyprland-qt-support}/lib/qt-6/qml";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

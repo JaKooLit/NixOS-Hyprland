@@ -42,10 +42,9 @@
     fastfetch
     (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
     #ranger
-      
-    # Hyprland Stuff
-    # Buuild AGS v1 from source
-    inputs.ags.packages.${pkgs.system}.default
+
+    # KooL Dots and Hyprland Stuff
+    hyprland-qt-support # for hyprland-qt-support
     btop
     brightnessctl # for brightness control
     cava

@@ -96,19 +96,6 @@ fi
 echo "-----"
 printf "\n%.0s" {1..1}
 
-# Aylurs GTK Shell v1 installation option
-read -p "${CAT} Do you want to add ${MAGENTA}AGS or aylur's gtk shell v1${RESET} for Desktop Overview Like? (Y/n): " answer
-
-answer=${answer:-Y}
-
-if [[ "$answer" =~ ^[Nn]$ ]]; then
-    # sed -i 's|^\([[:space:]]*\)ags.url = "github:aylur/ags/v1";|\1#ags.url = "github:aylur/ags/v1";|' flake.nix
-    sed -i 's|^\([[:space:]]*\)ags_1|\1#ags_1|' hosts/default/packages-fonts.nix
-fi
-
-echo "-----"
-printf "\n%.0s" {1..1}
-
 echo "$NOTE Default options are in brackets []"
 echo "$NOTE Just press ${MAGENTA}ENTER${RESET} to select the default"
 sleep 1
