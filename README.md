@@ -59,7 +59,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 
 > [!IMPORTANT]
-> The install scripts assume a clean installation of NixOS or the understanding that it will replace any existing configuration
+> The install scripts assumes a clean installation of NixOS or the understanding that it will replace any existing configuration
 > It will not merge into an existing NixOS configuration. You can use the code from this respository to do so on your own
 
 > By default, all packages set to install are from NixOS stable channel. Note Hyprland to be installed will be of OLD version
