@@ -59,7 +59,11 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 
 > [!IMPORTANT]
+> The install scripts assume a clean installation of NixOS or the understanding that it will replace any existing configuraiton
+> It will not merge into an existing NixOS configuraiton. You can use the code from this respository to do so on your own
+
 > By default, all packages set to install are from NixOS stable channel. Note Hyprland to be installed will be of OLD version
+> 
 
 - 25 Feb 2025 - I am really tired of baby sitting Unstable Channel. NixOS unstable d Most UNSTABLE Distro I have tried. If you are new to NixOS, stay on stable channel. However, if you wish to use unstable channel, you need to adjust `flake.nix` , `hosts/host/packages-fonts.nix`, `hosts/host/config.nix` before running the install.sh
 
