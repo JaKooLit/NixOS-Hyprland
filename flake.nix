@@ -38,7 +38,7 @@
     let
       system = "x86_64-linux";
       host = "default";
-      username = "dwiilliams";
+      username = "dwilliams";
 
       pkgs = import nixpkgs {
         inherit system;
