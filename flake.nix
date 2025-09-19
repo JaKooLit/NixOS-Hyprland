@@ -8,6 +8,19 @@
     #hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
     #distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
+    ghostty = {
+      type = "github";
+      owner = "ghostty-org";
+      repo = "ghostty";
+    };
+
+    ags = {
+      type = "github";
+      owner = "aylur";
+      repo = "ags";
+      ref = "v1";
+    };
+
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +29,12 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      ags,
+      ...
+    }:
     let
       system = "x86_64-linux";
       host = "default";
