@@ -25,30 +25,65 @@ nhl_detect_gpu_and_toggle() {
     done < <(lspci | grep -iE '(VGA|3D)')
   fi
 
-  # Default all drivers to false, then enable the detected one
+  # Decide detected profile
+  local detected=""
+  if $has_vm; then
+    detected="vm"
+  elif $has_nvidia && $has_intel; then
+    detected="nvidia-laptop"
+  elif $has_nvidia; then
+    detected="nvidia"
+  elif $has_amd; then
+    detected="amd"
+  elif $has_intel; then
+    detected="intel"
+  fi
+
+  # Confirm or manually choose profile
+  local profile="$detected"
+  if [ -n "$detected" ]; then
+    printf "Detected GPU profile: %s. Use this? (Y/n): " "$detected"
+    read -r _ans || true
+    if [ -n "$_ans" ] && ! echo "$_ans" | grep -qi '^y'; then
+      profile=""
+    fi
+  fi
+  if [ -z "$profile" ]; then
+    printf "Enter your GPU profile (amd|intel|nvidia|nvidia-laptop|vm): [amd] "
+    read -r profile || true
+    profile=${profile:-amd}
+  fi
+
+  # Reset toggles
   sed -i 's/drivers\.amdgpu\.enable = [^;]*;/drivers.amdgpu.enable = false;/' "$cfg" || true
   sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = false;/' "$cfg" || true
   sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = false;/' "$cfg" || true
   sed -i 's/drivers\.nvidia-prime\.enable = [^;]*;/drivers.nvidia-prime.enable = false;/' "$cfg" || true
   sed -i 's/vm\.guest-services\.enable = [^;]*;/vm.guest-services.enable = false;/' "$cfg" || true
 
-  if $has_vm; then
-    sed -i 's/vm\.guest-services\.enable = [^;]*;/vm.guest-services.enable = true;/' "$cfg" || true
-  fi
-
-
-  if $has_nvidia && $has_intel; then
-    # NVIDIA laptop hybrid: enable PRIME and prefer Intel as primary (defaults for BusIDs remain)
-    sed -i 's/drivers\.nvidia-prime\.enable = [^;]*;/drivers.nvidia-prime.enable = true;/' "$cfg" || true
-    sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = false;/' "$cfg" || true
-    sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = true;/' "$cfg" || true
-  elif $has_nvidia; then
-    sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = true;/' "$cfg" || true
-  elif $has_amd; then
-    sed -i 's/drivers\.amdgpu\.enable = [^;]*;/drivers.amdgpu.enable = true;/' "$cfg" || true
-  elif $has_intel; then
-    sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = true;/' "$cfg" || true
-  fi
+  # Apply selected profile
+  case "$profile" in
+    vm)
+      sed -i 's/vm\.guest-services\.enable = [^;]*;/vm.guest-services.enable = true;/' "$cfg" || true
+      ;;
+    nvidia-laptop)
+      sed -i 's/drivers\.nvidia-prime\.enable = [^;]*;/drivers.nvidia-prime.enable = true;/' "$cfg" || true
+      sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = true;/' "$cfg" || true
+      ;;
+    nvidia)
+      sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = true;/' "$cfg" || true
+      ;;
+    amd)
+      sed -i 's/drivers\.amdgpu\.enable = [^;]*;/drivers.amdgpu.enable = true;/' "$cfg" || true
+      ;;
+    intel)
+      sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = true;/' "$cfg" || true
+      ;;
+    *)
+      # Fallback: do nothing if unknown
+      ;;
+  esac
+}
 }
 
 nhl_prompt_timezone_console() {
