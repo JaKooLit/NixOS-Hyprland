@@ -19,8 +19,8 @@
     inputs@{ self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
-      host = "NixOS-Hyprland";
-      username = "alice";
+      host = "default";
+      username = "dwiilliams";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -42,8 +42,8 @@
             ./hosts/${host}/config.nix
             # inputs.distro-grub-themes.nixosModules.${system}.default
             ./modules/quickshell.nix # quickshell module
-            ./mmodules/packages.nix # Software packages
-            ./mmodules/portals.nix # portal
+            ./modules/packages.nix # Software packages
+            ./modules/portals.nix # portal
             ./modules/themes.nix # Set dark theme
           ];
         };
