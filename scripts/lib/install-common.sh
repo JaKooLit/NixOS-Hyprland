@@ -84,7 +84,6 @@ nhl_detect_gpu_and_toggle() {
       ;;
   esac
 }
-}
 
 nhl_prompt_timezone_console() {
   # Args: $1 = hostName, $2 = defaultKeyboardLayout
