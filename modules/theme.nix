@@ -1,24 +1,54 @@
 { config, pkgs, ... }:
 
 {
+  # Ensure dconf is available for system defaults
+  programs.dconf.enable = true;
+
+  # Install themes/cursors that we reference
   environment.systemPackages = with pkgs; [
-    pkgs.adwaita-icon-theme  # Corrected for Adwaita theming and icons
-    papirus-icon-theme  # Dark-friendly icon theme
-    bibata-cursors  # Modern, dark-styled cursor theme
-    adwaita-qt  # For Qt apps to match GTK dark styling
+    adwaita-icon-theme
+    papirus-icon-theme
+    bibata-cursors
+    adwaita-qt
   ];
 
+  # Environment variables as a fallback for apps not honoring gsettings
   environment.variables = {
-    GTK_THEME = "Adwaita-dark";  # Set the GTK theme to dark (this will use available Adwaita resources)
-    GTK2_RC_FILES = "${pkgs.gnome-themes-extra}/share/themes/Adwaita-dark/gtk-2.0/gtkrc";  # Fallback for GTK2 apps
-    QT_STYLE_OVERRIDE = "adwaita-dark";  # Force Qt to use a dark style
-    QT_QPA_PLATFORMTHEME = "gtk3";  # Make Qt apps follow GTK theme
+    GTK_THEME = "Adwaita-dark"; # Fallback for GTK3/4 apps
+    GTK2_RC_FILES = "${pkgs.gnome-themes-extra}/share/themes/Adwaita-dark/gtk-2.0/gtkrc"; # GTK2 fallback
+    QT_QPA_PLATFORMTHEME = "gtk3"; # Qt apps follow GTK portal/theme
+    QT_STYLE_OVERRIDE = "adwaita-dark"; # Prefer dark style (adwaita-qt installed)
   };
 
-  programs.dconf.enable = true;  # Enables dconf for GTK app settings
-
+  # Cursor defaults for XDG/Wayland sessions
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
-    XCURSOR_SIZE = "24";  # Adjust as needed
+    XCURSOR_SIZE = "24";
+  };
+
+  # Set system dconf defaults so new users prefer dark by default.
+  # Users can still override per-user via gsettings.
+  environment.etc = {
+    "dconf/profile/user".text = ''
+user-db:user
+system-db:local
+'';
+    "dconf/db/local.d/00_theme".text = ''
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Adwaita-dark'
+icon-theme='Papirus-Dark'
+cursor-theme='Bibata-Modern-Classic'
+'';
+  };
+
+  # Rebuild the dconf database at activation to apply system defaults
+  system.activationScripts.dconfUpdate = {
+    deps = [ ];
+    text = ''
+      if [ -x ${pkgs.dconf}/bin/dconf ]; then
+        ${pkgs.dconf}/bin/dconf update || true
+      fi
+    '';
   };
 }
