@@ -32,20 +32,20 @@
     nm-applet.indicator = true;
     neovim = {
       enable = true;
-      defaultEditor = true;
+      defaultEditor = false;
     };
     xwayland.enable = true;
+
+    thunar.enable = true;
+    thunar.plugins = with pkgs.xfce; [
+      exo
+      mousepad
+      thunar-archive-plugin
+      thunar-volman
+      tumbler
+    ];
+
   };
-
-  #thunar.enable = true;
-  #thunar.plugins = with pkgs.xfce; [
-  # exo
-  #mousepad
-  #thunar-archive-plugin
-  #thunar-volman
-  #tumbler
-  # ];
-
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
