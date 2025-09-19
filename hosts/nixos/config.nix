@@ -114,7 +114,7 @@ in
   # Extra Module Options
   drivers = {
     amdgpu.enable = false;
-    intel.enable = false;
+    intel.enable = true;
     nvidia.enable = false;
     nvidia-prime = {
       enable = false;
@@ -122,7 +122,7 @@ in
       nvidiaBusID = "";
     };
   };
-   vm.guest-services.enable = true;
+  vm.guest-services.enable = true;
   local.hardware-clock.enable = false;
 
   # networking
@@ -242,7 +242,7 @@ in
 
   };
 
-  security.sudo.wheelNeedsPassword = false; 
+  security.sudo.wheelNeedsPassword = false;
 
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];

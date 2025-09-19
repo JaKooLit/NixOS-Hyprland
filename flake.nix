@@ -8,12 +8,6 @@
     #hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
     #distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
-    ghostty = {
-      type = "github";
-      owner = "ghostty-org";
-      repo = "ghostty";
-    };
-
     ags = {
       type = "github";
       owner = "aylur";
