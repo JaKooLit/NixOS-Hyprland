@@ -53,6 +53,13 @@ else
   exit 1
 fi
 
+# Check for pciutils (lspci)
+if ! command -v lspci >/dev/null 2>&1; then
+  echo "$ERROR pciutils is not installed. Please install pciutils and try again."
+  echo "Example: nix-shell -p pciutils"
+  exit 1
+fi
+
 
 echo "-----"
 printf "\n%.0s" {1..1}
