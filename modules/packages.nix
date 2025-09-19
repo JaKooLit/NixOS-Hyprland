@@ -16,7 +16,7 @@
       portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
       xwayland.enable = true;
     };
-    zsh.ohMyZsh.enable = true;
+    zsh.enable = true;
     firefox.enable = true;
     waybar.enable = true;
     hyprlock.enable = true;
