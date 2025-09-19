@@ -43,14 +43,14 @@ nhl_detect_gpu_and_toggle() {
   local profile="$detected"
   if [ -n "$detected" ]; then
     printf "Detected GPU profile: %s. Use this? (Y/n): " "$detected"
-    read -r _ans || true
+    read -r _ans </dev/tty || true
     if [ -n "$_ans" ] && ! echo "$_ans" | grep -qi '^y'; then
       profile=""
     fi
   fi
   if [ -z "$profile" ]; then
     printf "Enter your GPU profile (amd|intel|nvidia|nvidia-laptop|vm): [amd] "
-    read -r profile || true
+    read -r profile </dev/tty || true
     profile=${profile:-amd}
   fi
 
@@ -94,7 +94,7 @@ nhl_prompt_timezone_console() {
 
   # Timezone prompt (default: auto-detect)
   local timeZone
-  read -rp "Enter your timezone (e.g. America/New_York) or leave blank for auto-detect: [auto-detect] " timeZone
+  read -rp "Enter your timezone (e.g. America/New_York) or leave blank for auto-detect: [auto-detect] " timeZone </dev/tty
   if [ -z "$timeZone" ]; then
     # Prefer automatic time zone
     if grep -q 'services\.automatic-timezoned\.enable' "$cfg"; then
@@ -120,7 +120,7 @@ nhl_prompt_timezone_console() {
 
   # Console keymap prompt (defaults to keyboardLayout)
   local consoleKeyMap
-  read -rp "Enter your console keymap: [$defKb] " consoleKeyMap
+  read -rp "Enter your console keymap: [$defKb] " consoleKeyMap </dev/tty
   consoleKeyMap=${consoleKeyMap:-$defKb}
   # Replace any existing console.keyMap assignment
   if grep -q 'console\.keyMap' "$cfg"; then

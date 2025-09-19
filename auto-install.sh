@@ -98,7 +98,7 @@ sleep 1
 
 echo "-----"
 
-read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
+read -rp "$CAT Enter Your New Hostname: [ default ] " hostName </dev/tty
 if [ -z "$hostName" ]; then
   hostName="default"
 fi
@@ -119,7 +119,7 @@ if type nhl_detect_gpu_and_toggle >/dev/null 2>&1; then
 fi
 echo "-----"
 
-read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
+read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout </dev/tty
 if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
