@@ -29,52 +29,19 @@ nhl_detect_gpu_and_toggle() {
   sed -i 's/drivers\.amdgpu\.enable = [^;]*;/drivers.amdgpu.enable = false;/' "$cfg" || true
   sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = false;/' "$cfg" || true
   sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = false;/' "$cfg" || true
-  sed -i 's/drivers\.nvidia-prime\.[a-zA-Z]* = [^;]*;/drivers.nvidia-prime.enable = false;\n      intelBusID = "";\n      nvidiaBusID = "";/' "$cfg" || true
+  sed -i 's/drivers\.nvidia-prime\.enable = [^;]*;/drivers.nvidia-prime.enable = false;/' "$cfg" || true
   sed -i 's/vm\.guest-services\.enable = [^;]*;/vm.guest-services.enable = false;/' "$cfg" || true
 
   if $has_vm; then
     sed -i 's/vm\.guest-services\.enable = [^;]*;/vm.guest-services.enable = true;/' "$cfg" || true
   fi
 
-  # Helper to convert PCI BB:DD.F (hex) to PCI:b:d:f (decimal) string
-  local _nhl_hex_to_dec
-  _nhl_hex_to_dec() { printf '%d' "0x$1"; }
-  local _nhl_pci_addr_to_busid
-  _nhl_pci_addr_to_busid() {
-    local addr="$1" # e.g., 01:00.0
-    local bus=${addr%%:*}; local rest=${addr#*:}; local dev=${rest%%.*}; local fun=${addr##*.}
-    # Convert potentially-hex values to decimal
-    if echo "$bus$dev$fun" | grep -qi '[a-f]'; then
-      bus=$(_nhl_hex_to_dec "$bus"); dev=$(_nhl_hex_to_dec "$dev"); fun=$(_nhl_hex_to_dec "$fun")
-    fi
-    printf 'PCI:%s:%s:%s' "$bus" "$dev" "$fun"
-  }
-  local _nhl_guess_busid
-  _nhl_guess_busid() {
-    local vendor_regex="$1"
-    local addr
-    addr=$(lspci | grep -iE '(VGA|3D)' | grep -i "$vendor_regex" | awk '{print $1; exit}')
-    [ -n "$addr" ] || return 1
-    _nhl_pci_addr_to_busid "$addr"
-  }
 
   if $has_nvidia && $has_intel; then
-    # NVIDIA laptop hybrid
+    # NVIDIA laptop hybrid: enable PRIME and prefer Intel as primary (defaults for BusIDs remain)
     sed -i 's/drivers\.nvidia-prime\.enable = [^;]*;/drivers.nvidia-prime.enable = true;/' "$cfg" || true
     sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = false;/' "$cfg" || true
     sed -i 's/drivers\.intel\.enable = [^;]*;/drivers.intel.enable = true;/' "$cfg" || true
-    # Try to auto-populate bus IDs
-    local intel_id nvidia_id
-    if command -v lspci >/dev/null 2>&1; then
-      intel_id=$(_nhl_guess_busid 'Intel') || true
-      nvidia_id=$(_nhl_guess_busid 'NVIDIA') || true
-    fi
-    if [ -n "$intel_id" ]; then
-      sed -i "s|intelBusID = \".*\";|intelBusID = \"$intel_id\";|" "$cfg" || true
-    fi
-    if [ -n "$nvidia_id" ]; then
-      sed -i "s|nvidiaBusID = \".*\";|nvidiaBusID = \"$nvidia_id\";|" "$cfg" || true
-    fi
   elif $has_nvidia; then
     sed -i 's/drivers\.nvidia\.enable = [^;]*;/drivers.nvidia.enable = true;/' "$cfg" || true
   elif $has_amd; then
