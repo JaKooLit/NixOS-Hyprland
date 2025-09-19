@@ -36,5 +36,12 @@ in
   environment.systemPackages = with pkgs; [ lsd fzf ]; 
     
   programs = {
+    zsh = {
+      ohMyZsh = {
+        enable = true;
+        theme = "agnoster";
+        plugins = [ "git" ];
+      };
+    };
   };
 }
