@@ -37,29 +37,18 @@
     xwayland.enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager.startx.enable = false;
-  };
+  #thunar.enable = true;
+  #thunar.plugins = with pkgs.xfce; [
+  # exo
+  #mousepad
+  #thunar-archive-plugin
+  #thunar-volman
+  #tumbler
+  # ];
 
-  thunar.enable = true;
-  thunar.plugins = with pkgs.xfce; [
-    exo
-    mousepad
-    thunar-archive-plugin
-    thunar-volman
-    tumbler
-  ];
-
-  virt-manager.enable = false;
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-
-    # Your fastfetch script
-    (pkgs.writeShellScriptBin "ff" ''
-      fastfetch -c ~/.config/fastfetch/fastfetch-system-times.config.jsonc
-    '')
 
     # Update flkake script
     (pkgs.writeShellScriptBin "fupdate" ''
@@ -193,8 +182,6 @@
     yt-dlp
 
     (inputs.quickshell.packages.${pkgs.system}.default)
-    (inputs.ghostty.packages.${pkgs.system}.default)
-    (inputs.ags.packages.${pkgs.system}.default)
 
     # Utils
     caligula # burn ISOs at cli FAST
