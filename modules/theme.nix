@@ -44,10 +44,13 @@ cursor-theme='Bibata-Modern-Classic'
 
   # Rebuild the dconf database at activation to apply system defaults
   system.activationScripts.dconfUpdate = {
-    deps = [ ];
+    # Ensure /etc is populated (including /etc/dconf/...) before running dconf update
+    deps = [ "etc" ];
     text = ''
       if [ -x ${pkgs.dconf}/bin/dconf ]; then
-        ${pkgs.dconf}/bin/dconf update || true
+        if [ -d /etc/dconf/db ]; then
+          ${pkgs.dconf}/bin/dconf update || true
+        fi
       fi
     '';
   };
