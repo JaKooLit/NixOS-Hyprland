@@ -13,11 +13,10 @@
   ];
 
   # Environment variables as a fallback for apps not honoring gsettings
+  # Avoid hard overrides so tools like nwg-look can preview/apply themes dynamically.
   environment.variables = {
-    GTK_THEME = "Adwaita-dark"; # Fallback for GTK3/4 apps
-    GTK2_RC_FILES = "${pkgs.gnome-themes-extra}/share/themes/Adwaita-dark/gtk-2.0/gtkrc"; # GTK2 fallback
+    GTK2_RC_FILES = "${pkgs.gnome-themes-extra}/share/themes/Adwaita-dark/gtk-2.0/gtkrc"; # GTK2 fallback only
     QT_QPA_PLATFORMTHEME = "gtk3"; # Qt apps follow GTK portal/theme
-    QT_STYLE_OVERRIDE = "adwaita-dark"; # Prefer dark style (adwaita-qt installed)
   };
 
   # Cursor defaults for XDG/Wayland sessions
