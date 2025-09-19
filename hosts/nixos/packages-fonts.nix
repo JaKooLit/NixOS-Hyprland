@@ -1,5 +1,5 @@
 # 💫 https://github.com/JaKooLit 💫 #
-# Packages for this host only
+# Packages and Fonts config including the "programs" options
 
 { pkgs, ... }:
 let

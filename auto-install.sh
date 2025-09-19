@@ -29,6 +29,12 @@ RESET="$(tput sgr0)"
 
 set -e
 
+# Common installer functions
+if [ -f "scripts/lib/install-common.sh" ]; then
+  # shellcheck source=/dev/null
+  . "scripts/lib/install-common.sh"
+fi
+
 if [ -n "$(grep -i nixos < /etc/os-release)" ]; then
   echo "${OK} Verified this is NixOS."
   echo "-----"
@@ -43,6 +49,13 @@ if command -v git &> /dev/null; then
 else
   echo "$ERROR Git is not installed. Please install Git and try again."
   echo "Example: nix-shell -p git"
+  exit 1
+fi
+
+# Check for pciutils (lspci)
+if ! command -v lspci >/dev/null 2>&1; then
+  echo "$ERROR pciutils is not installed. Please install pciutils and try again."
+  echo "Example: nix-shell -p pciutils"
   exit 1
 fi
 
@@ -71,27 +84,10 @@ fi
 echo "-----"
 
 echo "$NOTE Cloning & Entering NixOS-Hyprland Repository"
-git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git -b dw-dev ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland || exit
 
 printf "\n%.0s" {1..2}
-
-# Checking if running on a VM and enable in default config.nix
-if hostnamectl | grep -q 'Chassis: vm'; then
-  echo "${NOTE} Your system is running on a VM. Enabling guest services.."
-  echo "${WARN} A Kind reminder to enable 3D acceleration.."
-  sed -i '/vm\.guest-services\.enable = false;/s/vm\.guest-services\.enable = false;/ vm.guest-services.enable = true;/' hosts/default/config.nix
-fi
-printf "\n%.0s" {1..1}
-
-# Checking if system has nvidia gpu and enable in default config.nix
-if command -v lspci > /dev/null 2>&1; then
-  # lspci is available, proceed with checking for Nvidia GPU
-  if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-    echo "${NOTE} Nvidia GPU detected. Setting up for nvidia..."
-    sed -i '/drivers\.nvidia\.enable = false;/s/drivers\.nvidia\.enable = false;/ drivers.nvidia.enable = true;/' hosts/default/config.nix
-  fi
-fi
 
 echo "-----"
 printf "\n%.0s" {1..1}
@@ -102,7 +98,7 @@ sleep 1
 
 echo "-----"
 
-read -rp "$CAT Enter Your New Hostname: [ default ] " hostName
+read -rp "$CAT Enter Your New Hostname: [ default ] " hostName </dev/tty
 if [ -z "$hostName" ]; then
   hostName="default"
 fi
@@ -116,14 +112,24 @@ if [ "$hostName" != "default" ]; then
 else
   echo "Default hostname selected, no extra hosts directory created."
 fi
+
+# GPU/VM detection and toggles (operate on selected host)
+if type nhl_detect_gpu_and_toggle >/dev/null 2>&1; then
+  nhl_detect_gpu_and_toggle "$hostName"
+fi
 echo "-----"
 
-read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout
+read -rp "$CAT Enter your keyboard layout: [ us ] " keyboardLayout </dev/tty
 if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
 
 sed -i 's/keyboardLayout\s*=\s*"\([^"]*\)"/keyboardLayout = "'"$keyboardLayout"'"/' ./hosts/$hostName/variables.nix
+
+# Timezone and console keymap
+if type nhl_prompt_timezone_console >/dev/null 2>&1; then
+  nhl_prompt_timezone_console "$hostName" "$keyboardLayout"
+fi
 
 echo "-----"
 
@@ -160,7 +166,10 @@ echo "$NOTE Setting Required Nix Settings Then Going To Install"
 git config --global user.name "installer"
 git config --global user.email "installer@gmail.com"
 git add .
-sed -i 's/host\s*=\s*"\([^"]*\)"/host = "'"$hostName"'"/' ./flake.nix
+# Update host in flake.nix (first occurrence of host = "...")
+sed -i -E '0,/(^\s*host\s*=\s*")([^"]*)(";)/s//\1'"$hostName"'\3/' ./flake.nix
+# Verify
+grep -nE "^[[:space:]]*host[[:space:]]*=" ./flake.nix || true
 
 printf "\n%.0s" {1..2}
 
