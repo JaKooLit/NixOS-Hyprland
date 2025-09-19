@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  host,
   ...
 }:
 {
@@ -34,7 +35,6 @@
       enable = true;
       defaultEditor = false;
     };
-    xwayland.enable = true;
 
     thunar.enable = true;
     thunar.plugins = with pkgs.xfce; [
@@ -53,13 +53,13 @@
     # Update flkake script
     (pkgs.writeShellScriptBin "fupdate" ''
       cd ~/NixOS-Hyprland
-       nh os switch -u -H {$hostname} flake.nix
+      nh os switch -u -H ${host} .
     '')
 
     # Rebuild flkake script
     (pkgs.writeShellScriptBin "frebuild" ''
       cd ~/NixOS-Hyprland
-       nh os switch -H {$hostname} flake.nix
+      nh os switch -H ${host} .
     '')
 
     # clean up old generations
@@ -74,7 +74,6 @@
     #uwsm
     hyprlang
     hyprshot
-    hypridle
     hyprcursor
     mesa
     nwg-displays
@@ -104,13 +103,11 @@
     cliphist
     cpufrequtils
     curl
-    duf
     dysk
     eog
     eza
     findutils
     figlet
-    ffmpeg
     ffmpeg
     fd
     feh
@@ -124,11 +121,9 @@
     jq
     gcc
     git
-    glib # for gsettings to work
     gnumake
     grim
     grimblast
-    gsettings-qt
     gtk-engine-murrine # for gtk themes
     inxi
     imagemagick
@@ -145,7 +140,6 @@
     nvtopPackages.full
     openssl # required by Rainbow borders
     pciutils
-    (mpv.override { scripts = [ mpvScripts.mpris ]; }) # with tray
     networkmanagerapplet
     #nitrogen
     #nvtopPackages.full
@@ -171,12 +165,7 @@
     wlr-randr
     wlogout
     wget
-    xdg-user-dirs
-    xdg-utils
-    wlogout
     xarchiver
-    xdg-user-dirs
-    xdg-utils
     yad
     yazi
     yt-dlp
@@ -220,7 +209,6 @@
     lm_sensors
     mission-center
     neofetch
-    pfetch
 
     # Development related
     luarocks
@@ -242,33 +230,5 @@
 
   ];
 
-  fonts = {
-    packages = with pkgs; [
-      dejavu_fonts
-      fira-code
-      fira-code-symbols
-      font-awesome
-      hackgen-nf-font
-      ibm-plex
-      inter
-      jetbrains-mono
-      material-icons
-      maple-mono.NF
-      minecraftia
-      nerd-fonts.im-writing
-      nerd-fonts.blex-mono
-      noto-fonts
-      noto-fonts-emoji
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-monochrome-emoji
-      powerline-fonts
-      roboto
-      roboto-mono
-      symbola
-      terminus_font
-      victor-mono
-    ];
-  };
 
 }

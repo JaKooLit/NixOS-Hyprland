@@ -61,6 +61,7 @@
             # inputs.distro-grub-themes.nixosModules.${system}.default
             ./modules/quickshell.nix # quickshell module
             ./modules/packages.nix # Software packages
+            ./modules/fonts.nix # Fonts packages
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
           ];
