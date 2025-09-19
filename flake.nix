@@ -44,7 +44,7 @@
             ./modules/quickshell.nix # quickshell module
             ./modules/packages.nix # Software packages
             ./modules/portals.nix # portal
-            ./modules/themes.nix # Set dark theme
+            ./modules/theme.nix # Set dark theme
           ];
         };
       };
