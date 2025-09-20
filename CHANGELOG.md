@@ -37,6 +37,14 @@ A technical record of notable changes. Dates are in UTC.
   - Installers now toggle drivers/vm settings on the selected host rather than
     the default.
 
+## 19 Sep 2025
+- Re-added AGS; quickshell updates were breaking on some setups
+- Re-added pyprland (present but disabled by default)
+- Installers refactored with shared library and safer prompts (GPU detection, pciutils check, timezone default auto, keymap prompt)
+- Zsh defaults improved; ~/.zshrc sources /etc/zshrc
+- Dark mode defaults applied via dconf; removed global GTK_THEME/QT_STYLE_OVERRIDE for better theming control
+- Installer toggles drivers/vm settings per selected host
+
 ## 23 July 2025
 
 - switched to unstable channel
