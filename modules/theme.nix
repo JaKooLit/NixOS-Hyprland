@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  # Ensure dconf is available for system defaults
-  programs.dconf.enable = true;
 
   # Install themes/cursors that we reference
   environment.systemPackages = with pkgs; [
@@ -29,16 +27,16 @@
   # Users can still override per-user via gsettings.
   environment.etc = {
     "dconf/profile/user".text = ''
-user-db:user
-system-db:local
-'';
+      user-db:user
+      system-db:local
+    '';
     "dconf/db/local.d/00_theme".text = ''
-[org/gnome/desktop/interface]
-color-scheme='prefer-dark'
-gtk-theme='Adwaita-dark'
-icon-theme='Papirus-Dark'
-cursor-theme='Bibata-Modern-Classic'
-'';
+      [org/gnome/desktop/interface]
+      color-scheme='prefer-dark'
+      gtk-theme='Adwaita-dark'
+      icon-theme='Papirus-Dark'
+      cursor-theme='Bibata-Modern-Classic'
+    '';
   };
 
   # Rebuild the dconf database at activation to apply system defaults
