@@ -122,7 +122,7 @@ in
       nvidiaBusID = "";
     };
   };
-  vm.guest-services.enable = true;
+  vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
   # networking
@@ -159,16 +159,6 @@ in
       xkb = {
         layout = "${keyboardLayout}";
         variant = "";
-      };
-    };
-
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          user = username;
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
-        };
       };
     };
 
