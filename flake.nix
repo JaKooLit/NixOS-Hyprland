@@ -31,7 +31,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "default";
+      host = "jak-hl";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
@@ -58,6 +58,7 @@
             ./modules/fonts.nix # Fonts packages
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
+            ./modules/ly.nix # ly greater with matrix animation
           ];
         };
       };

@@ -102,7 +102,7 @@ in
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
 
-    plymouth.enable = true;
+    plymouth.enable = false;
   };
 
   # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
@@ -113,8 +113,8 @@ in
 
   # Extra Module Options
   drivers = {
-    amdgpu.enable = true;
-    intel.enable = true;
+    amdgpu.enable = false;
+    intel.enable = false;
     nvidia.enable = false;
     nvidia-prime = {
       enable = false;
@@ -162,16 +162,6 @@ in
       };
     };
 
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          user = username;
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
-        };
-      };
-    };
-
     smartd = {
       enable = false;
       autodetect = true;
@@ -206,14 +196,14 @@ in
     openssh.enable = true;
     flatpak.enable = true;
 
-    blueman.enable = true;
+    blueman.enable = false;
 
     #hardware.openrgb.enable = true;
     #hardware.openrgb.motherboard = "amd";
 
-    fwupd.enable = true;
+    fwupd.enable = false;
 
-    upower.enable = true;
+    upower.enable = false;
 
     gnome.gnome-keyring.enable = true;
 
@@ -279,8 +269,8 @@ in
   # Bluetooth
   hardware = {
     bluetooth = {
-      enable = true;
-      powerOnBoot = true;
+      enable = false;
+      powerOnBoot = false;
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
@@ -349,6 +339,8 @@ in
   };
 
   console.keyMap = "us";
+
+  security.sudo.wheelNeedsPassword = false;
 
   # For Electron apps to use wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
