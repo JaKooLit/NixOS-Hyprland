@@ -13,17 +13,12 @@ let
 
 in
 {
-
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages =
     (with pkgs; [
       # System Packages
-
       fastfetch
-
-      #waybar  # if wanted experimental next line
-      #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
     ])
     ++ [
       python-packages
