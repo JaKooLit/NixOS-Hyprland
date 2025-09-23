@@ -17,8 +17,8 @@
       xwayland.enable = true;
     };
     zsh.enable = true;
-    firefox.enable = true;
-    waybar.enable = true;
+    firefox.enable = false;
+    waybar.enable = false;  #started by Hyprland dotfiles. Enabling causes two waybars
     hyprlock.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -79,6 +79,7 @@
     nwg-displays
     nwg-look
     waypaper
+    waybar
     hyprland-qt-support # for hyprland-qt-support
 
     #  Apps
