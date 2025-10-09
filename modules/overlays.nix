@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (final: prev: rec {
       # Helper: provide a clean cxxopts.pc to avoid broken upstream pc requiring non-existent icu-cu
       cxxoptsPcShim = final.runCommand "cxxopts-pc-shim" {} ''
         mkdir -p $out/lib/pkgconfig
@@ -64,7 +64,7 @@ EOF
 
       # Work around pamixer failing to find cxxopts via pkg-config (bogus icu-cu requirement)
       pamixer = prev.pamixer.overrideAttrs (old: {
-        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ final.pkg-config cxxoptsPcShim ];
+        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ final."pkg-config" cxxoptsPcShim ];
         # Ensure our shim takes precedence over any other cxxopts.pc
         preConfigure = (old.preConfigure or "") + ''
           export PKG_CONFIG_PATH=${cxxoptsPcShim}/lib/pkgconfig:"$PKG_CONFIG_PATH"
