@@ -2,6 +2,21 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
+      # Helper: provide a clean cxxopts.pc to avoid broken upstream pc requiring non-existent icu-cu
+      cxxoptsPcShim = final.runCommand "cxxopts-pc-shim" {} ''
+        mkdir -p $out/lib/pkgconfig
+        cat > $out/lib/pkgconfig/cxxopts.pc <<'EOF'
+prefix=${final.cxxopts}
+includedir=${final.cxxopts}/include
+
+Name: cxxopts
+Description: C++ command line parser headers
+Version: ${final.cxxopts.version}
+Cflags: -I${final.cxxopts}/include
+Libs:
+Requires:
+EOF
+      '';
       # Allow argtable to configure with newer CMake by declaring policy minimum
       argtable = prev.argtable.overrideAttrs (old: {
         cmakeFlags = (old.cmakeFlags or []) ++ [
@@ -44,6 +59,15 @@
           if [ -f CMakeLists.txt ]; then
             sed -i -E 's/cmake_minimum_required\(VERSION [0-9.]+\)/cmake_minimum_required(VERSION 3.5)/' CMakeLists.txt || true
           fi
+        '';
+      });
+
+      # Work around pamixer failing to find cxxopts via pkg-config (bogus icu-cu requirement)
+      pamixer = prev.pamixer.overrideAttrs (old: {
+        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ final.pkg-config cxxoptsPcShim ];
+        # Ensure our shim takes precedence over any other cxxopts.pc
+        preConfigure = (old.preConfigure or "") + ''
+          export PKG_CONFIG_PATH=${cxxoptsPcShim}/lib/pkgconfig:"$PKG_CONFIG_PATH"
         '';
       });
       
