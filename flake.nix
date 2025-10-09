@@ -53,6 +53,7 @@
           modules = [
             ./hosts/${host}/config.nix
             # inputs.distro-grub-themes.nixosModules.${system}.default
+            ./modules/overlays.nix # nixpkgs overlays (CMake policy fixes)
             ./modules/quickshell.nix # quickshell module
             ./modules/packages.nix # Software packages
             ./modules/fonts.nix # Fonts packages
