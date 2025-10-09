@@ -33,6 +33,20 @@
           });
         };
       };
+
+      # Fix libvdpau-va-gl CMake minimum for modern CMake
+      libvdpau-va-gl = prev.libvdpau-va-gl.overrideAttrs (old: {
+        cmakeFlags = (old.cmakeFlags or []) ++ [
+          "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+        ];
+        postPatch = (old.postPatch or "") + ''
+          # Bump top-level CMake minimum if present
+          if [ -f CMakeLists.txt ]; then
+            sed -i -E 's/cmake_minimum_required\(VERSION [0-9.]+\)/cmake_minimum_required(VERSION 3.5)/' CMakeLists.txt || true
+          fi
+        '';
+      });
+      
     })
   ];
 }
