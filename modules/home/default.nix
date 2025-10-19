@@ -12,6 +12,7 @@
     ./cli/git.nix
     ./cli/htop.nix
     ./cli/tealdeer.nix
+    ./yazi
   ];
 
 }

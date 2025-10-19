@@ -11,24 +11,24 @@
     tab_width = 1;
     border_symbol = "│";
   };
-  mode = {};
+  mode = { };
   status = {
-    overall = {bold = true;};
-    sep_left = ["░▒▓" "▓▒░"];
-    sep_right = ["░▒▓" "▓▒░"];
+    overall = { bold = true; };
+    sep_left = [ "░▒▓" "▓▒░" ];
+    sep_right = [ "░▒▓" "▓▒░" ];
   };
   which = {
     cols = 3;
     separator = "  ";
   };
   confirm = {
-    border = {fg = "gray";};
+    border = { fg = "gray"; };
     title = {
       fg = "blue";
       bold = true;
     };
-    content = {};
-    list = {};
+    content = { };
+    list = { };
     btn_yes = {
       bg = "green";
       fg = "black";
@@ -39,39 +39,39 @@
       fg = "black";
       bold = true;
     };
-    btn_labels = ["  [Y]es  " "  (N)o  "];
+    btn_labels = [ "  [Y]es  " "  (N)o  " ];
   };
   spot = {
-    border = {fg = "blue";};
-    title = {fg = "blue";};
-    tbl_col = {fg = "blue";};
+    border = { fg = "blue"; };
+    title = { fg = "blue"; };
+    tbl_col = { fg = "blue"; };
     tbl_cell = {
       fg = "yellow";
       reversed = true;
     };
   };
   notify = {
-    title_info = {fg = "green";};
-    title_warn = {fg = "yellow";};
-    title_error = {fg = "red";};
+    title_info = { fg = "green"; };
+    title_warn = { fg = "yellow"; };
+    title_error = { fg = "red"; };
     icon_info = "";
     icon_warn = "";
     icon_error = "";
   };
-  pick = {};
-  input = {};
+  pick = { };
+  input = { };
   cmp = {
-    active = {reversed = true;};
-    inactive = {};
+    active = { reversed = true; };
+    inactive = { };
     icon_file = "";
     icon_folder = "";
     icon_command = "";
   };
-  tasks = {};
-  help = {};
-  filetype = {};
+  tasks = { };
+  help = { };
+  filetype = { };
   icon = {
-    globs = [];
+    globs = [ ];
     dirs = [
       {
         name = ".config";
