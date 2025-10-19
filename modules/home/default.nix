@@ -3,7 +3,6 @@
 {
   imports = [
     ./terminals/tmux.nix
-    ./yazi/yazi-import.nix
     ./editors/nixvim.nix
     ./cli/bat.nix
     ./cli/btop.nix
