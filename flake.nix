@@ -17,6 +17,11 @@
       ref = "v1";
     };
 
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +68,7 @@
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
             ./modules/ly.nix # ly greater with matrix animation
+            inputs.catppuccin.nixosModules.catppuccin
             # Integrate Home Manager as a NixOS module
             inputs.home-manager.nixosModules.home-manager
             {
