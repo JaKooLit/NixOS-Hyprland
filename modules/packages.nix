@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  host,
-  ...
+{ pkgs
+, inputs
+, host
+, ...
 }:
 {
 
@@ -18,7 +17,7 @@
     };
     zsh.enable = true;
     firefox.enable = false;
-    waybar.enable = false;  #started by Hyprland dotfiles. Enabling causes two waybars
+    waybar.enable = false; #started by Hyprland dotfiles. Enabling causes two waybars
     hyprlock.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -157,6 +156,7 @@
     rofi
     slurp
     swappy
+    serie #git cli tool 
     swaynotificationcenter
     swww
     unzip

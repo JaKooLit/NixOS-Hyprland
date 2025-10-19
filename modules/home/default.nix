@@ -7,6 +7,7 @@
     ./cli/bat.nix
     ./cli/btop.nix
     ./cli/bottom.nix
+    ./cli/eza.nix
     ./cli/fzf.nix
     ./cli/git.nix
     ./cli/htop.nix
