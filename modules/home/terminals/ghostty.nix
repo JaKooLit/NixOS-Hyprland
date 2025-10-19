@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   # Install Ghostty theme(s) so referenced names resolve even if the package's share/themes doesn't include them
   home.file = {
@@ -27,7 +26,7 @@
     enableBashIntegration = true;
     clearDefaultKeybinds = true;
     settings = {
-      title = "ddubsOS-GhosTTY";
+      title = "GhosTTY";
       term = "xterm-256color";
       confirm-close-surface = "false";
       font-family = "Maple Mono NF";
