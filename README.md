@@ -71,24 +71,23 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 <br>    
 <div id="announcement">
 
-- ** This Repo does not contain Hyprland configuration (Dotfiles)! **
-    - You can either create your own confguration, or try to use another project's config.
+- ** This Repo does not contain Hyprland configuration files. (Dotfiles)! **
+    - You can either, use Jak's, create your own configuration, or try to use another project's config.
     - Make sure you have all the requirements first. I.e. fonts, supporting packages, at the correct version
 
 - This new release adds Home Manger, but only to manage a subset of packages
+    - NeoVim via NIXVIM
+    - Ghostty
+    - bat
+    - bottom
+    - btop
+    - eza
+    - fzf
+    - git
+    - tealdir
+    - yazi
 
-- NeoVim via NIXVIM
-- Ghostty
-- bat
-- bottom
-- btop
-- eza
-- fzf
-- git
-- tealdir
-- yazi
-
-- ** Not all of the config files are written in NIX language **
+- ** Not all of the configuration files in this project are written in NIX language **
 
 - Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
 - The Hyprland-Dots used are constantly evolving / improving
