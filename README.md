@@ -58,11 +58,11 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 > [!IMPORTANT]
 > The install scripts assumes a clean installation of NixOS or the understanding that it will replace any existing configuration
-> It will not merge into an existing NixOS configuration. You can use the code from this respository to do so on your own
+> It will not merge into an existing NixOS configuration. You can use this code at your on your own risk.
 
-> By default, all packages set to install are from NixOS stable channel. Note Hyprland to be installed will be of OLD version
+> Currently, this project is on the unstable nixpkgs channel. When 25.11 becomes the new stable branch, the plan it to stay there, then move to the next stable
 
-- 25 Feb 2025 - I am really tired of baby sitting Unstable Channel. NixOS unstable d Most UNSTABLE Distro I have tried. If you are new to NixOS, stay on stable channel. However, if you wish to use unstable channel, you need to adjust `flake.nix` , `hosts/host/packages-fonts.nix`, `hosts/host/config.nix` before running the install.sh
+- Being on the unstable channel is a bigger challenge to support. An update can't prevent a rebuild, or require updating nix settings.
 
 - Make sure to read Hyprland's [WIKI](https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/)
 
@@ -71,13 +71,30 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 <br>    
 <div id="announcement">
 
-- ** This Repo does not contain Hyprland Dots or configs! **
-- ** Not all configs are NOT written in NIX language **
+- ** This Repo does not contain Hyprland configuration (Dotfiles)! **
+    - You can either create your own confguration, or try to use another project's config.
+    - Make sure you have all the requirements first. I.e. fonts, supporting packages, at the correct version
+
+- This new release adds Home Manger, but only to manage a subset of packages
+
+- NeoVim via NIXVIM
+- Ghostty
+- bat
+- bottom
+- btop
+- eza
+- fzf
+- git
+- tealdir
+- yazi
+
+- ** Not all of the config files are written in NIX language **
+
 - Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
 - The Hyprland-Dots used are constantly evolving / improving
 - You can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)
 - GTK Themes and Icons will be pulled from [`LINK`](https://github.com/JaKooLit/GTK-themes-icons), including Bibata Cursor Modern Ice
-- The wallpapers offered to be downloaded towards the end are from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
+- You will be prompted if you want to download wallpapers from here: [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 
 </div>
 </details>
@@ -115,7 +132,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - By default, all the packages are in `$HOME/NixOS-Hyprland`
 - Then edit `hosts/<your-hostname>/configs.nix` , `hosts/<your-hostname>/packages-fonts.nix` and/or `hosts/<your-hostname>/user.nix` depending on what you want.
 - The `config.nix` file is for system packages with options. ie `programs.hyprland.enable=true`
-- `$HOME/NixOS-Hyprland/modules/packages.nix` are where you add programs for all hosts globlally.
+- `$HOME/NixOS-Hyprland/modules/packages.nix` are where you add programs for all hosts globally.
 - The packages-fonts.nix file is for adding packagesa or fonts, for that specific host. Changes made to `user.nix` are only available to the current user.
 - Once you are finished editing, run:
 
