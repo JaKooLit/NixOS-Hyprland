@@ -203,12 +203,12 @@ printf "Installing GTK-Themes and Icons..\n"
 
 if [ -d "GTK-themes-icons" ]; then
     echo "$NOTE GTK themes and Icons directory exist..deleting..."
-    rm -rf "GTK-themes-icons"
+    rm -rf "~/GTK-themes-icons"
 fi
 
 echo "$NOTE Cloning GTK themes and Icons repository..."
-if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ~/NixOS-Hyprland; then
-    cd ~/NixOS/Hyprland/GTK-themes-icons
+if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ~/GTK-themes-icons; then
+    cd ~/GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh
     cd ..
@@ -236,9 +236,9 @@ printf "\n%.0s" {1..3}
 
 # Clean up
 # GTK Themes and Icons
-if [ -d "~/NixOS-Hyprland/GTK-themes-icons" ]; then
+if [ -d "~/GTK-themes-icons" ]; then
     echo "$NOTE GTK themes and Icons directory exist..deleting..."
-    rm -rf "~/NixOS-Hyprland/GTK-themes-icons"
+    rm -rf "~/GTK-themes-icons"
 fi
 
 echo "-----"
