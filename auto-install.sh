@@ -207,8 +207,8 @@ if [ -d "GTK-themes-icons" ]; then
 fi
 
 echo "$NOTE Cloning GTK themes and Icons repository..."
-if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git; then
-    cd GTK-themes-icons
+if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ~/NixOS-Hyprland; then
+    cd ~/NixOS/Hyprland/GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh
     cd ..
