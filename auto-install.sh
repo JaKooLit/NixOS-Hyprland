@@ -236,9 +236,9 @@ printf "\n%.0s" {1..3}
 
 # Clean up
 # GTK Themes and Icons
-if [ -d "GTK-themes-icons" ]; then
+if [ -d "~/NixOS-Hyprland/GTK-themes-icons" ]; then
     echo "$NOTE GTK themes and Icons directory exist..deleting..."
-    rm -rf "GTK-themes-icons"
+    rm -rf "~/NixOS-Hyprland/GTK-themes-icons"
 fi
 
 echo "-----"
