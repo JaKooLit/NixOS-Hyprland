@@ -16,7 +16,7 @@
     extraPackages = with pkgs.bat-extras; [
       batman
       batpipe
-      batgrep
+      #batgrep  #fails to build 11-1-25
     ];
   };
   home.sessionVariables = {
