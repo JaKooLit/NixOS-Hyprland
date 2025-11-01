@@ -64,6 +64,11 @@
             ./modules/overlays.nix # nixpkgs overlays (CMake policy fixes)
             ./modules/quickshell.nix # quickshell module
             ./modules/packages.nix # Software packages
+            # Handle CUDA: disable if no NVIDIA, allow broken packages if NVIDIA enabled
+            {
+              nixpkgs.config.cudaSupport = config.drivers.nvidia.enable or config.drivers.nvidia-prime.enable or false;
+              nixpkgs.config.allowBroken = config.drivers.nvidia.enable or config.drivers.nvidia-prime.enable or false;
+            }
             ./modules/fonts.nix # Fonts packages
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
