@@ -76,8 +76,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 
 - Make sure to read Hyprland's [WIKI](https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/)
 
-<details>
-<summary><strong> 🪧🪧🪧 Click for important announcements 🪧🪧🪧 </strong></summary>  
+<summary><strong> 🪧🪧🪧 Important announcement 🪧🪧🪧 </strong></summary>  
 <br>    
 <div id="announcement">
 
@@ -85,7 +84,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
     - You can either, use Jak's, create your own configuration, or try to use another project's config.
     - Make sure you have all the requirements first. I.e. fonts, supporting packages, at the correct version
 
-- This new release adds Home Manger, but only to manage a subset of packages
+- This new release adds Home Manger, but only manages a small ubset of packages
     - NeoVim via NIXVIM
     - Ghostty
     - bat
@@ -97,16 +96,17 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
     - tealdir
     - yazi
 
-- ** Not all of the configuration files in this project are written in NIX language **
+> ** Not all of the configuration files in this project are written in NIX language **
 
-- Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
-- The Hyprland-Dots used are constantly evolving / improving
-- You can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)
+- The `auto-install.sh` script will install Hyprland config files, (Dotfiles) from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
+- These Hyprland dotfiles are constantly evolving / improving
+- You can check the CHANGELOG here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs)
 - GTK Themes and Icons will be pulled from [`LINK`](https://github.com/JaKooLit/GTK-themes-icons), including Bibata Cursor Modern Ice
 - You will be prompted if you want to download wallpapers from here: [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 
+> [Note:] The wallpapers contain AI generated and AI enhanced images. If this is an issue for you enter "N" when prompted to download them
+
 </div>
-</details>
 <br>
 > [!IMPORTANT]
 > Take note of the requirements

@@ -2,6 +2,24 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 1 November 2025
+
+- Updated Flake
+- Removed `greetd-tui`, replaced with `ly` login manager
+- Added Home Manager for a small subset of apps
+    - NeoVim via NIXVIM
+    - Ghostty
+    - bat
+    - bottom
+    - btop
+    - eza
+    - fzf
+    - git
+    - tealdir
+    - yazi
+
+- Added cheatsheets for TMUX and NeoVIM in English and Spanish.
+
 ## 19 October 2025
 
 - Changed from `nixos-rebuild switch` to `nixos-rebuild boot`
