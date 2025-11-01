@@ -84,7 +84,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
     - You can either, use Jak's, create your own configuration, or try to use another project's config.
     - Make sure you have all the requirements first. I.e. fonts, supporting packages, at the correct version
 
-- This new release adds Home Manger, but only manages a small ubset of packages
+- This new release adds Home Manger, but only manages a small set of packages
     - NeoVim via NIXVIM
     - Ghostty
     - bat
