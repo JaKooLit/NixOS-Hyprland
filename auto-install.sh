@@ -174,7 +174,7 @@ printf "\n%.0s" {1..2}
 
 echo "$NOTE Rebuilding NixOS..... so pls be patient.."
 echo "-----"
-echo "$CAT In the meantime, go grab a coffee and stretch your legs or atleast do something!!..."
+echo "$CAT In the meantime, go grab a coffee and stretch your legs or at least do something!!..."
 echo "-----"
 echo "$ERROR YES!!! YOU read it right!!.. you staring too much at your monitor ha ha... joke :)......"
 printf "\n%.0s" {1..2}
@@ -207,8 +207,8 @@ if [ -d "GTK-themes-icons" ]; then
 fi
 
 echo "$NOTE Cloning GTK themes and Icons repository..."
-if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git ~/NixOS-Hyprland; then
-    cd ~/NixOS/Hyprland/GTK-themes-icons
+if git clone --depth 1 https://github.com/JaKooLit/GTK-themes-icons.git; then
+    cd GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh
     cd ..

@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  host,
-  ...
+{ pkgs
+, inputs
+, host
+, ...
 }:
 {
 
@@ -17,8 +16,8 @@
       xwayland.enable = true;
     };
     zsh.enable = true;
-    firefox.enable = true;
-    waybar.enable = true;
+    firefox.enable = false;
+    waybar.enable = false; #started by Hyprland dotfiles. Enabling causes two waybars
     hyprlock.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -51,13 +50,13 @@
   environment.systemPackages = with pkgs; [
 
     # Update flkake script
-    (pkgs.writeShellScriptBin "fupdate" ''
+    (pkgs.writeShellScriptBin "update" ''
       cd ~/NixOS-Hyprland
       nh os switch -u -H ${host} .
     '')
 
     # Rebuild flkake script
-    (pkgs.writeShellScriptBin "frebuild" ''
+    (pkgs.writeShellScriptBin "rebuild" ''
       cd ~/NixOS-Hyprland
       nh os switch -H ${host} .
     '')
@@ -79,6 +78,7 @@
     nwg-displays
     nwg-look
     waypaper
+    waybar
     hyprland-qt-support # for hyprland-qt-support
 
     #  Apps
@@ -156,6 +156,7 @@
     rofi
     slurp
     swappy
+    serie #git cli tool 
     swaynotificationcenter
     swww
     unzip

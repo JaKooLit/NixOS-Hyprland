@@ -2,40 +2,65 @@
 
 A technical record of notable changes. Dates are in UTC.
 
-## 19 Sep 2025
+## 1 November 2025
+
+- Updated Flake
+- Removed `greetd-tui`, replaced with `ly` login manager
+- Added Home Manager for a small subset of apps
+    - NeoVim via NIXVIM
+    - Ghostty
+    - bat
+    - bottom
+    - btop
+    - eza
+    - fzf
+    - git
+    - tealdir
+    - yazi
+
+- Added cheatsheets for TMUX and NeoVIM in English and Spanish.
+
+## 19 October 2025
+
+- Changed from `nixos-rebuild switch` to `nixos-rebuild boot`
+- Modified both `auto-install.sh` and `install.sh`
+- This is a best practice especially if currently running a Login Display Mgr
+- The switch will reload services and common result is black screen
+
+## 19 September 2025
 
 - Added
-  - AGS re-added; quickshell updates were failing on some non-NixOS environments
-    after recent upstream changes.
-  - pyprland re-added by user request. It is present but not enabled by default.
+    - AGS re-added; quickshell updates were failing on some non-NixOS environments
+      after recent upstream changes.
+    - pyprland re-added by user request. It is present but not enabled by default.
 
 - Changed
-  - Consolidated common packages under modules/packages.nix; extracted fonts to
-    modules/fonts.nix.
-  - Removed duplicated packages and a stray programs-level xwayland flag
-    (Hyprland’s own xwayland setting remains).
-  - Installers refactored to use a shared library scripts/lib/install-common.sh
-    with:
-    - GPU profile detection (amd | intel | nvidia | nvidia-laptop | vm) with
-      user confirmation.
-    - pciutils check before use; robust host update in flake.nix.
-    - Timezone prompt defaults to auto-detect
-      (services.automatic-timezoned.enable = true) unless a manual TZ is set.
-    - Console keymap prompt; keyboard layout still written to
-      hosts/<host>/variables.nix.
-    - fupdate/frebuild scripts fixed to target the active host via nh os switch
-      -H ${host} .
-  - Zsh defaults: enable programs.zsh at the system level; enable oh-my-zsh for
-    the primary user; ensure ~/.zshrc sources /etc/zshrc.
+    - Consolidated common packages under modules/packages.nix; extracted fonts to
+      modules/fonts.nix.
+    - Removed duplicated packages and a stray programs-level xwayland flag
+      (Hyprland’s own xwayland setting remains).
+    - Installers refactored to use a shared library scripts/lib/install-common.sh
+      with:
+        - GPU profile detection (amd | intel | nvidia | nvidia-laptop | vm) with
+          user confirmation.
+        - pciutils check before use; robust host update in flake.nix.
+        - Timezone prompt defaults to auto-detect
+          (services.automatic-timezoned.enable = true) unless a manual TZ is set.
+        - Console keymap prompt; keyboard layout still written to
+          hosts/<host>/variables.nix.
+        - fupdate/frebuild scripts fixed to target the active host via nh os switch
+          -H ${host} .
+    - Zsh defaults: enable programs.zsh at the system level; enable oh-my-zsh for
+      the primary user; ensure ~/.zshrc sources /etc/zshrc.
 
 - Fixed
-  - Dark mode defaults are applied via system dconf (prefer-dark, Adwaita-dark,
-    Papirus-Dark, Bibata cursor) with correct activation ordering.
-  - Removed global GTK_THEME and QT_STYLE_OVERRIDE so nwg-look and apps can
-    preview/apply themes dynamically; retained QT_QPA_PLATFORMTHEME=gtk3 and
-    cursor variables.
-  - Installers now toggle drivers/vm settings on the selected host rather than
-    the default.
+    - Dark mode defaults are applied via system dconf (prefer-dark, Adwaita-dark,
+      Papirus-Dark, Bibata cursor) with correct activation ordering.
+    - Removed global GTK_THEME and QT_STYLE_OVERRIDE so nwg-look and apps can
+      preview/apply themes dynamically; retained QT_QPA_PLATFORMTHEME=gtk3 and
+      cursor variables.
+    - Installers now toggle drivers/vm settings on the selected host rather than
+      the default.
 
 ## 23 July 2025
 
@@ -132,4 +157,3 @@ A technical record of notable changes. Dates are in UTC.
 ### 05 Sept 2024
 
 - Initial Alpha Stage
-

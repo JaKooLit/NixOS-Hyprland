@@ -102,7 +102,7 @@ in
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
 
-    plymouth.enable = true;
+    plymouth.enable = false;
   };
 
   # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
@@ -136,7 +136,6 @@ in
   services.automatic-timezoned.enable = true; # based on IP location
 
   #https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  #time.timeZone = "Asia/Seoul"; # Set local timezone
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -232,8 +231,6 @@ in
 
   };
 
-  security.sudo.wheelNeedsPassword = false;
-
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
     script = ''
@@ -272,8 +269,8 @@ in
   # Bluetooth
   hardware = {
     bluetooth = {
-      enable = true;
-      powerOnBoot = true;
+      enable = false;
+      powerOnBoot = false;
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
@@ -341,7 +338,9 @@ in
     enable = true;
   };
 
-  console.keyMap = "${keyboardLayout}";
+  console.keyMap = "us";
+
+  security.sudo.wheelNeedsPassword = false;
 
   # For Electron apps to use wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

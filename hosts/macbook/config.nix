@@ -102,7 +102,7 @@ in
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
 
-    plymouth.enable = true;
+    plymouth.enable = false;
   };
 
   # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
@@ -113,7 +113,7 @@ in
 
   # Extra Module Options
   drivers = {
-    amdgpu.enable = true;
+    amdgpu.enable = false;
     intel.enable = true;
     nvidia.enable = false;
     nvidia-prime = {
@@ -162,18 +162,8 @@ in
       };
     };
 
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          user = username;
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
-        };
-      };
-    };
-
     smartd = {
-      enable = false;
+      enable = true;
       autodetect = true;
     };
 
@@ -240,6 +230,8 @@ in
     #};
 
   };
+
+  security.sudo.wheelNeedsPassword = false; 
 
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
