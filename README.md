@@ -51,6 +51,8 @@
 
 <p align="center">
 	<img src="assets/Jak-NixOS-Screenshot.png" alt="NixOS Hyprland Screenshot" />
+	<img src="assets/ly-login-screen.png" alt="Ly login Manager Screenshot" />
+	<img src="assets/tmux-btm-nvim.png" alt="TMUX, btm, NeoVIM creenshot" />
 </p>
 
 <br>
