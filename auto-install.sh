@@ -236,9 +236,9 @@ printf "\n%.0s" {1..3}
 
 # Clean up
 # GTK Themes and Icons
-if [ -d "~/GTK-themes-icons" ]; then
+if [ -d "GTK-themes-icons" ]; then
     echo "$NOTE GTK themes and Icons directory exist..deleting..."
-    rm -rf "~/GTK-themes-icons"
+    rm -rf "GTK-themes-icons"
 fi
 
 echo "-----"
@@ -276,7 +276,8 @@ printf "\n%.0s" {1..2}
 if command -v Hyprland &>/dev/null; then
     printf "\n${OK} Yey! Installation Completed.${RESET}\n"
     sleep 2
-    printf "\n${NOTE} You must reboot your system for the install to complete.${RESET}\n\n"
+    printf "\n${NOTE} You can start Hyprland by typing Hyprland (note the capital H!).${RESET}\n"
+    printf "\n${NOTE} It is highly recommended to reboot your system.${RESET}\n\n"
 
     # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): ${RESET}" HYP
