@@ -1,4 +1,5 @@
 # Eza is a ls replacement
+
 {
   programs.eza = {
     enable = true;
@@ -38,7 +39,6 @@
     man = "batman";
     dysk = "dysk -c label+default";
     zi = "cdi"; # for zoxide compatibilty
-    #emacs = ''emacsclient -c -n -a ""'';
     serie = "serie -p kitty --preload -g double";
     # Terminal client: use the et wrapper (sets TERM to *-direct when available)
     # Remove alias here so the script installed to PATH is used.
