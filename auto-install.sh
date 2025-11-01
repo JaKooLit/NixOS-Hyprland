@@ -168,7 +168,8 @@ git add .
 # Update host in flake.nix (first occurrence of host = "...")
 sed -i -E '0,/(^\s*host\s*=\s*")([^"]*)(";)/s//\1'"$hostName"'\3/' ./flake.nix
 # Verify
-grep -nE "^[[:space:]]*host[[:space:]]*=" ./flake.nix || true
+echo "$OK Hostname updated in flake.nix:"
+grep -E "^[[:space:]]*host[[:space:]]*=" ./flake.nix | head -1 || true
 
 printf "\n%.0s" {1..2}
 
