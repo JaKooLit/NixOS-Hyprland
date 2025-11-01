@@ -279,7 +279,7 @@ Hope you enjoy! 🎉
 
 - Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 - Tmux Cheatsheet [`English`](assets/tmux.cheatsheet.md) | [`Español`](assets/tmux.cheatsheet.es.md)
-- Intro to Neovim on ddubsos [`English`](assets/Intro-to-Neovim-on-ddubsos.md) | [`Español`](assets/Intro-to-Neovim-on-ddubsos.es.md)
+- Intro to Neovim [`English`](assets/Intro-to-Neovim.md) | [`Español`](assets/Intro-to-Neovim.es.md)
     > [!TIP]
     > KooL's Dots v2.3.7 has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
 
