@@ -72,27 +72,6 @@ Sesión/Recargar
 - Prefijo r — cargar archivo ~/.config/tmux/tmux.conf
 - Prefijo x — matar panel (sin aviso)
 
-Ventanas Emergentes (display-popup)
-
-- Prefijo C-y — lazygit (80%x80% en el directorio actual)
-- Prefijo C-n — solicitar nombre de sesión; crear y cambiar
-- Prefijo C-j — cambiar de sesión a través de fzf
-- Prefijo C-r — yazi (90%x90% en el directorio actual)
-- Prefijo C-z — nvim ~/ddubsos/flake.nix (90%x90%)
-- Prefijo C-t — zsh (75%x75% en el directorio actual)
-
-Menú (display-menu)
-
-- Prefijo d — Menú de Dotfiles con entradas de apertura rápida:
-    - f: flake.nix (ddubsOS)
-    - c: paquetes principales (ddubsOS)
-    - g: paquetes globales (ddubsOS)
-    - k: atajos de teclado (Hyprland)
-    - w: reglas de ventana (Hyprland)
-    - z: ZaneyOS flake.nix
-    - p: paquetes de ZaneyOS
-    - q: Salir
-
 Notas
 
 - Los índices de paneles/ventanas comienzan en 1.

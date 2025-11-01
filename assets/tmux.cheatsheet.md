@@ -72,27 +72,6 @@ Session/Reload
 - Prefix r — source-file ~/.config/tmux/tmux.conf
 - Prefix x — kill-pane (no prompt)
 
-Popups (display-popup)
-
-- Prefix C-y — lazygit (80%x80% at cwd)
-- Prefix C-n — prompt for session name; create and switch
-- Prefix C-j — switch session via fzf
-- Prefix C-r — yazi (90%x90% at cwd)
-- Prefix C-z — nvim ~/ddubsos/flake.nix (90%x90%)
-- Prefix C-t — zsh (75%x75% at cwd)
-
-Menu (display-menu)
-
-- Prefix d — Dotfiles menu with quick-open entries:
-    - f: flake.nix (ddubsOS)
-    - c: core packages (ddubsOS)
-    - g: global packages (ddubsOS)
-    - k: keybinds (Hyprland)
-    - w: window rules (Hyprland)
-    - z: ZaneyOS flake.nix
-    - p: ZaneyOS packages
-    - q: Exit
-
 Notes
 
 - Pane/Window indices start at 1.

@@ -1,4 +1,4 @@
-# Introducción a Neovim en ddubsos
+# Introducción a Neovim
 
 ¡Bienvenido! Esta chuleta introduce Neovim tal y como está configurado en nixvim
 
