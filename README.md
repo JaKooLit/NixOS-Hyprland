@@ -177,7 +177,7 @@ sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
 - Simply copy this and run it:
 ```
 nix-shell -p git vim curl pciutils
-sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh)
+sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/refs/heads/main/auto-install.sh)
 ```
 > [!NOTE]
 > pciutils is necessary to detect if you have an Nvidia card. 
