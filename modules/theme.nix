@@ -15,6 +15,9 @@
   environment.variables = {
     GTK2_RC_FILES = "${pkgs.gnome-themes-extra}/share/themes/Adwaita-dark/gtk-2.0/gtkrc"; # GTK2 fallback only
     QT_QPA_PLATFORMTHEME = "gtk3"; # Qt apps follow GTK portal/theme
+
+    # Add GSettings/GTK schema search paths without conflicting with sessionVariables
+    XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS";
   };
 
   # Cursor defaults for XDG/Wayland sessions
@@ -22,12 +25,6 @@
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
-
-  # Extend system XDG data dirs so gsettings/gtk schemas are found (no conflicts)
-  xdg.systemDirs.data = lib.mkAfter [
-    "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-    "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-  ];
 
   # Set system dconf defaults so new users prefer dark by default.
   # Users can still override per-user via gsettings.
