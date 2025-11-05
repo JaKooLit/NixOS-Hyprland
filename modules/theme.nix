@@ -21,11 +21,6 @@
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
-
-    # Force a merged XDG_DATA_DIRS that preserves NixOS defaults and adds schema dirs
-    XDG_DATA_DIRS = lib.mkForce ''
-      ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:${config.environment.variables.XDG_DATA_DIRS}
-    '';
   };
 
   # Set system dconf defaults so new users prefer dark by default.
