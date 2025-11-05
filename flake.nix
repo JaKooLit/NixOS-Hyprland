@@ -76,6 +76,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "hm-bak";
 
               # Ensure HM modules can access flake inputs (e.g., inputs.nixvim)
               home-manager.extraSpecialArgs = { inherit inputs system username host; };
