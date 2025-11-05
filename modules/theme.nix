@@ -21,6 +21,11 @@
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
+
+    # Ensure GSettings/GTK schemas are discoverable outside GNOME sessions
+    XDG_DATA_DIRS = ''
+      ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS
+    '';
   };
 
   # Set system dconf defaults so new users prefer dark by default.
