@@ -171,8 +171,8 @@
     yazi
     yt-dlp
 
-    (inputs.quickshell.packages.${pkgs.system}.default)
-    (inputs.ags.packages.${pkgs.system}.default)
+    (inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default)
+    (inputs.ags.packages.${pkgs.stdenv.hostPlatform.system}.default)
 
     # Utils
     caligula # burn ISOs at cli FAST
