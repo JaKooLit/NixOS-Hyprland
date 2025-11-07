@@ -182,7 +182,7 @@
     lstr # another tree util 
     lolcat
     lsd # ls replacement util
-    maccina # fetch tool
+    macchina # fetch tool
     mcat # show images in terminal 
     mdcat # Markdown tool
     parallel-disk-usage # fast disk space tool run: pdu
