@@ -175,24 +175,28 @@
     (inputs.ags.packages.${pkgs.stdenv.hostPlatform.system}.default)
 
     # Utils
-    caligula # burn ISOs at cli FAST
-    atop
-    gdu
-    glances
-    gping
-    htop
-    hyfetch
-    ipfetch
+    browsr # file browser
+    ctop # container top
+    erdtree # great tree util run: erd
+    frogmouth # cli markdown renderer A
+    lstr # another tree util 
     lolcat
-    lsd
+    lsd # ls replacement util
+    maccina # fetch tool
+    mcat # show images in terminal 
+    mdcat # Markdown tool
+    parallel-disk-usage # fast disk space tool run: pdu
+    pik # Interactive process killer 
     oh-my-posh
-    pfetch
-    ncdu
+    ncdu # disk usage tool
     ncftp
+    netop # network mon tool run: sudo netop
     ripgrep
     socat
     starship
+    trippy # trace tool like mtr  run  sudo trip host/IP
     tldr
+    tuptime # better uptime tool
     ugrep
     unrar
     v4l-utils
@@ -200,10 +204,20 @@
     zoxide
 
     # Hardware related
+    atop # monitoring tool
+    bandwhich # network monitor run with sudo
+    caligula # burn ISOs at cli FAST
     cpufetch
     cpuid
     cpu-x
-    #gsmartcontrol
+    cyme #list USB devices - very handy
+    gdu # Dusk usage 
+    glances # system monitor tool
+    gping # Graphical ping tool
+    htop # system monitor tool
+    hyfetch
+    ipfetch
+    pfetch
     smartmontools
     light
     lm_sensors

@@ -39,7 +39,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "nixos-test";
+      host = "jak-hl";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
