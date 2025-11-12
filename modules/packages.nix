@@ -94,6 +94,7 @@
     baobab
     btrfs-progs
     cmatrix
+    distrobox
     dua
     duf
     cava
