@@ -133,6 +133,7 @@
     kdePackages.qtwayland
     kdePackages.qtstyleplugin-kvantum # kvantum
     lazydocker
+    lazygit
     libappindicator
     libnotify
     libsForQt5.qtstyleplugin-kvantum # kvantum
