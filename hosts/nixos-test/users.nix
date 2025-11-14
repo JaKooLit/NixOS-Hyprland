@@ -41,14 +41,8 @@ in
         theme = "agnoster";
         plugins = [ "git" ];
       };
-      # Source plugins directly from the Nix store to avoid oh-my-zsh "not found" errors
-      initExtra = ''
-        # Enable autosuggestions
-        source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-        # zsh-syntax-highlighting must be sourced at the end of .zshrc
-        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      '';
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
     };
   };
 }
