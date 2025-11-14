@@ -33,7 +33,7 @@ in
   }; 
   
   environment.shells = with pkgs; [ zsh ];
-  environment.systemPackages = with pkgs; [ lsd fzf ]; 
+  environment.systemPackages = with pkgs; [ lsd fzf git ]; 
     
   programs = {
   # Zsh configuration
