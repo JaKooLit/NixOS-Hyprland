@@ -2,6 +2,34 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 14 November 2025
+
+- Updated Flake
+- Updated: Hyprland now v0.52.1
+
+- Added TMUX config from @tony,btw
+    - I merged exiting with his best features
+    - Tokyo Night theme
+    - More VIM motions
+    - No plugins!
+
+- ZSH
+    - Added plugins
+    - `zsh-syntax-highlighting`
+    - `zsh-auto-suggestion`
+
+- Home Manager
+    - Enabled backup of conflicting files on rebuilds
+
+- Updated GTK theming config
+
+- quickshell: use pkgs.stdenv.hostPlatform.system instead of deprecated pkgs.system
+
+- revert: drop XDG_DATA_DIRS overrides to fix NixOS eval conflicts; keep theming via dconf and Qt vars
+
+- Fixed: poor output formating in install scripts
+- Fixed: path issue in auto-install.sh and install.sh scripts
+
 ## 1 November 2025
 
 - Updated Flake

@@ -18,9 +18,6 @@
               set -g renumber-windows on
               set -g set-clipboard on
 
-              #unbind C-b
-              #bind-key C-a send-prefix
-
               unbind %
               unbind '"'
 
@@ -101,8 +98,8 @@
 
       bind C-n display-popup -E 'bash -i -c "read -p \"Session name: \" name; tmux new-session -d -s \$name && tmux switch-client -t \$name"'
       bind C-j display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
-      bind C-r display-popup \
 
+      bind C-r display-popup \
         -d "#{pane_current_path}" \
         -w 90% \
         -h 90% \
