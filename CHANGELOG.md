@@ -12,6 +12,7 @@ A technical record of notable changes. Dates are in UTC.
     - Tokyo Night theme
     - More VIM motions
     - No plugins!
+    - Updated English and Sponish tmux cheatsheets
 
 - ZSH
     - Added plugins

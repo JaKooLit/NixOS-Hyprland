@@ -9,12 +9,11 @@
     keyMode = "vi";
     baseIndex = 1;
     clock24 = false;
+    historyLimit = 5000;
 
     extraConfig = ''
               set-option -g status-position top
               set -ga terminal-overrides ",*:RGB"
-              set -g default-terminal "tmux-256color"
-              set-option -g history-limit 5000
               set -g renumber-windows on
               set -g set-clipboard on
 
@@ -74,8 +73,8 @@
               bind-key  c new-window
               # 'n' next  window
               bind-key  n next-window
-              # 'p' next  previous
-              bind-key  n previous-window
+              # 'p' previous window
+              bind-key  p previous-window
 
               unbind r
               bind r source-file ~/.config/tmux/tmux.conf

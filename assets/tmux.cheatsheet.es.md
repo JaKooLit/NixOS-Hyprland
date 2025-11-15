@@ -25,7 +25,7 @@ Ejemplos rápidos (con prefijo = C-a):
     - tmux habilitado; prefijo: C-a; modo de teclas: vi; baseIndex: 1; pane-base-index: 1
         - baseIndex: la numeración de las ventanas comienza en 1 en lugar de 0
         - pane-base-index: la numeración de los paneles dentro de una ventana comienza en 1 en lugar de 0
-    - La terminal anula el RGB; la terminal se establece en "kitty"; shell: zsh
+    - La terminal anula el RGB; la terminal se establece en "tmux-256color"; shell: zsh
     - Ratón: habilitado; reloj de 12 horas; límite de historial: 5000; renumerar ventanas: activado
 
 - Estado/UX
@@ -45,6 +45,7 @@ Navegación
 - C-Tab — siguiente ventana
 - C-S-Tab — ventana anterior
 - M-Tab — nueva ventana
+- M-h/M-j/M-k/M-l — seleccionar panel Izquierda/Abajo/Arriba/Derecha (sin prefijo)
 
 Divisiones
 
@@ -55,14 +56,22 @@ Divisiones
 
 Redimensionar
 
-- Prefijo C-h/C-j/C-k/C-l — redimensionar panel 15 columnas/filas en la dirección
+- Prefijo C-h/C-k/C-l — redimensionar panel 15 columnas/filas en la dirección
 - Prefijo m — alternar zoom (redimensionar panel -Z)
+
+Modo de copia (vi)
+
+- En modo de copia (vi), usa:
+    - v — comenzar selección
+    - C-v — alternar selección en bloque (rectangular)
+    - y — copiar selección y salir del modo de copia
 
 Ventanas
 
 - Prefijo c — nueva ventana
+- Prefijo p — ventana anterior
 - Prefijo n — siguiente ventana
-- Prefijo p — ventana anterior (nota: la configuración asigna 'n' dos veces; se pretendía p para anterior)
+- M-1..M-9 — seleccionar ventana 1..9 (sin prefijo)
 - Prefijo t — modo reloj
 - Prefijo q — mostrar paneles
 - Prefijo u — refrescar cliente
@@ -71,6 +80,14 @@ Sesión/Recargar
 
 - Prefijo r — cargar archivo ~/.config/tmux/tmux.conf
 - Prefijo x — matar panel (sin aviso)
+
+Popups
+
+- Prefijo C-y — abrir lazygit en un popup del 80% x 80% (directorio actual)
+- Prefijo C-n — crear y cambiar a una nueva sesión de tmux mediante un popup interactivo
+- Prefijo C-j — popup para cambiar de sesión con fzf (lista de sesiones tmux)
+- Prefijo C-r — abrir el gestor de archivos yazi en un popup del 90% x 90% (directorio actual)
+- Prefijo C-t — abrir una shell zsh en un popup del 75% x 75% (directorio actual)
 
 Notas
 

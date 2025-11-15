@@ -25,7 +25,7 @@ Quick examples (with prefix = C-a):
     - tmux enabled; prefix: C-a; key mode: vi; baseIndex: 1; pane-base-index: 1
         - baseIndex: window numbering starts at 1 instead of 0
         - pane-base-index: pane numbering inside a window starts at 1 instead of 0
-    - Terminal overrides RGB; terminal set to "kitty"; shell: zsh
+    - Terminal overrides RGB; terminal set to "tmux-256color"; shell: zsh
     - Mouse: enabled; 12-hour clock; history-limit: 5000; renumber-windows: on
 
 - Status/UX
@@ -45,6 +45,7 @@ Navigation
 - C-Tab — next-window
 - C-S-Tab — previous-window
 - M-Tab — new-window
+- M-h/M-j/M-k/M-l — select-pane Left/Down/Up/Right (no prefix)
 
 Splits
 
@@ -55,14 +56,22 @@ Splits
 
 Resize
 
-- Prefix C-h/C-j/C-k/C-l — resize-pane 15 cols/rows in direction
+- Prefix C-h/C-k/C-l — resize-pane 15 cols/rows in direction
 - Prefix m — toggle zoom (resize-pane -Z)
+
+Copy mode (vi)
+
+- In copy mode (vi), use:
+    - v — begin selection
+    - C-v — toggle rectangle (block) selection
+    - y — copy selection and exit copy mode
 
 Windows
 
 - Prefix c — new-window
-- Prefix n — next-window
-- Prefix p — previous-window (note: config binds 'n' twice; intended p for previous)
+- Prefix p — previous-window
+- Prefix n - next-window
+- M-1..M-9 — select window 1..9 (no prefix)
 - Prefix t — clock-mode
 - Prefix q — display-panes
 - Prefix u — refresh-client
@@ -71,6 +80,14 @@ Session/Reload
 
 - Prefix r — source-file ~/.config/tmux/tmux.conf
 - Prefix x — kill-pane (no prompt)
+
+Popups
+
+- Prefix C-y — open lazygit in an 80% x 80% popup (current directory)
+- Prefix C-n — create and switch to a new tmux session via popup prompt
+- Prefix C-j — fuzzy session switcher popup (fzf over tmux sessions)
+- Prefix C-r — open yazi file manager in a 90% x 90% popup (current directory)
+- Prefix C-t — open a zsh shell in a 75% x 75% popup (current directory)
 
 Notes
 
