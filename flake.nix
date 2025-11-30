@@ -2,9 +2,9 @@
   description = "KooL's NixOS-Hyprland";
 
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     #hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
@@ -39,7 +39,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "jak-hl";
+      host = "nixos-test";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
