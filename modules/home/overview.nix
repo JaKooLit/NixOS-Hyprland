@@ -19,5 +19,11 @@ in
     rm -rf "$DEST"
     cp -R "$SRC" "$DEST"
     chmod -R u+rwX "$DEST"
+    
+    # Remove default shell.qml if it exists (prevents named config detection)
+    # Quickshell disables subdirectory detection if ~/.config/quickshell/shell.qml exists
+    if [ -f "$HOME/.config/quickshell/shell.qml" ]; then
+      rm -f "$HOME/.config/quickshell/shell.qml"
+    fi
   '';
 }
