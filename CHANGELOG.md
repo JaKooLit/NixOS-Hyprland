@@ -2,6 +2,12 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 01 December 2025
+
+- Pinned NixOS to v25.11 Stable Branch
+- Updated quickshell `overview` code to newest version
+    - Gets updated by `Hyprland-Dots` after initial install
+
 ## 14 November 2025
 
 - Updated Flake
