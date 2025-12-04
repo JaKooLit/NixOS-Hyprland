@@ -2,6 +2,10 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 04 December 2025
+
+- Pinned `nixvim` to stable branch, v25.11
+
 ## 01 December 2025
 
 - Pinned NixOS to v25.11 Stable Branch
