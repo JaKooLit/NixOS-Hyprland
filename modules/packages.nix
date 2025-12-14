@@ -3,6 +3,9 @@
 , host
 , ...
 }: {
+
+  services.power-profiles-daemon.enable = true;
+
   programs = {
     hyprland = {
       enable = true;
@@ -82,6 +85,7 @@
     hyprland-qt-support # for hyprland-qt-support
 
     #  Apps
+    power-profiles-daemon
     loupe
     appimage-run
     bc
