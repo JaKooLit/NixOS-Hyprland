@@ -2,6 +2,14 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 15 December 2025
+
+- Added color and clock to `ly` login manager
+- Added `nh` NIX helper for rebuilds, cleanup
+- Added `alejandra` nix formatter to flake
+    - Ran `nix fmt ./` to properly NIX format all files
+    - Provides consistent and NIX standard formatting for merges
+
 ## 04 December 2025
 
 - Pinned `nixvim` to stable branch, v25.11
