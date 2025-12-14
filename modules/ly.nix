@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # Ensure greetd is not enabled anywhere by default (hosts can override if needed)
   services.greetd.enable = lib.mkDefault false;
 

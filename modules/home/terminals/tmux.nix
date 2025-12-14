@@ -1,5 +1,5 @@
 # Tmux is a terminal multiplexer that allows you to run multiple terminal sessions in a single window.
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -20,7 +20,7 @@
               unbind %
               unbind '"'
 
-              # VIM Motion realated settings 
+              # VIM Motion realated settings
               bind-key h select-pane -L
               bind-key j select-pane -D
               bind-key k select-pane -U
@@ -56,8 +56,8 @@
 
               # Start windows and panes index at 1, not 0.
               setw -g pane-base-index 1
-              
-              # Creating panes 
+
+              # Creating panes
               bind-key "|" split-window -h -c "#{pane_current_path}"
               bind-key "\\" split-window -fh -c "#{pane_current_path}"
 
@@ -148,6 +148,5 @@
 
 
     '';
-
   };
 }

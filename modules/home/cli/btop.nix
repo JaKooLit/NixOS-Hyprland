@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.btop = {
     enable = true;
     package = pkgs.btop.override {
@@ -19,5 +19,4 @@
       io_graph_combined = false;
     };
   };
-
 }

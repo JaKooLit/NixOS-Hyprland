@@ -1,10 +1,9 @@
-{ pkgs
-, inputs
-, host
-, ...
-}:
 {
-
+  pkgs,
+  inputs,
+  host,
+  ...
+}: {
   programs = {
     hyprland = {
       enable = true;
@@ -43,7 +42,6 @@
       thunar-volman
       tumbler
     ];
-
   };
   nixpkgs.config.allowUnfree = true;
 
@@ -139,7 +137,7 @@
     libnotify
     libsForQt5.qtstyleplugin-kvantum # kvantum
     libsForQt5.qt5ct
-    (mpv.override { scripts = [ mpvScripts.mpris ]; }) # with tray
+    (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
     nvtopPackages.full
     openssl # required by Rainbow borders
     pciutils
@@ -159,7 +157,7 @@
     rofi
     slurp
     swappy
-    serie #git cli tool 
+    serie #git cli tool
     swaynotificationcenter
     swww
     unzip
@@ -178,18 +176,18 @@
     (inputs.ags.packages.${pkgs.stdenv.hostPlatform.system}.default)
 
     # Utils
-    #browsr # file browser   # Fails python build 11/14/2025 
+    #browsr # file browser   # Fails python build 11/14/2025
     ctop # container top
     erdtree # great tree util run: erd
     frogmouth # cli markdown renderer A
-    lstr # another tree util 
+    lstr # another tree util
     lolcat
     lsd # ls replacement util
     macchina # fetch tool
-    mcat # show images in terminal 
+    mcat # show images in terminal
     mdcat # Markdown tool
     parallel-disk-usage # fast disk space tool run: pdu
-    pik # Interactive process killer 
+    pik # Interactive process killer
     oh-my-posh
     ncdu # disk usage tool
     ncftp
@@ -214,7 +212,7 @@
     cpuid
     cpu-x
     cyme #list USB devices - very handy
-    gdu # Dusk usage 
+    gdu # Dusk usage
     glances # system monitor tool
     gping # Graphical ping tool
     htop # system monitor tool
@@ -244,11 +242,9 @@
     # Terminals
     kitty
     wezterm
-
   ];
   environment.variables = {
     JAKOS_NIXOS_VERSION = "0.0.5";
     JAKOS = "true";
   };
-
 }

@@ -4,9 +4,7 @@
   pkgs,
   modulesPath,
   ...
-}:
-
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -21,32 +19,32 @@
     "sr_mod"
     "sdhci_pci"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/59c59bcf-7a09-4cae-b020-b885858279a7";
     fsType = "btrfs";
-    options = [ "subvol=@" ];
+    options = ["subvol=@"];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/59c59bcf-7a09-4cae-b020-b885858279a7";
     fsType = "btrfs";
-    options = [ "subvol=@nix" ];
+    options = ["subvol=@nix"];
   };
 
   fileSystems."/.snapshots" = {
     device = "/dev/disk/by-uuid/59c59bcf-7a09-4cae-b020-b885858279a7";
     fsType = "btrfs";
-    options = [ "subvol=@snapshots" ];
+    options = ["subvol=@snapshots"];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/59c59bcf-7a09-4cae-b020-b885858279a7";
     fsType = "btrfs";
-    options = [ "subvol=@home" ];
+    options = ["subvol=@home"];
   };
 
   fileSystems."/boot" = {
@@ -63,7 +61,7 @@
     fsType = "nfs";
   };
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   security.sudo.wheelNeedsPassword = false;
 

@@ -1,10 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
-{
-
+{pkgs, ...}: {
   # Extra Portal Configuration
   xdg.portal = {
     enable = true;
@@ -19,5 +13,4 @@
       pkgs.xdg-desktop-portal-wlr
     ];
   };
-
 }

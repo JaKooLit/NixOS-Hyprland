@@ -1,15 +1,10 @@
 # Fzf is a general-purpose command-line fuzzy finder.
-{
-  lib,
-  ...
-}:
-let
+{lib, ...}: let
   # Static Catppuccin Mocha accents (no Stylix dependency)
   accent = "#89b4fa";
   foreground = "#cdd6f4";
   muted = "#6c7086";
-in
-{
+in {
   programs.fzf = {
     enable = true;
     enableZshIntegration = false;
