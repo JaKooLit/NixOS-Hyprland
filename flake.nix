@@ -68,6 +68,7 @@
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
             ./modules/ly.nix # ly greater with matrix animation
+            ./modules/nh.nix # nix helper 
             inputs.catppuccin.nixosModules.catppuccin
             # Integrate Home Manager as a NixOS module
             inputs.home-manager.nixosModules.home-manager

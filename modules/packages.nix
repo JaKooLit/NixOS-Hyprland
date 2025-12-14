@@ -48,6 +48,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    alejandra
 
     # Update flkake script
     (pkgs.writeShellScriptBin "update" ''
