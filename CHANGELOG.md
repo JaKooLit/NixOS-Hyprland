@@ -9,6 +9,7 @@ A technical record of notable changes. Dates are in UTC.
 - Added `alejandra` nix formatter to flake
     - Ran `nix fmt ./` to properly NIX format all files
     - Provides consistent and NIX standard formatting for merges
+- Added `power-profiles-daemon` service and package
 
 ## 04 December 2025
 
