@@ -8,6 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
     #hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
+    alejandra.url = "github:kamadorueda/alejandra";
 
     ags = {
       type = "github";
@@ -33,6 +34,7 @@
     inputs@{ self
     , nixpkgs
     , ags
+    , alejandra
     , ...
     }:
     let
@@ -94,5 +96,7 @@
           ];
         };
       };
+      # Code formatter
+      formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
     };
 }
