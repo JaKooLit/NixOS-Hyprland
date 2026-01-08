@@ -2,6 +2,15 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 2 January 2026
+
+- Debian Testing or SID can now build Hyprland 0.53.1
+    - Stable (Trixe) only supports Hyprland 0.52.2 at this time
+    - Versions pinned at 0.52.2 unless overridden
+- Fixed `update-hyprland.sh` to properly refresh tags
+    - It now assumes --fetch-latest
+    - Small formatting fixes
+
 ## 15 December 2025
 
 - Added color and clock to `ly` login manager
