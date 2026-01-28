@@ -2,6 +2,14 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 23 December 2026
+
+- Added additional nerd fonts
+- Added Spanish Translations
+    - `CODE_OF_CONDUCT.es.md`
+    - `COMMIT_MESSAGE_GUIDELINES.es.md`
+    - `CONTRIBUTING.es.md`
+
 ## 15 December 2025
 
 - Added color and clock to `ly` login manager

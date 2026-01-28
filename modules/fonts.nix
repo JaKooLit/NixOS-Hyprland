@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   fonts = {
     packages = with pkgs; [
       dejavu_fonts
@@ -6,19 +6,39 @@
       fira-code-symbols
       font-awesome
       hackgen-nf-font
+      iosevka
+      nerd-fonts.iosevka-term
+      nerd-fonts.iosevka-term-slab
       ibm-plex
       inter
+      lilex
+      material-icons
+      material-symbols
+      maple-mono.NF
+      meslo-lg
       jetbrains-mono
       material-icons
       maple-mono.NF
       minecraftia
       nerd-fonts.im-writing
       nerd-fonts.blex-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.code-new-roman
       noto-fonts
       noto-fonts-color-emoji
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-monochrome-emoji
+      nerd-fonts.hack
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.im-writing
+      nerd-fonts.iosevka
+      nerd-fonts.lilex
+      nerd-fonts.meslo-lg
+      nerd-fonts.fira-mono
+      nerd-fonts.space-mono
+      nerd-fonts.ubuntu
       powerline-fonts
       roboto
       roboto-mono
