@@ -176,6 +176,7 @@
     xarchiver
     yad
     yazi
+    xdg-user-dirs #needed for copy.sh 
     yt-dlp
 
     (inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default)
