@@ -83,6 +83,7 @@
     nwg-look
     waypaper
     waybar
+    waybar-weather
     hyprland-qt-support # for hyprland-qt-support
 
     #  Apps

@@ -1,6 +1,7 @@
 {inputs, ...}: {
   nixpkgs.overlays = [
     (final: prev: rec {
+      waybar-weather = final.callPackage ../pkgs/waybar-weather.nix {};
       # Helper: provide a clean cxxopts.pc to avoid broken upstream pc requiring non-existent icu-cu
       cxxoptsPcShim = final.runCommand "cxxopts-pc-shim" {} ''
                 mkdir -p $out/lib/pkgconfig

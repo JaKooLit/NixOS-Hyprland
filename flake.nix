@@ -45,7 +45,11 @@
         allowUnfree = true;
       };
     };
+    waybarWeatherPkg = pkgs.callPackage ./pkgs/waybar-weather.nix {};
   in {
+    packages.${system} = {
+      waybar-weather = waybarWeatherPkg;
+    };
     nixosConfigurations = {
       "${host}" = nixpkgs.lib.nixosSystem rec {
         specialArgs = {

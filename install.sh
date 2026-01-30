@@ -60,6 +60,11 @@ if ! command -v lspci >/dev/null 2>&1; then
     exit 1
 fi
 
+# Check Go version (from nixpkgs or local) for waybar-weather
+if type nhl_check_go_version >/dev/null 2>&1; then
+    nhl_check_go_version
+fi
+
 echo "-----"
 printf "\n%.0s" {1..1}
 

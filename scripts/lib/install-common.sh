@@ -130,3 +130,35 @@ nhl_prompt_timezone_console() {
     printf '\n  console.keyMap = "%s";\n' "$consoleKeyMap" >> "$cfg"
   fi
 }
+
+nhl_check_go_version() {
+  local min_version="1.25.5"
+  local nix_go_version=""
+  local go_version=""
+
+  if command -v nix >/dev/null 2>&1; then
+    nix_go_version=$(NIX_CONFIG="experimental-features = nix-command flakes" nix eval --raw "nixpkgs#go.version" 2>/dev/null || true)
+  fi
+
+  if [ -n "$nix_go_version" ]; then
+    if [ "$(printf '%s\n' "$min_version" "$nix_go_version" | sort -V | head -n1)" != "$min_version" ]; then
+      echo "${ERROR} Go in nixpkgs is ${nix_go_version}, but ${min_version} or greater is required."
+      exit 1
+    fi
+    echo "${OK} Go in nixpkgs is ${nix_go_version} (>= ${min_version})."
+    return 0
+  fi
+
+  if command -v go >/dev/null 2>&1; then
+    go_version=$(go version | awk '{print $3}' | sed 's/^go//')
+    if [ -n "$go_version" ] && [ "$(printf '%s\n' "$min_version" "$go_version" | sort -V | head -n1)" = "$min_version" ]; then
+      echo "${OK} Go is ${go_version} (>= ${min_version})."
+      return 0
+    fi
+    echo "${ERROR} Go is ${go_version}, but ${min_version} or greater is required."
+    exit 1
+  fi
+
+  echo "${ERROR} Unable to determine Go version. Please ensure Go ${min_version}+ is available."
+  exit 1
+}
