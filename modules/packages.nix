@@ -51,6 +51,7 @@
     alejandra
     onefetch
     atop
+    go #needed for waybar-weather compile 
 
     # Update flkake script
     (pkgs.writeShellScriptBin "update" ''
