@@ -2,7 +2,13 @@
 
 A technical record of notable changes. Dates are in UTC.
 
-## 23 December 2026
+## 31 January 2026
+
+- Updated to unstable branch
+    - To get Hyprland to v0.53.x
+    - Needed for feature parity with dotfiles
+
+## 23 December 2025
 
 - Added additional nerd fonts
 - Added Spanish Translations
