@@ -23,8 +23,8 @@ in {
 
   # BOOT related stuff
   boot = {
-    #kernelPackages = pkgs.linuxPackages_zen; # zen Kernel
-    kernelPackages = pkgs.linuxPackages_latest; # Kernel
+    kernelPackages = pkgs.linuxPackages_zen; # zen Kernel
+    #kernelPackages = pkgs.linuxPackages_latest; # Kernel
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
@@ -50,6 +50,13 @@ in {
       kernelModules = [];
     };
 
+    # Needed For Some Steam Games
+    #kernel.sysctl = {
+    #  "vm.max_map_count" = 2147483642;
+    #};
+
+    ## BOOT LOADERS: NOTE USE ONLY 1. either systemd or grub
+    # Bootloader SystemD
     loader.systemd-boot.enable = true;
 
     loader.efi = {
@@ -57,7 +64,20 @@ in {
       canTouchEfiVariables = true;
     };
 
-    loader.timeout = 10;
+    loader.timeout = 5;
+
+    # Bootloader GRUB
+    #loader.grub = {
+    #enable = true;
+    #  devices = [ "nodev" ];
+    #  efiSupport = true;
+    #  gfxmodeBios = "auto";
+    #  memtest86.enable = true;
+    #  extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
+    #  configurationName = "${host}";
+    #	 };
+
+    # Bootloader GRUB theme, configure below
 
     ## -end of BOOTLOADERS----- ##
 
@@ -77,13 +97,19 @@ in {
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
 
-    plymouth.enable = false;
+    plymouth.enable = true;
   };
+
+  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
+  #distro-grub-themes = {
+  #  enable = true;
+  #  theme = "nixos";
+  #};
 
   # Extra Module Options
   drivers = {
-    amdgpu.enable = false;
-    intel.enable = false;
+    amdgpu.enable = true;
+    intel.enable = true;
     nvidia.enable = false;
     nvidia-prime = {
       enable = false;
@@ -94,12 +120,6 @@ in {
   vm.guest-services.enable = true;
   local.hardware-clock.enable = false;
 
-  services = {
-    qemuGuest.enable = true;
-    spice-vdagentd.enable = true;
-    spice-webdavd.enable = true;
-  };
-
   # networking
   networking = {
     networkmanager.enable = true;
@@ -109,6 +129,8 @@ in {
 
   # Set your time zone.
   services.automatic-timezoned.enable = true; # based on IP location
+
+  #https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -169,14 +191,14 @@ in {
     openssh.enable = true;
     flatpak.enable = true;
 
-    blueman.enable = false;
+    blueman.enable = true;
 
     #hardware.openrgb.enable = true;
     #hardware.openrgb.motherboard = "amd";
 
-    fwupd.enable = false;
+    fwupd.enable = true;
 
-    upower.enable = false;
+    upower.enable = true;
 
     gnome.gnome-keyring.enable = true;
 
@@ -194,6 +216,13 @@ in {
     #};
 
     #ipp-usb.enable = true;
+
+    #syncthing = {
+    #  enable = false;
+    #  user = "${username}";
+    #  dataDir = "/home/${username}";
+    #  configDir = "/home/${username}/.config/syncthing";
+    #};
   };
 
   systemd.services.flatpak-repo = {
@@ -234,8 +263,8 @@ in {
   # Bluetooth
   hardware = {
     bluetooth = {
-      enable = false;
-      powerOnBoot = false;
+      enable = true;
+      powerOnBoot = true;
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
@@ -291,11 +320,11 @@ in {
   };
 
   # Virtualization / Containers
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = false;
   virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
+    enable = false;
+    dockerCompat = false;
+    defaultNetwork.settings.dns_enabled = false;
   };
 
   # OpenGL
@@ -304,8 +333,6 @@ in {
   };
 
   console.keyMap = "us";
-
-  security.sudo.wheelNeedsPassword = false;
 
   # For Electron apps to use wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -318,5 +345,11 @@ in {
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 }

@@ -41,6 +41,7 @@ in {
         theme = "agnoster";
         plugins = ["git"];
       };
+      # Enable zsh plugins via NixOS module options
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
     };
