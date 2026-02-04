@@ -19,6 +19,9 @@
     '';
   };
 
+  # Force overwrite for Ghostty's main config to avoid backup clobbering errors
+  xdg.configFile."ghostty/config".force = true;
+
   programs.ghostty = {
     enable = true;
     package = pkgs.ghostty;
